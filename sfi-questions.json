@@ -1,0 +1,596 @@
+[
+  {
+    "category": "Daily Life",
+    "question": "Vad säger du när du vill ha ett glas vatten?",
+    "correct": "Kan jag få ett glas vatten?",
+    "options": [
+      "Kan jag få ett glas vatten?",
+      "Jag vill ha kaffe",
+      "Var är toaletten?"
+    ],
+    "hint": "Use this phrase to politely ask for a glass of water."
+  },
+  {
+    "category": "Daily Life",
+    "question": "Hur hälsar du på morgonen?",
+    "correct": "God morgon",
+    "options": [
+      "God morgon",
+      "God natt",
+      "Hej då"
+    ],
+    "hint": "'God morgon' means good morning in Swedish."
+  },
+  {
+    "category": "Daily Life",
+    "question": "Vad ber du om när du behöver hjälp i en butik?",
+    "correct": "Kan du hjälpa mig?",
+    "options": [
+      "Kan du hjälpa mig?",
+      "Vad heter du?",
+      "Jag är hungrig"
+    ],
+    "hint": "This phrase asks someone for assistance in a store."
+  },
+  {
+    "category": "Daily Life",
+    "question": "Hur beställer du mat på en restaurang?",
+    "correct": "Jag skulle vilja beställa maten",
+    "options": [
+      "Jag skulle vilja beställa maten",
+      "Kan jag få ett rum?",
+      "När går bussen?"
+    ],
+    "hint": "Use this sentence to order food at a restaurant."
+  },
+  {
+    "category": "Daily Life",
+    "question": "Vad säger du om något är för dyrt?",
+    "correct": "Det är för dyrt",
+    "options": [
+      "Det är för dyrt",
+      "Det är bra",
+      "Det är klart"
+    ],
+    "hint": "This phrase means the price is too high."
+  },
+  {
+    "category": "Daily Life",
+    "question": "Hur frågar du efter en toalett?",
+    "correct": "Var är toaletten?",
+    "options": [
+      "Var är toaletten?",
+      "Var ligger skolan?",
+      "Hur mår du?"
+    ],
+    "hint": "This is how you ask where the restroom is."
+  },
+  {
+    "category": "Daily Life",
+    "question": "Vilken fras använder du för att säga 'I need a doctor'?",
+    "correct": "Jag behöver en läkare",
+    "options": [
+      "Jag behöver en läkare",
+      "Jag vill ha en bil",
+      "Jag går hem"
+    ],
+    "hint": "This phrase is used in a medical emergency."
+  },
+  {
+    "category": "Daily Life",
+    "question": "Vad säger du när du lämnar en tidning?",
+    "correct": "Tack för hjälpen",
+    "options": [
+      "Tack för hjälpen",
+      "Hej då",
+      "Jag talar engelska"
+    ],
+    "hint": "Say this to thank someone when leaving."
+  },
+  {
+    "category": "Daily Life",
+    "question": "Hur ber du om notan på en restaurang?",
+    "correct": "Kan jag få notan?",
+    "options": [
+      "Kan jag få notan?",
+      "Är det öppet?",
+      "Vilken tid är det?"
+    ],
+    "hint": "This phrase is used to request the bill at a restaurant."
+  },
+  {
+    "category": "Daily Life",
+    "question": "Vad frågar du om du vill veta öppettider?",
+    "correct": "När öppnar ni?",
+    "options": [
+      "När öppnar ni?",
+      "Hur gammal är du?",
+      "Vad heter du?"
+    ],
+    "hint": "Ask this when you want the opening time."
+  },
+  {
+    "category": "Work",
+    "question": "Vad betyder 'anställning'?",
+    "correct": "En plats där du arbetar",
+    "options": [
+      "En plats där du arbetar",
+      "Ett boende",
+      "En sjukdom"
+    ],
+    "hint": "This word means a job or employment."
+  },
+  {
+    "category": "Work",
+    "question": "Vilket dokument behöver du för ett jobbintervju?",
+    "correct": "CV",
+    "options": [
+      "CV",
+      "Pass",
+      "Matkasse"
+    ],
+    "hint": "A CV is often required for a job interview."
+  },
+  {
+    "category": "Work",
+    "question": "Vad är en vanlig fråga i en arbetsintervju?",
+    "correct": "Varför vill du jobba här?",
+    "options": [
+      "Varför vill du jobba här?",
+      "Vilken buss tar jag?",
+      "Vad kostar det?"
+    ],
+    "hint": "This is a common interview question about motivation."
+  },
+  {
+    "category": "Work",
+    "question": "Vad ber du om på kontoret om du behöver mera papper?",
+    "correct": "Kan jag få mer papper?",
+    "options": [
+      "Kan jag få mer papper?",
+      "Var är toaletten?",
+      "Hur mår du?"
+    ],
+    "hint": "Ask this when you need more paper at work."
+  },
+  {
+    "category": "Work",
+    "question": "Vad betyder 'arbetsplats'?",
+    "correct": "Där du arbetar",
+    "options": [
+      "Där du arbetar",
+      "Där du bor",
+      "Där du handlar"
+    ],
+    "hint": "'Arbetsplats' means workplace."
+  },
+  {
+    "category": "Work",
+    "question": "Vilken myndighet hjälper dig med jobb i Sverige?",
+    "correct": "Arbetsförmedlingen",
+    "options": [
+      "Arbetsförmedlingen",
+      "Skatteverket",
+      "Polisen"
+    ],
+    "hint": "This agency helps people find jobs."
+  },
+  {
+    "category": "Work",
+    "question": "Vad säger du när du börjar ett nytt jobb?",
+    "correct": "Jag börjar idag",
+    "options": [
+      "Jag börjar idag",
+      "Jag reser imorgon",
+      "Jag är trött"
+    ],
+    "hint": "Use this to tell someone that your first day at work is today."
+  },
+  {
+    "category": "Work",
+    "question": "Hur ber du om handledning på jobbet?",
+    "correct": "Kan du visa mig?",
+    "options": [
+      "Kan du visa mig?",
+      "Jag vill gå hem",
+      "Jag sover"
+    ],
+    "hint": "Ask a coworker to show you how something is done."
+  },
+  {
+    "category": "Work",
+    "question": "Vilket ord beskriver en deltidsanställning?",
+    "correct": "Deltid",
+    "options": [
+      "Deltid",
+      "Heltid",
+      "Semester"
+    ],
+    "hint": "This word means part-time employment."
+  },
+  {
+    "category": "Work",
+    "question": "Vad heter facket på svenska?",
+    "correct": "Facket",
+    "options": [
+      "Facket",
+      "Banken",
+      "Skolan"
+    ],
+    "hint": "A union in Sweden is called 'facket'."
+  },
+  {
+    "category": "Housing",
+    "question": "Vad kallar du en lägenhet?",
+    "correct": "Bostad",
+    "options": [
+      "Bostad",
+      "Buss",
+      "Bok"
+    ],
+    "hint": "This word means housing or residence."
+  },
+  {
+    "category": "Housing",
+    "question": "Vad frågar du när du vill se ett rum?",
+    "correct": "Kan jag få se rummet?",
+    "options": [
+      "Kan jag få se rummet?",
+      "Vad heter du?",
+      "När är bussen?"
+    ],
+    "hint": "Ask to view a room before renting."
+  },
+  {
+    "category": "Housing",
+    "question": "Vad betyder 'hyra'?",
+    "correct": "Att betala för boende",
+    "options": [
+      "Att betala för boende",
+      "Att köpa en bil",
+      "Att resa"
+    ],
+    "hint": "This word means to rent accommodation."
+  },
+  {
+    "category": "Housing",
+    "question": "Vilken fras använder du för att anmäla flytt?",
+    "correct": "Jag vill ändra min adress",
+    "options": [
+      "Jag vill ändra min adress",
+      "Jag behöver medicin",
+      "Jag söker jobb"
+    ],
+    "hint": "Use this phrase to report an address change."
+  },
+  {
+    "category": "Housing",
+    "question": "Vad heter platsen där du anmäler din nya adress?",
+    "correct": "Skatteverket",
+    "options": [
+      "Skatteverket",
+      "Polisen",
+      "Biblioteket"
+    ],
+    "hint": "The Tax Agency handles address registration in Sweden."
+  },
+  {
+    "category": "Housing",
+    "question": "Vad betyder 'bostadsrätt'?",
+    "correct": "En lägenhet du äger",
+    "options": [
+      "En lägenhet du äger",
+      "En lägenhet du hyr",
+      "Ett hotellrum"
+    ],
+    "hint": "This term refers to an owned apartment."
+  },
+  {
+    "category": "Health",
+    "question": "Vad gör du om du behöver en tid hos doktorn?",
+    "correct": "Ringer vårdcentralen",
+    "options": [
+      "Ringer vårdcentralen",
+      "Går till jobbet",
+      "Köper mat"
+    ],
+    "hint": "Call the healthcare center to book a doctor's appointment."
+  },
+  {
+    "category": "Health",
+    "question": "Var köper du medicin?",
+    "correct": "På apoteket",
+    "options": [
+      "På apoteket",
+      "På banken",
+      "I mataffären"
+    ],
+    "hint": "You buy medicine at the pharmacy."
+  },
+  {
+    "category": "Health",
+    "question": "Vad betyder 'vårdcentral'?",
+    "correct": "En plats för vård och råd",
+    "options": [
+      "En plats för vård och råd",
+      "En matbutik",
+      "En bilverkstad"
+    ],
+    "hint": "A health center for non-urgent care is called 'vårdcentral'."
+  },
+  {
+    "category": "Health",
+    "question": "Vad säger du när du är sjuk?",
+    "correct": "Jag är sjuk",
+    "options": [
+      "Jag är sjuk",
+      "Jag är glad",
+      "Jag är trött"
+    ],
+    "hint": "This means you are ill or not feeling well."
+  },
+  {
+    "category": "Health",
+    "question": "Vilken nummer ringer du för sjukvårdsrådgivning?",
+    "correct": "1177",
+    "options": [
+      "1177",
+      "112",
+      "114 14"
+    ],
+    "hint": "1177 is the Swedish healthcare advice phone number."
+  },
+  {
+    "category": "Health",
+    "question": "Vad heter försäkringen som hjälper vid sjukdom?",
+    "correct": "Sjukförsäkring",
+    "options": [
+      "Sjukförsäkring",
+      "Bilförsäkring",
+      "Hemförsäkring"
+    ],
+    "hint": "This insurance covers illness-related benefits."
+  },
+  {
+    "category": "Authorities",
+    "question": "Vilken myndighet ger id-kort?",
+    "correct": "Skatteverket",
+    "options": [
+      "Skatteverket",
+      "Polisen",
+      "Posten"
+    ],
+    "hint": "The tax agency issues identity cards in Sweden."
+  },
+  {
+    "category": "Authorities",
+    "question": "Vem hjälper dig med uppehållstillstånd?",
+    "correct": "Migrationsverket",
+    "options": [
+      "Migrationsverket",
+      "Skatteverket",
+      "Körkort"
+    ],
+    "hint": "The Migration Agency handles residence permits."
+  },
+  {
+    "category": "Authorities",
+    "question": "Vad gör du om du behöver ett nytt pass?",
+    "correct": "Bokar tid hos polisen",
+    "options": [
+      "Bokar tid hos polisen",
+      "Går till skolan",
+      "Ringer banken"
+    ],
+    "hint": "You book an appointment with the police for a new passport."
+  },
+  {
+    "category": "Authorities",
+    "question": "Vad betyder 'myndighet'?",
+    "correct": "Offentlig organisation",
+    "options": [
+      "Offentlig organisation",
+      "Privat butik",
+      "Familj"
+    ],
+    "hint": "A government agency is a public authority."
+  },
+  {
+    "category": "Authorities",
+    "question": "Var lämnar du ditt skattedeklaration?",
+    "correct": "Skatteverket",
+    "options": [
+      "Skatteverket",
+      "Biblioteket",
+      "Apoteket"
+    ],
+    "hint": "You submit tax declarations to the Tax Agency."
+  },
+  {
+    "category": "Public Services",
+    "question": "Var köper du biljetter till tunnelbanan?",
+    "correct": "I kiosken eller online",
+    "options": [
+      "I kiosken eller online",
+      "På banken",
+      "På biblioteket"
+    ],
+    "hint": "Tickets are sold at kiosks and online for public transport."
+  },
+  {
+    "category": "Public Services",
+    "question": "Vad är en bankomat?",
+    "correct": "En automat för uttag",
+    "options": [
+      "En automat för uttag",
+      "En restaurang",
+      "Ett bibliotek"
+    ],
+    "hint": "A bankomat is an ATM for withdrawing cash."
+  },
+  {
+    "category": "Public Services",
+    "question": "Vad betyder 'bibliotek'?",
+    "correct": "Där man lånar böcker",
+    "options": [
+      "Där man lånar böcker",
+      "Där man köper mat",
+      "Där man tränar"
+    ],
+    "hint": "A library is where you borrow books."
+  },
+  {
+    "category": "Public Services",
+    "question": "Var lämnar du återvinning?",
+    "correct": "Återvinningscentralen",
+    "options": [
+      "Återvinningscentralen",
+      "Systembolaget",
+      "Trafikverket"
+    ],
+    "hint": "You take sorted waste to the recycling center."
+  },
+  {
+    "category": "Public Services",
+    "question": "Vilken tjänst hjälper dig med körkort?",
+    "correct": "Trafikverket",
+    "options": [
+      "Trafikverket",
+      "Arbetsförmedlingen",
+      "Migrationsverket"
+    ],
+    "hint": "The transport agency handles driving licenses."
+  },
+  {
+    "category": "Public Services",
+    "question": "Vad är öppet 24 timmar?",
+    "correct": "Några stormarknader",
+    "options": [
+      "Några stormarknader",
+      "Biblioteket",
+      "Vårdcentralen"
+    ],
+    "hint": "Some supermarkets are open 24 hours, not libraries or health centers."
+  },
+  {
+    "category": "Communication",
+    "question": "Hur ber du någon ringa tillbaka?",
+    "correct": "Kan du ringa mig tillbaka?",
+    "options": [
+      "Kan du ringa mig tillbaka?",
+      "Vad heter du?",
+      "Var bor du?"
+    ],
+    "hint": "Ask someone to call you back later."
+  },
+  {
+    "category": "Communication",
+    "question": "Vad betyder 'e-post'?",
+    "correct": "Email",
+    "options": [
+      "Email",
+      "Telefon",
+      "Brev"
+    ],
+    "hint": "E-post means email in Swedish."
+  },
+  {
+    "category": "Communication",
+    "question": "Vad säger du när du talar i telefon?",
+    "correct": "Hej, det är [ditt namn]",
+    "options": [
+      "Hej, det är [ditt namn]",
+      "Jag vill inte prata",
+      "Jag sover"
+    ],
+    "hint": "This is how you answer the phone politely."
+  },
+  {
+    "category": "Communication",
+    "question": "Hur frågar du efter någon annans nummer?",
+    "correct": "Vad är ditt telefonnummer?",
+    "options": [
+      "Vad är ditt telefonnummer?",
+      "Vad heter du?",
+      "Var arbetar du?"
+    ],
+    "hint": "Ask this to get someone's phone number."
+  },
+  {
+    "category": "Communication",
+    "question": "Vad betyder 'sms'?",
+    "correct": "Kort meddelande",
+    "options": [
+      "Kort meddelande",
+      "Lång historia",
+      "Brev"
+    ],
+    "hint": "SMS stands for short message service."
+  },
+  {
+    "category": "Communication",
+    "question": "Hur skriver du ett formellt mejl?",
+    "correct": "Hej, jag heter ...",
+    "options": [
+      "Hej, jag heter ...",
+      "Jag går hem",
+      "Vad kostar det?"
+    ],
+    "hint": "A formal email often starts with a greeting and introduction."
+  },
+  {
+    "category": "Transport",
+    "question": "Vad kallar du en station för tåg?",
+    "correct": "Tågstation",
+    "options": [
+      "Tågstation",
+      "Apotek",
+      "Bibliotek"
+    ],
+    "hint": "A train station is called tågstation."
+  },
+  {
+    "category": "Transport",
+    "question": "Hur frågar du när nästa tunnelbana går?",
+    "correct": "När går nästa tunnelbana?",
+    "options": [
+      "När går nästa tunnelbana?",
+      "Var ligger biblioteket?",
+      "Kan jag få notan?"
+    ],
+    "hint": "Ask for the next subway departure time."
+  },
+  {
+    "category": "Transport",
+    "question": "Vad betyder 'biljett'?",
+    "correct": "Ett pass för resa",
+    "options": [
+      "Ett pass för resa",
+      "Ett dokument",
+      "Ett möte"
+    ],
+    "hint": "A ticket is required for travel."
+  },
+  {
+    "category": "Transport",
+    "question": "Vilken typ av transport är 'spårvagn'?",
+    "correct": "Tram",
+    "options": [
+      "Tram",
+      "Plane",
+      "Ship"
+    ],
+    "hint": "A spårvagn is a tram in Swedish."
+  },
+  {
+    "category": "Transport",
+    "question": "Var går du för att köpa pendeltågsbiljett?",
+    "correct": "I biljettmaskinen",
+    "options": [
+      "I biljettmaskinen",
+      "På apoteket",
+      "I skolan"
+    ],
+    "hint": "Use the ticket machine to buy commuter train tickets."
+  }
+]

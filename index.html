@@ -8,132 +8,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F7F3EC; --paper-2:#FFFFFF; --ink:#1B1B1B; --ink-soft:#5B5650;
-    --falu:#A2342B; --falu-deep:#7E2620; --navy:#1C3144; --gold:#E3A72B;
-    --line:#E4DCCC; --ok:#3D7A4E;
+    --paper:#111c2e; --paper-2:#16233c; --paper-3:#22364d; --ink:#f8fafc; --ink-soft:#c4d4ee;
+    --falu:#ff8d84; --falu-deep:#ff6f62; --navy:#88c2ff; --gold:#ffd166;
+    --line:rgba(180, 201, 232, 0.22); --ok:#4ade80; --accent:#79b7ff; --accent-2:#9ea8ff;
   }
   *{box-sizing:border-box;}
   body{
-    margin:0; min-height:100vh; background:var(--paper);
-    background-image: radial-gradient(circle at 1px 1px, rgba(28,49,68,0.07) 1px, transparent 0);
-    background-size: 22px 22px;
+    margin:0; min-height:100vh; background:radial-gradient(circle at top left, rgba(121,183,255,0.2), transparent 24%), linear-gradient(135deg, #111c2e 0%, #16233c 45%, #21334f 100%);
     color:var(--ink); font-family:'Inter',sans-serif;
-    display:flex; flex-direction:column; align-items:center; padding:28px 16px 60px;
+    display:flex; flex-direction:column; align-items:center; padding:28px 16px 64px;
   }
-  h1,h2,.display{font-family:'Fraunces',serif;}
+  h1,h2,.display{font-family:'Fraunces',serif; letter-spacing:-0.01em;}
   .mono{font-family:'IBM Plex Mono',monospace;}
   .card{
-    background:var(--paper-2); border:1px solid var(--line); border-radius:22px;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 18px 40px -22px rgba(28,49,68,0.35);
+    background:linear-gradient(145deg, rgba(24,32,44,0.96), rgba(15,23,32,0.96));
+    border:1px solid rgba(148,163,184,0.22); border-radius:24px;
+    box-shadow:0 18px 60px -30px rgba(2, 8, 23, 0.8), inset 0 1px 0 rgba(255,255,255,0.04);
+    backdrop-filter:blur(14px);
   }
-  .cross-divider{display:flex; align-items:center; gap:10px; width:100%; margin:6px 0;}
-  .cross-divider .arm{flex:1; height:1px; background:var(--line);}
-  .cross-divider .plus{width:14px; height:14px; position:relative; opacity:0.55;}
-  .cross-divider .plus:before, .cross-divider .plus:after{content:''; position:absolute; background:var(--falu);}
+  .cross-divider{display:flex; align-items:center; gap:10px; width:100%; margin:8px 0 6px;}
+  .cross-divider .arm{flex:1; height:1px; background:linear-gradient(90deg, transparent, var(--line), transparent);}
+  .cross-divider .plus{width:14px; height:14px; position:relative; opacity:0.7;}
+  .cross-divider .plus:before, .cross-divider .plus:after{content:''; position:absolute; background:linear-gradient(135deg, var(--accent), var(--accent-2));}
   .cross-divider .plus:before{ left:6px; top:0; width:2px; height:14px; }
   .cross-divider .plus:after{ left:0; top:6px; width:14px; height:2px; }
   .btn-primary{
-    background:var(--navy); color:#fff; border:none; border-radius:14px;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; border:none; border-radius:16px;
     font-family:'Inter',sans-serif; font-weight:700; letter-spacing:.01em;
-    padding:16px; cursor:pointer; transition:transform .15s ease, background .15s ease;
-    box-shadow: 0 10px 24px -12px rgba(28,49,68,0.55);
+    padding:15px 16px; min-height:46px; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, filter .2s ease;
+    box-shadow:0 12px 30px -14px rgba(96, 165, 250, 0.36);
   }
-  .btn-primary:hover{ transform:translateY(-2px); background:#142534; }
+  .btn-primary:hover{ transform:translateY(-2px); filter:brightness(1.06); }
   .btn-outline{
-    background:#fff; color:var(--navy); border:1.5px solid var(--navy);
-    border-radius:14px; font-weight:700; padding:16px; cursor:pointer;
-    transition:transform .15s ease, background .15s ease;
+    background:rgba(248,250,252,0.03); color:var(--ink); border:1.5px solid rgba(148,163,184,0.22);
+    border-radius:16px; font-weight:700; padding:15px 16px; min-height:46px; cursor:pointer;
+    transition:transform .15s ease, border-color .2s ease, background .2s ease;
   }
-  .btn-outline:hover{ transform:translateY(-2px); background:#F1EEE6; }
+  .btn-outline:hover{ transform:translateY(-2px); background:rgba(255,255,255,0.08); border-color:var(--accent); }
   .chip{
-    border:1px solid var(--line); background:#fff; border-radius:999px;
-    padding:7px 13px; font-size:11px; font-weight:600; color:var(--ink-soft);
+    border:1px solid rgba(148,163,184,0.18); background:rgba(248,250,252,0.04); border-radius:999px;
+    padding:8px 13px; font-size:11px; font-weight:600; color:var(--ink-soft);
     cursor:pointer; transition:all .15s ease; white-space:nowrap;
   }
-  .chip.active{ background:var(--navy); color:#fff; border-color:var(--navy); }
+  .chip:hover{ border-color:var(--accent); color:var(--ink); }
+  .chip.active{ background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; border-color:transparent; box-shadow:0 10px 24px -14px rgba(56,189,248,0.45); }
   .alpha-key{
-    background:#fff; border:1.5px solid var(--line); border-radius:12px;
-    font-family:'Fraunces',serif; font-weight:600; color:var(--navy);
+    background:rgba(255,255,255,0.05); border:1.5px solid var(--line); border-radius:14px;
+    font-family:'Fraunces',serif; font-weight:600; color:var(--ink);
     transition: all .12s ease; cursor:pointer;
   }
-  .alpha-key:hover{ border-color:var(--falu); background:#FBF1EF; transform:translateY(-2px); }
+  .alpha-key:hover{ border-color:var(--accent); background:rgba(56,189,248,0.12); transform:translateY(-2px); }
   .alpha-key:active{ transform:scale(.94); }
   .option-btn{
-    background:#fff; border:1.5px solid var(--line); border-radius:16px;
+    background:rgba(255,255,255,0.05); border:1.5px solid var(--line); border-radius:16px;
     color:var(--ink); font-weight:700; transition:all .15s ease; cursor:pointer;
   }
-  .option-btn:hover{ border-color:var(--navy); transform:translateY(-2px); box-shadow:0 10px 20px -12px rgba(28,49,68,.4); }
-  .option-btn.correct{ background:#EAF4EC; border-color:var(--ok); color:var(--ok); }
-  .option-btn.wrong{ background:#FBEAE8; border-color:var(--falu); color:var(--falu-deep); }
+  .option-btn:hover{ border-color:var(--accent); transform:translateY(-2px); box-shadow:0 12px 24px -16px rgba(56,189,248,0.35); }
+  .option-btn.correct{ background:rgba(52,211,153,0.16); border-color:var(--ok); color:var(--ok); }
+  .option-btn.wrong{ background:rgba(255,123,114,0.16); border-color:var(--falu); color:var(--falu-deep); }
+  .translation-line{font-size:11px;opacity:.72;margin-top:4px;color:var(--ink-soft);}
+  .option-btn .translation-line{font-size:10.5px;font-weight:500;}
   .badge{
     font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
     padding:4px 10px; border-radius:999px; border:1px solid var(--line); color:var(--ink-soft);
+    background:rgba(255,255,255,0.05);
   }
   .hidden{display:none!important;}
-  .info-note{ font-size:10px; color:var(--ink-soft); line-height:1.5; background:var(--paper); border:1px dashed var(--line); border-radius:12px; padding:10px 12px; text-align:left; }
+  .info-note{ font-size:10px; color:var(--ink-soft); line-height:1.5; background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:14px; padding:10px 12px; text-align:left; }
   ::-webkit-scrollbar{width:6px;height:6px;}
-  ::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px;}
+  ::-webkit-scrollbar-thumb{background:rgba(148,163,184,0.25);border-radius:6px;}
 </style>
 </head>
 <body>
 
 <!-- ==================== HOME ==================== -->
-<div id="homeScreen" class="card" style="max-width:480px;width:100%;padding:26px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;">
+<div id="homeScreen" class="card" style="max-width:480px;width:100%;padding:28px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;">
   <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
-    <span class="badge" style="background:var(--navy);color:#fff;border-color:var(--navy);" id="txtEcosystem">🇸🇪 SVEAHUB</span>
+    <span class="badge" style="background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-color:transparent;box-shadow:0 8px 24px -14px rgba(56,189,248,0.5);" id="txtEcosystem">🇸🇪 SVEAHUB</span>
     <div style="display:flex; gap:8px;">
-      <button onclick="showProgress()" class="chip" id="txtProgBtn">📊 Progress</button>
       <button onclick="toggleAppLanguage()" class="chip" id="langToggleBtn">SV/EN</button>
     </div>
   </div>
 
   <div style="width:100%;">
-    <h1 class="display" id="txtHomeTitle" style="font-size:26px;font-weight:700;margin:6px 0 2px;color:var(--navy);">Svenska, one word a day</h1>
-    <p id="txtHomeDesc" style="font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin:0;">
-      Built for real life in Sweden — vardag, jobbet, and the new citizenship test. Tap a letter, hear it, learn it.
-    </p>
+    <h1 class="display" id="txtHomeTitle" style="font-size:28px;font-weight:800;margin:6px 0 2px;color:var(--ink);letter-spacing:-0.02em;">Din kompletta övningsplats för svenska språket och medborgarskap.</h1>
   </div>
 
   <div class="cross-divider"><span class="arm"></span><span class="plus"></span><span class="arm"></span></div>
 
-  <div style="width:100%; display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
-    <div class="card" style="padding:10px 6px;border-radius:14px;">
-      <div class="mono" style="font-size:18px;font-weight:600;color:var(--falu);" id="statStreak">0</div>
-      <div style="font-size:9px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;" id="txtStreakLabel">Day streak</div>
-    </div>
-    <div class="card" style="padding:10px 6px;border-radius:14px;">
-      <div class="mono" style="font-size:18px;font-weight:600;color:var(--navy);" id="statWords">0</div>
-      <div style="font-size:9px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;" id="txtWordsLabel">Words heard</div>
-    </div>
-    <div class="card" style="padding:10px 6px;border-radius:14px;">
-      <div class="mono" style="font-size:18px;font-weight:600;color:var(--gold);" id="statScore">0</div>
-      <div style="font-size:9px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;" id="txtScoreLabel">Total score</div>
-    </div>
-  </div>
-
   <div style="width:100%; display:flex; flex-direction:column; gap:10px;">
-    <button onclick="startLanguageGame()" class="btn-primary" id="txtBtnLangGame">🚀 Sentence Context Game</button>
-    <button onclick="startCitizenshipGame()" class="btn-outline" id="txtBtnCitGame">🏛️ Medborgarskap Quiz</button>
-    <button onclick="startExamMode()" class="btn-outline" id="txtBtnExam" style="border-color:var(--gold);color:#7a5c0f;">⏱️ Exam Simulator (24Q, timed)</button>
-  </div>
-
-  <div class="info-note" id="txtHomeNote">
-    📘 Sweden's new citizenship law requires a civics knowledge test — <b>medborgarskapsprovet</b> — run by UHR, based on the official <i>Sverige i fokus</i> material. This app's quiz covers the same 13 syllabus areas — it is practice material, not official UHR questions.
+    <button onclick="startLanguageGame()" class="btn-primary" id="txtBtnLangGame">🚀 Meningskontext Spel</button>
+    <button onclick="startCitizenshipGame()" class="btn-outline" id="txtBtnCitGame">🏛️ Medborgarskapstest</button>
+    <button onclick="startExamMode()" class="btn-outline" id="txtBtnExam" style="border-color:var(--accent);color:var(--accent);">⏱️ Examenssimulator (69 frågor, tidsbegränsad)</button>
+    <button onclick="startSfiPractice()" class="btn-outline" id="txtBtnSfiPractice" style="border-color:var(--accent);color:var(--accent);">📝 Snabb ord- & grammatikövning</button>
   </div>
 
   <!-- Alphabet keyboard -->
-  <div style="width:100%; background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:14px; text-align:left;">
+  <div style="width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:18px; padding:14px; text-align:left; box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
       <span style="font-size:10px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;" id="txtAlphaHeader">🔊 Say it right</span>
       <span style="font-size:9px;color:var(--falu);font-weight:600;" id="txtAlphaSub">tap for next word</span>
     </div>
     <div id="alphabetKeyboard" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;"></div>
-    <div id="audioFeedbackBox" style="margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;">
+    <div id="audioFeedbackBox" style="margin-top:10px;background:rgba(255,255,255,0.05);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;">
       <span style="font-size:10.5px;color:var(--ink-soft);font-style:italic;" id="txtAlphaPrompt">Tap any letter to hear a new Swedish word, every time.</span>
     </div>
   </div>
 
-  <div style="font-size:9.5px;color:var(--ink-soft);opacity:.75;" id="txtHomeFooter">Free tier: full alphabet + daily categories · Premium unlocks SFI Interview Prep & unlimited AI drills</div>
 </div>
 
 <!-- ==================== LANGUAGE GAME ==================== -->
@@ -141,7 +122,6 @@
   <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
     <button onclick="goHome()" class="chip" id="txtGameHome">🏠 Home</button>
     <div style="display:flex; gap:8px; align-items:center;">
-      <div class="chip" style="background:var(--gold);color:#3a2a04;border-color:var(--gold);">🔥 <span id="streakVal">0</span></div>
       <button onclick="toggleAppLanguage()" class="chip">SV/EN</button>
     </div>
     <button onclick="fetchNewAIContent()" class="chip" id="txtGameNew">✨ New</button>
@@ -150,14 +130,13 @@
   <div style="width:100%;text-align:center;">
     <span class="badge" id="categoryTag">Daily Life</span>
   </div>
-  <div style="width:100%;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--falu);border-radius:16px;padding:20px;text-align:center;">
+  <div style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-left:4px solid var(--falu);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);">
     <span style="font-size:9px;font-weight:700;color:var(--falu);text-transform:uppercase;letter-spacing:.08em;" id="txtFillBlank">Fill in the blank</span>
-    <p id="sentenceText" class="display" style="font-size:17px;font-weight:600;margin:10px 0;color:var(--navy);">...</p>
+    <p id="sentenceText" class="display" style="font-size:17px;font-weight:600;margin:10px 0;color:var(--ink);">...</p>
     <p id="englishText" style="font-size:12px;color:var(--ink-soft);font-style:italic;margin:0;border-top:1px solid var(--line);padding-top:8px;">...</p>
   </div>
   <div style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="optionsContainer"></div>
-  <div style="width:100%;display:flex;justify-content:space-between;font-size:12px;font-weight:700;border-top:1px solid var(--line);padding-top:10px;">
-    <span style="color:var(--falu);" id="livesText">❤️ 3 / 3</span>
+  <div style="width:100%;display:flex;justify-content:flex-end;font-size:12px;font-weight:700;border-top:1px solid var(--line);padding-top:10px;">
     <span style="color:var(--navy);" id="scoreText">Score: 0</span>
   </div>
 </div>
@@ -173,17 +152,48 @@
     <button onclick="fetchNewCitizenshipQuestion()" class="chip" id="txtCitNew">🔄 New</button>
   </div>
   <div style="width:100%;display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;" id="citCategoryChips"></div>
-  <div style="width:100%;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:16px;padding:20px;text-align:center;">
-    <span style="font-size:9px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.08em;" id="citCategory">Society & Law</span>
+  <div style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);">
+    <span style="font-size:9px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;" id="citCategory">Society & Law</span>
     <p id="citQuestionText" class="display" style="font-size:15px;font-weight:600;margin:10px 0;color:var(--ink);">...</p>
     <p id="citHintText" style="font-size:11.5px;color:var(--falu-deep);font-style:italic;margin:0;border-top:1px solid var(--line);padding-top:8px;">...</p>
   </div>
   <div style="width:100%;display:flex;flex-direction:column;gap:8px;" id="citOptionsContainer"></div>
-  <button onclick="generateAIQuestions()" id="aiGenBtn" class="btn-primary" style="width:100%;font-size:11.5px;padding:12px;background:linear-gradient(135deg,var(--navy),#0f2233);">✨ Get New AI Questions</button>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;">
+    <button onclick="generateAIQuestions()" id="aiGenBtn" class="btn-primary" style="width:100%;font-size:11.5px;padding:12px;background:linear-gradient(135deg,var(--navy),#0f2233);">✨ Get New AI Questions</button>
+    <button onclick="triggerJsonImport('cit')" id="citImportBtn" class="btn-outline" style="width:100%;font-size:11.5px;padding:12px;">📁 Import Citizenship JSON</button>
+  </div>
   <div class="info-note" id="citPoolInfo">Pool expands dynamically via integrated live queries fetching official updates from UHR and verified Swedish civic databases.</div>
   <div style="width:100%;display:flex;justify-content:space-between;font-size:12px;font-weight:700;border-top:1px solid var(--line);padding-top:10px;">
     <span style="color:var(--navy);" id="citScoreText">Correct: 0</span>
     <span style="color:var(--ink-soft);font-weight:600;font-size:10.5px;" id="citPoolCount">13 syllabus areas</span>
+  </div>
+</div>
+
+<!-- ==================== SFI PRACTICE ==================== -->
+<div id="sfiScreen" class="card hidden" style="max-width:460px;width:100%;padding:24px;border-radius:24px;flex-direction:column;gap:14px;align-items:center;">
+  <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
+    <button onclick="goHome()" class="chip" id="txtSfiHome">🏠 Home</button>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <span class="badge" style="background:#2a5c34;color:#fff;border-color:#2a5c34;">📘 SWEDISH LANGUAGE</span>
+      <button onclick="toggleAppLanguage()" class="chip">SV/EN</button>
+    </div>
+    <button onclick="fetchNewSfiQuestion()" class="chip" id="txtSfiNew">🔄 New</button>
+  </div>
+  <div style="width:100%;display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;" id="sfiCategoryChips"></div>
+  <div style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);">
+    <span style="font-size:9px;font-weight:700;color:var(--ok);text-transform:uppercase;letter-spacing:.08em;" id="sfiCategory">Everyday Swedish</span>
+    <p id="sfiQuestionText" class="display" style="font-size:15px;font-weight:600;margin:10px 0;color:var(--ink);">...</p>
+    <p id="sfiHintText" style="font-size:11.5px;color:var(--falu-deep);font-style:italic;margin:0;border-top:1px solid var(--line);padding-top:8px;">...</p>
+  </div>
+  <div style="width:100%;display:flex;flex-direction:column;gap:8px;" id="sfiOptionsContainer"></div>
+  <div style="display:flex;gap:10px;width:100%;flex-wrap:wrap;">
+    <button onclick="generateSfiAIQuestions()" id="sfiAiBtn" class="btn-primary" style="flex:1;min-width:145px;font-size:11.5px;padding:12px;background:linear-gradient(135deg,#2a5c34,#1f3d2a);">✨ Get New AI Swedish Language Questions</button>
+    <button onclick="triggerJsonImport('sfi')" id="sfiImportBtn" class="btn-outline" style="flex:1;min-width:145px;font-size:11.5px;padding:12px;">📁 Import Swedish Language JSON</button>
+  </div>
+  <div class="info-note" id="sfiPoolInfo">Practice questions for everyday Swedish, work, housing, health, public services and daily communication.</div>
+  <div style="width:100%;display:flex;justify-content:space-between;font-size:12px;font-weight:700;border-top:1px solid var(--line);padding-top:10px;">
+    <span style="color:#2a5c34;" id="sfiScoreText">Correct: 0</span>
+    <span style="color:var(--ink-soft);font-weight:600;font-size:10.5px;" id="sfiPoolCount">0 questions in pool</span>
   </div>
 </div>
 
@@ -197,157 +207,167 @@
     </div>
     <span class="mono" style="font-size:13px;font-weight:700;color:var(--falu);" id="examTimer">45:00</span>
   </div>
-  <div style="width:100%;text-align:center;font-size:11px;color:var(--ink-soft);" id="txtExamSub">Up to 24 questions · pass mark 75% (18/24) · draws from static + live updated pool</div>
+  <div style="width:100%;text-align:center;font-size:11px;color:var(--ink-soft);" id="txtExamSub">Up to 69 questions · pass mark 75% (52/69) · draws from static + live updated pool</div>
   <div class="info-note" id="txtExamNote" style="margin:0;">Dynamic test structure calibrated against official <i>Sverige i fokus</i> requirements and standard European civic evaluation criteria. Focuses on broad civic comprehension without misleading trick elements.</div>
   <div id="examProgressBar" style="width:100%;height:6px;background:var(--line);border-radius:6px;overflow:hidden;">
     <div id="examProgressFill" style="height:100%;width:0%;background:var(--navy);transition:width .2s ease;"></div>
   </div>
-  <div style="width:100%;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:16px;padding:20px;text-align:center;">
-    <span style="font-size:9px;font-weight:700;color:var(--falu);text-transform:uppercase;letter-spacing:.08em;" id="examQNum">Question 1 / 24</span>
+  <div style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);">
+    <span style="font-size:9px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;" id="examQNum">Question 1 / 69</span>
     <p id="examQuestionText" class="display" style="font-size:15px;font-weight:600;margin:10px 0;color:var(--ink);">...</p>
   </div>
   <div style="width:100%;display:flex;flex-direction:column;gap:8px;" id="examOptionsContainer"></div>
   <div id="examResultBox" class="hidden" style="width:100%;text-align:center;"></div>
 </div>
 
-<!-- ==================== PROGRESS ==================== -->
-<div id="progressScreen" class="card hidden" style="max-width:460px;width:100%;padding:24px;border-radius:24px;flex-direction:column;gap:14px;">
-  <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
-    <button onclick="goHome()" class="chip" id="txtProgHome">🏠 Home</button>
-    <div style="display:flex; gap:8px; align-items:center;">
-      <span class="badge" style="background:var(--gold);color:#3a2a04;border-color:var(--gold);">📊 PROGRESS</span>
-      <button onclick="toggleAppLanguage()" class="chip">SV/EN</button>
-    </div>
-    <span style="width:52px;"></span>
-  </div>
-  <h2 class="display" style="font-size:19px;color:var(--navy);margin:0;" id="txtProgHeading">Din resa hittills</h2>
-  <div id="progressBody" style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--ink-soft);"></div>
-  <button onclick="resetProgress()" class="btn-outline" style="font-size:11px;padding:10px;" id="txtResetProg">Reset local progress</button>
-</div>
-
 <script>
-let currentLang = 'en';
+let currentLang = 'sv';
 const translations = {
   en:{
     ecosystem:"🇸🇪 SVEAHUB",
-    homeTitle:"Svenska, one word a day",
-    homeDesc:"Built for real life in Sweden — vardag, jobbet, and the new citizenship test. Tap a letter, hear it, learn it.",
-    streakLabel:"Day streak",
-    wordsLabel:"Words heard",
-    scoreLabel:"Total score",
+    homeTitle:"Your ultimate practice hub for Swedish language and citizenship.",
     btnLangGame:"🚀 Sentence Context Game",
-    btnCitGame:"🏛️ Medborgarskap Quiz",
-    btnExam:"⏱️ Exam Simulator (24Q, timed)",
-    homeNote:"📘 Sweden's new citizenship law requires a civics knowledge test — <b>medborgarskapsprovet</b> — run by UHR, based on the official <i>Sverige i fokus</i> material. This app's quiz covers the same 13 syllabus areas — it is practice material, not official UHR questions.",
+    btnCitGame:"🏛️ Citizenship Quiz",
+    btnExam:"⏱️ Exam Simulator (69Q, timed)",
+    btnSfiPractice:"📝 Quick Vocabulary & Grammar Drill",
     alphaHeader:"🔊 Say it right",
     alphaSub:"tap for next word",
     alphaPrompt:"Tap any letter to hear a new Swedish word, every time.",
-    homeFooter:"Free tier: full alphabet + daily categories · Premium unlocks SFI Interview Prep & unlimited AI drills",
     gameHome:"🏠 Home",
     gameNew:"✨ New",
     fillBlank:"Fill in the blank",
     citHome:"🏠 Home",
     citNew:"🔄 New",
     citPoolInfo:"Pool expands dynamically via integrated live queries fetching official updates from UHR and verified Swedish civic databases.",
+    citImportBtn:"📁 Import Citizenship JSON",
+    sfiImportBtn:"📁 Import Swedish Language JSON",
     examHome:"🏠 Home",
-    examSub:"Up to 24 questions · pass mark 75% (18/24) · draws from static + live updated pool",
+    examSub:"Up to 69 questions · pass mark 75% (52/69) · draws from static + live updated pool",
     examNote:"Dynamic test structure calibrated against official <i>Sverige i fokus</i> requirements and standard European civic evaluation criteria. Focuses on broad civic comprehension without misleading trick elements.",
-    progHome:"🏠 Home",
-    progHeading:"Din resa hittills",
-    resetProg:"Reset local progress",
-    progScore:"Total score",
-    progWords:"Words heard",
-    progCit:"Citizenship correct",
-    progStreak:"Day streak",
     examComplete:"Exam complete",
     tryAnother:"Try another mock exam",
     passMock:"PASS (mock)",
     belowPass:"Below 75% pass mark",
-    aiBtn:"✨ Get New AI Questions"
+    aiBtn:"✨ Get New AI Questions",
+    sfiHome:"🏠 Home",
+    sfiNew:"🔄 New",
+    sfiPoolInfo:"Practice questions for everyday Swedish, work, housing, health, public services and daily communication.",
+    sfiBtn:"✨ Get New AI Swedish Language Questions",
+    sfiImportBtn:"📁 Import Swedish Language JSON"
   },
   sv:{
     ecosystem:"🇸🇪 SVEAHUB",
-    homeTitle:"Svenska, ett ord om dagen",
-    homeDesc:"Byggd för verkliga livet i Sverige — vardag, jobbet och det nya medborgarskapsprovet. Tryck på en bokstav, lyssna, lär dig.",
-    streakLabel:"Dagar i rad",
-    wordsLabel:"Ord hörda",
-    scoreLabel:"Totalpoäng",
+    homeTitle:"Din kompletta övningsplats för svenska språket och medborgarskap.",
     btnLangGame:"🚀 Meningskontext Spel",
     btnCitGame:"🏛️ Medborgarskapstest",
-    btnExam:"⏱️ Examenssimulator (24 frågor, tidsbegränsad)",
-    homeNote:"📘 Sveriges nya medborgarskapslag kräver ett medborgarskapsprov som administreras av UHR, baserat på materialet <i>Sverige i fokus</i>.",
+    btnExam:"⏱️ Examenssimulator (69 frågor, tidsbegränsad)",
+    btnSfiPractice:"📝 Snabb ord- & grammatikövning",
     alphaHeader:"🔊 Uttala rätt",
     alphaSub:"tryck för nästa ord",
     alphaPrompt:"Tryck på valfri bokstav för att höra ett nytt svenskt ord varje gång.",
-    homeFooter:"Gratisversion: hela alfabetet + dagliga kategorier · Premium låser upp SFI-intervjuträning",
     gameHome:"🏠 Hem",
     gameNew:"✨ Nytt",
     fillBlank:"Fyll i det tomma utrymmet",
     citHome:"🏠 Hem",
     citNew:"🔄 Ny",
     citPoolInfo:"Poolen uppdateras dynamiskt via integrerade sökningar som hämtar officiella uppdateringar från UHR och verifierade databaser.",
+    citImportBtn:"📁 Importera medborgarskaps-JSON",
     examHome:"🏠 Hem",
-    examSub:"Upp till 24 frågor · gräns för godkänt 75% (18/24)",
+    examSub:"Upp till 69 frågor · gräns för godkänt 75% (52/69)",
     examNote:"Provet är utformat för att spegla kunskapskraven i Sverige i fokus.",
-    progHome:"🏠 Hem",
-    progHeading:"Din resa hittills",
-    resetProg:"Nollställ lokala framsteg",
-    progScore:"Totalpoäng",
-    progWords:"Ord hörda",
-    progCit:"Medborgarskap rätt",
-    progStreak:"Dagar i rad",
     examComplete:"Provet slutfört",
     tryAnother:"Gör ett till låtsasprov",
     passMock:"GODKÄND (låtsasprov)",
     belowPass:"Under 75% gränsen",
-    aiBtn:"✨ Hämta nya AI-frågor"
+    aiBtn:"✨ Hämta nya AI-frågor",
+    sfiHome:"🏠 Hem",
+    sfiNew:"🔄 Nytt",
+    sfiPoolInfo:"Övningsfrågor för vardagssvenska, arbete, boende, hälsa, offentliga tjänster och daglig kommunikation.",
+    sfiBtn:"✨ Hämta nya AI-frågor för svenska språket",
+    sfiImportBtn:"📁 Importera JSON för svenska språket"
   }
 };
 
+function getLocalizedText(item, fieldName, fallback=''){
+  const swValue = item && item[fieldName];
+  const enValue = item && (item[`${fieldName}En`] || item[`${fieldName}English`] || item[`${fieldName}Translated`]);
+  if(currentLang === 'en'){
+    if(typeof enValue === 'string' && enValue.trim()) return enValue.trim();
+    if(Array.isArray(enValue) && enValue.length) return enValue;
+  }
+  if(typeof swValue === 'string' && swValue.trim()) return swValue.trim();
+  if(Array.isArray(swValue) && swValue.length) return swValue;
+  return fallback;
+}
+function getLocalizedOptions(item, fieldName='options'){
+  const swValue = Array.isArray(item?.[fieldName]) ? item[fieldName] : [];
+  const enValue = Array.isArray(item?.[`${fieldName}En`]) ? item[`${fieldName}En`] : [];
+  if(currentLang === 'en' && enValue.length) return enValue;
+  return swValue;
+}
+function renderLocalizedText(primaryText, secondaryText, targetEl, showSecondary = true){
+  if(!targetEl) return;
+  if(showSecondary && secondaryText && secondaryText !== primaryText){
+    targetEl.innerHTML = `<div>${primaryText}</div><div class="translation-line">${secondaryText}</div>`;
+  } else {
+    targetEl.innerText = primaryText;
+  }
+}
+function setOptionButtonLabel(btn, primaryText, secondaryText){
+  if(!btn) return;
+  if(secondaryText && secondaryText !== primaryText){
+    btn.innerHTML = `<div>${primaryText}</div><div class="translation-line">${secondaryText}</div>`;
+  } else {
+    btn.innerText = primaryText;
+  }
+}
+function refreshLocalizedContent(){
+  if(!document.getElementById('gameScreen').classList.contains('hidden')) updateGameUI();
+  if(!document.getElementById('citizenshipScreen').classList.contains('hidden')) updateCitizenshipUI();
+  if(!document.getElementById('sfiScreen').classList.contains('hidden')) updateSfiUI();
+  if(!document.getElementById('examScreen').classList.contains('hidden')) renderExamQuestion();
+}
+function applyInterfaceLanguage(){
+  const t = translations[currentLang];
+  const setText = (id, value, asHTML=false) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    if(asHTML){ el.innerHTML = value; }
+    else { el.innerText = value; }
+  };
+
+  setText('txtEcosystem', t.ecosystem);
+  setText('txtHomeTitle', t.homeTitle);
+  setText('txtBtnLangGame', t.btnLangGame);
+  setText('txtBtnCitGame', t.btnCitGame);
+  setText('txtBtnExam', t.btnExam);
+  setText('txtBtnSfiPractice', t.btnSfiPractice);
+  setText('txtAlphaHeader', t.alphaHeader);
+  setText('txtAlphaSub', t.alphaSub);
+  setText('txtAlphaPrompt', t.alphaPrompt);
+  setText('txtGameHome', t.gameHome);
+  setText('txtGameNew', t.gameNew);
+  setText('txtFillBlank', t.fillBlank);
+  setText('txtCitHome', t.citHome);
+  setText('txtCitNew', t.citNew);
+  setText('citPoolInfo', t.citPoolInfo);
+  setText('aiGenBtn', t.aiBtn);
+  setText('citImportBtn', t.citImportBtn);
+  setText('txtSfiHome', t.sfiHome);
+  setText('txtSfiNew', t.sfiNew);
+  setText('sfiPoolInfo', t.sfiPoolInfo);
+  setText('sfiAiBtn', t.sfiBtn);
+  setText('sfiImportBtn', t.sfiImportBtn);
+  setText('txtExamHome', t.examHome);
+  setText('txtExamSub', t.examSub);
+  setText('txtExamNote', t.examNote, true);
+
+  refreshLocalizedContent();
+  refreshStats();
+}
 function toggleAppLanguage(){
   currentLang = currentLang==='en'?'sv':'en';
-  const t = translations[currentLang];
-  document.getElementById('txtEcosystem').innerText=t.ecosystem;
-  document.getElementById('txtHomeTitle').innerText=t.homeTitle;
-  document.getElementById('txtHomeDesc').innerText=t.homeDesc;
-  document.getElementById('txtStreakLabel').innerText=t.streakLabel;
-  document.getElementById('txtWordsLabel').innerText=t.wordsLabel;
-  document.getElementById('txtScoreLabel').innerText=t.scoreLabel;
-  document.getElementById('txtBtnLangGame').innerText=t.btnLangGame;
-  document.getElementById('txtBtnCitGame').innerText=t.btnCitGame;
-  document.getElementById('txtBtnExam').innerText=t.btnExam;
-  document.getElementById('txtHomeNote').innerHTML=t.homeNote;
-  document.getElementById('txtAlphaHeader').innerText=t.alphaHeader;
-  document.getElementById('txtAlphaSub').innerText=t.alphaSub;
-  document.getElementById('txtAlphaPrompt').innerText=t.alphaPrompt;
-  document.getElementById('txtHomeFooter').innerText=t.homeFooter;
-  document.getElementById('txtProgBtn').innerText='📊 ' + (currentLang==='en'?'Progress':'Framsteg');
-  
-  // Game screen text
-  document.getElementById('txtGameHome').innerText=t.gameHome;
-  document.getElementById('txtGameNew').innerText=t.gameNew;
-  document.getElementById('txtFillBlank').innerText=t.fillBlank;
-  
-  // Cit screen text
-  document.getElementById('txtCitHome').innerText=t.citHome;
-  document.getElementById('txtCitNew').innerText=t.citNew;
-  document.getElementById('citPoolInfo').innerText=t.citPoolInfo;
-  document.getElementById('aiGenBtn').innerText=t.aiBtn;
-  
-  // Exam screen text
-  document.getElementById('txtExamHome').innerText=t.examHome;
-  document.getElementById('txtExamSub').innerText=t.examSub;
-  document.getElementById('txtExamNote').innerHTML=t.examNote;
-  
-  // Progress screen text
-  document.getElementById('txtProgHome').innerText=t.progHome;
-  document.getElementById('txtProgHeading').innerText=t.progHeading;
-  document.getElementById('txtResetProg').innerText=t.resetProg;
-  
-  refreshStats();
-  if(!document.getElementById('progressScreen').classList.contains('hidden')){
-    showProgress();
-  }
+  applyInterfaceLanguage();
 }
 
 // ---------- Vocabulary data ----------
@@ -394,13 +414,95 @@ const aiDatabase = [
   {category:"Workplace",sentence:"Kan du skicka mig ditt [_____] innan intervjun?",correct:"CV",wrong:"KVITTO",english:"Can you send me your CV before the interview?"},
   {category:"Workplace",sentence:"Min [_____] börjar klockan sju på morgonen.",correct:"SKIFT",wrong:"SEMESTER",english:"My shift starts at seven in the morning."},
   {category:"Family",sentence:"Mitt barn går på [_____] i Järfälla.",correct:"FÖRSKOLA",wrong:"SJUKHUS",english:"My child goes to preschool in Järfälla."},
-  {category:"SFI",sentence:"Hon läser [_____] för att lära sig svenska.",correct:"SFI",wrong:"HISTORIA",english:"She studies SFI to learn Swedish."},
+  {category:"Swedish Language",sentence:"Hon läser [_____] för att lära sig svenska.",correct:"Swedish Language",wrong:"HISTORY",english:"She studies Swedish Language to learn Swedish."},
   {category:"Workplace",sentence:"Glöm inte att stämpla din [_____] varje dag.",correct:"NÄRVARO",wrong:"FRUKOST",english:"Don't forget to register your attendance every day."},
   {category:"Daily Life",sentence:"Vi handlar [_____] varje lördag.",correct:"MAT",wrong:"BIL",english:"We buy groceries every Saturday."}
 ];
-const categories = ["All","Daily Life","Workplace","Transport","Family","SFI"];
+const aiDatabaseTranslations = {
+  "Jag vill gärna ha en kopp [_____] på morgonen.": {sentenceEn:"I would love to have a cup of [_____] in the morning.", correctEn:"COFFEE", wrongEn:"BOOK"},
+  "Det är viktigt att dricka rent [_____] varje dag.": {sentenceEn:"It is important to drink clean [_____] every day.", correctEn:"WATER", wrongEn:"MILK"},
+  "Mitt nya [_____] ligger i centrala Stockholm.": {sentenceEn:"My new [_____] is located in central Stockholm.", correctEn:"JOB", wrongEn:"SCHOOL"},
+  "Ursäkta mig, går [_____] i tid idag?": {sentenceEn:"Excuse me, is the [_____] running on time today?", correctEn:"TRAIN", wrongEn:"BUS"},
+  "Kan du skicka mig ditt [_____] innan intervjun?": {sentenceEn:"Can you send me your [_____] before the interview?", correctEn:"CV", wrongEn:"RECEIPT"},
+  "Min [_____] börjar klockan sju på morgonen.": {sentenceEn:"My [_____] starts at seven in the morning.", correctEn:"SHIFT", wrongEn:"HOLIDAY"},
+  "Mitt barn går på [_____] i Järfälla.": {sentenceEn:"My child goes to [_____] in Järfälla.", correctEn:"PRESCHOOL", wrongEn:"HOSPITAL"},
+  "Hon läser [_____] för att lära sig svenska.": {sentenceEn:"She studies [_____] to learn Swedish.", correctEn:"Swedish Language", wrongEn:"HISTORY"},
+  "Glöm inte att stämpla din [_____] varje dag.": {sentenceEn:"Don't forget to register your [_____] every day.", correctEn:"ATTENDANCE", wrongEn:"BREAKFAST"},
+  "Vi handlar [_____] varje lördag.": {sentenceEn:"We buy [_____] every Saturday.", correctEn:"FOOD", wrongEn:"CAR"}
+};
+const categories = ["All","Daily Life","Workplace","Transport","Family","Swedish Language"];
 let activeCategory = "All";
 
+const sfiCategories = ["All","Daily Life","Work","Housing","Health","Authorities","Public Services","Communication","Transport"];
+let activeSfiCategory = "All";
+const sfiQuestionPool = [
+  {category:"Daily Life",question:"Vad säger du när du lämnar en butik?",correct:"Tack så mycket",options:["Varsågod","Tack så mycket","Hej då"],hint:"You say 'Tack så mycket' to thank a cashier when leaving a shop."},
+  {category:"Daily Life",question:"Hur svarar du på frågan 'Hur mår du'?",correct:"Jag mår bra",options:["Jag mår bra","Jag heter Per","Jag bor i Sverige"],hint:"'Jag mår bra' means 'I feel well' in Swedish."},
+  {category:"Daily Life",question:"Vad betyder 'ursäkta'?",correct:"Excuse me",options:["Excuse me","Goodbye","Thank you"],hint:"'Ursäkta' is used to get someone's attention or apologize."},
+  {category:"Daily Life",question:"Vilket ord använder du om du vill ha kaffe?",correct:"Jag vill ha kaffe",options:["Jag vill ha kaffe","Jag behöver vatten","Jag söker jobb"],hint:"'Jag vill ha kaffe' means 'I would like coffee'."},
+  {category:"Daily Life",question:"Vad säger du när du får hjälp?",correct:"Tack",options:["Ja tack","Tack","Nej tack"],hint:"You say 'Tack' to thank someone who helps you."},
+  {category:"Daily Life",question:"Vad frågar du om du vill veta priset?",correct:"Hur mycket kostar det?",options:["Hur mycket kostar det?","Var är toaletten?","Kan du hjälpa mig?"],hint:"You ask 'Hur mycket kostar det?' to find the price of something."},
+  {category:"Daily Life",question:"Vad är rätt sätt att säga 'hello' på svenska?",correct:"Hej",options:["Hej","Adjö","Välkommen"],hint:"'Hej' is the common Swedish greeting 'hello'."},
+  {category:"Daily Life",question:"Vilken fras använder du för att säga 'I do not understand'?",correct:"Jag förstår inte",options:["Jag förstår inte","Jag vet inte","Jag tycker om det"],hint:"'Jag förstår inte' means 'I do not understand'."},
+  {category:"Work",question:"Vad behöver du för att arbeta i Sverige?",correct:"Personnummer",options:["Personnummer","Studentkort","Pass"],hint:"A 'personnummer' is required for employment in Sweden."},
+  {category:"Work",question:"Vad heter det svenska ordet för 'application'?",correct:"Ansökan",options:["Ansökan","Avtal","Arbetsplats"],hint:"'Ansökan' means application, for jobs or permits."},
+  {category:"Work",question:"Vad är rätt svar om du blir tillfrågad om din arbetsdag?",correct:"Jag jobbar åtta timmar",options:["Jag jobbar åtta timmar","Jag går hem","Jag sover"],hint:"'Jag jobbar åtta timmar' is a common way to describe working hours."},
+  {category:"Work",question:"Vilket ord betyder 'salary'?",correct:"Lön",options:["Lön","Ledighet","Lokal"],hint:"'Lön' means salary or wage in Swedish."},
+  {category:"Work",question:"Vad säger du när du vill ta ledigt?",correct:"Jag behöver vara ledig",options:["Jag behöver vara ledig","Jag vill jobba mer","Jag går hem nu"],hint:"'Jag behöver vara ledig' means I need time off."},
+  {category:"Work",question:"Vilken myndighet hjälper till med jobb och arbetsmarknad?",correct:"Arbetsförmedlingen",options:["Skatteverket","Arbetsförmedlingen","Migrationsverket"],hint:"Arbetsförmedlingen is the Swedish Public Employment Service."},
+  {category:"Work",question:"Vad kallas det dokument du lämnar vid jobbansökan?",correct:"CV",options:["Pass","CV","Brev"],hint:"A CV is used when applying for jobs in Sweden."},
+  {category:"Housing",question:"Vad heter det när du hyr ett rum?",correct:"Hyra",options:["Hyra","Köpa","Sälja"],hint:"'Hyra' means to rent a home or room."},
+  {category:"Housing",question:"Vad behöver du för att teckna elavtal?",correct:"Personnummer",options:["Personnummer","Körkort","ID-kort"],hint:"Electricity companies frequently ask for your personnummer when signing a contract."},
+  {category:"Housing",question:"Var synonymt med 'lägenhet'?",correct:"Bostad",options:["Bostad","Skola","Sjukhus"],hint:"'Bostad' means housing or residence."},
+  {category:"Housing",question:"Vad frågar du för att hitta en lägenhet?",correct:"Finns det lediga lägenheter?",options:["Finns det lediga lägenheter?","Kan jag laga mat?","Var är bussen?"],hint:"You ask if there are available apartments when searching for housing."},
+  {category:"Housing",question:"Vilken fras använder du vid flyttanmälan?",correct:"Jag byter adress",options:["Jag byter adress","Jag köper möbler","Jag lagar mat"],hint:"'Jag byter adress' means you are changing your address."},
+  {category:"Housing",question:"Vad betyder 'hyresrätt'?",correct:"An apartment you rent",options:["An apartment you rent","A house you own","A hotel room"],hint:"'Hyresrätt' is a rental apartment in Sweden."},
+  {category:"Health",question:"Var går du för att hämta medicin?",correct:"Apoteket",options:["Apoteket","Vårdcentralen","Biblioteket"],hint:"Apoteket is the pharmacy where you buy medicine."},
+  {category:"Health",question:"Vad säger du om du har ont i huvudet?",correct:"Jag har ont i huvudet",options:["Jag har ont i huvudet","Jag är hungrig","Jag är trött"],hint:"You say 'Jag har ont i huvudet' when you have a headache."},
+  {category:"Health",question:"Vilken sjukvårdsplats besöker du först vid vanlig sjukdom?",correct:"Vårdcentralen",options:["Akuten","Vårdcentralen","Apoteket"],hint:"Vårdcentralen is the first place for non-emergency health care."},
+  {category:"Health",question:"Vilket kort tar du med till doktorn?",correct:"ID-kort",options:["ID-kort","Studentkort","Medlemkort"],hint:"You often show your ID card at medical visits in Sweden."},
+  {category:"Health",question:"Vad betyder 'sjukskriven'?",correct:"Off work because of illness",options:["Off work because of illness","Going to the doctor","Eating healthy"],hint:"'Sjukskriven' means you are on sick leave."},
+  {category:"Health",question:"Vad är rätt plats att ringa vid snabb medicinsk hjälp?",correct:"1177",options:["112","1177","114 14"],hint:"1177 is the Swedish healthcare advice number for non-emergency medical questions."},
+  {category:"Authorities",question:"Vilken myndighet hanterar nya personnummer?",correct:"Skatteverket",options:["Skatteverket","Migrationsverket","Polisen"],hint:"Skatteverket is responsible for issuing personal identity numbers."},
+  {category:"Authorities",question:"Vilken myndighet behandlar asylansökningar?",correct:"Migrationsverket",options:["Arbetsförmedlingen","Migrationsverket","Försäkringskassan"],hint:"Migrationsverket handles immigration and asylum cases in Sweden."},
+  {category:"Authorities",question:"Vad säger du när du vill boka tid på kommunen?",correct:"Jag vill boka ett möte",options:["Jag vill boka ett möte","Jag vill köpa biljetter","Jag vill träffa vänner"],hint:"You ask to book a meeting with an authority."},
+  {category:"Authorities",question:"Vilket ord betyder 'tax office'?",correct:"Skatteverket",options:["Skatteverket","Posten","Biblioteket"],hint:"Skatteverket is the Swedish Tax Agency."},
+  {category:"Authorities",question:"Vad kallar man officiella brev från myndigheter?",correct:"Post",options:["Post","Magasin","Reklam"],hint:"Official letters from government agencies come by post."},
+  {category:"Authorities",question:"Vem kontaktar du för frågor om föräldrapenning?",correct:"Försäkringskassan",options:["Försäkringskassan","Migrationsverket","Skatteverket"],hint:"Försäkringskassan deals with parental benefit and social insurance."},
+  {category:"Public Services",question:"Var köper du vanligtvis matvaror?",correct:"I mataffären",options:["I mataffären","På apoteket","I banken"],hint:"A grocery store in Sweden is called a mataffär."},
+  {category:"Public Services",question:"Vad heter stället där du lämnar återvinning?",correct:"Återvinningscentralen",options:["Systembolaget","Biblioteket","Återvinningscentralen"],hint:"The recycling center is where you take sorted waste and old items."},
+  {category:"Public Services",question:"Var kan du skaffa bibliotekskort?",correct:"Biblioteket",options:["Biblioteket","Apoteket","Polisen"],hint:"You get a library card at the library."},
+  {category:"Public Services",question:"Vad använder du för att ta ut pengar?",correct:"Bankomat",options:["Bankomat","Parkering","Kiosk"],hint:"A bankomat is an ATM for withdrawing cash."},
+  {category:"Public Services",question:"Vilken plats hjälper dig med körkortsförarprov?",correct:"Trafikverket",options:["Trafikverket","Migrationsverket","Skatteverket"],hint:"Trafikverket manages driver licensing and road transport."},
+  {category:"Public Services",question:"Var kan du få hjälp med pension?",correct:"Pensionsmyndigheten",options:["Pensionsmyndigheten","Migrationsverket","Arbetsförmedlingen"],hint:"Pensionsmyndigheten handles pensions in Sweden."},
+  {category:"Communication",question:"Vad betyder 'SMS'?",correct:"Short Message Service",options:["Short Message Service","Svensk Meddelande Service","System Message Service"],hint:"SMS stands for Short Message Service and refers to text messaging."},
+  {category:"Communication",question:"Vad säger du när du lämnar ett meddelande?",correct:"Kan du ringa mig tillbaka?",options:["Kan du ringa mig tillbaka?","Var är du?","Vad heter du?"],hint:"You ask to have someone call you back when leaving a message."},
+  {category:"Communication",question:"Vilken fras används för att svara i telefon?",correct:"Hej, det är [namn]",options:["Hej, det är [namn]","Jag talar inte svenska","Jag kommer senare"],hint:"You answer the phone with 'Hej, det är [name]'."},
+  {category:"Communication",question:"Vad betyder 'maila'?",correct:"Send an email",options:["Send an email","Call someone","Speak loudly"],hint:"'Maila' means to email someone."},
+  {category:"Communication",question:"Vad använder du för att kommunicera med vänner online?",correct:"E-post eller mobil",options:["E-post eller mobil","Bok eller tidning","Buss eller tåg"],hint:"People use email or mobile phones to communicate online."},
+  {category:"Communication",question:"Vad är rätt sätt att fråga om en adress?",correct:"Vad är din adress?",options:["Vad är din adress?","Hur mår du?","Har du tid?"],hint:"You ask 'Vad är din adress?' to request someone's address."},
+  {category:"Transport",question:"Vilken biljett behöver du för bussen?",correct:"En enkelbiljett",options:["En enkelbiljett","Ett pass","Ett presentkort"],hint:"A single ticket (en enkelbiljett) is used on many buses."},
+  {category:"Transport",question:"Vad betyder 'hållplats'?",correct:"Bus stop",options:["Bus stop","Train station","Ticket office"],hint:"A 'hållplats' is a stop for buses or trams."},
+  {category:"Transport",question:"Vilken plats tar du tåget från i Stockholm?",correct:"Centralen",options:["Centralen","Systembolaget","Biblioteket"],hint:"Stockholm Central Station is often called Centralen."},
+  {category:"Transport",question:"Vad säger du när du vill veta när nästa buss kommer?",correct:"När går nästa buss?",options:["När går nästa buss?","Var ligger stationen?","Kan jag få en biljett?"],hint:"You ask 'När går nästa buss?' to find the next bus time."},
+  {category:"Public Services",question:"Vad heter stället där man lämnar paket?",correct:"Postombud",options:["Postombud","Apotek","Bank"],hint:"A post office agent is called a postombud in Sweden."},
+  {category:"Housing",question:"Vad gör du om du vill ändra namn på ett hyresavtal?",correct:"Kontakta hyresvärden",options:["Kontakta hyresvärden","Ringer ambulans","Går till skolan"],hint:"You contact the landlord if you need to change a rental contract."}
+];
+let sfiScore = 0;
+let currentSfiItem = {};
+let sfiQuestionSignatures = new Set(sfiQuestionPool.map(q=>q.question.trim().toLowerCase()));
+const sfiQuestionTranslations = {
+  "Vad säger du när du lämnar en butik?": {questionEn:"What do you say when you leave a shop?", correctEn:"Thank you very much", optionsEn:["You are welcome","Thank you very much","Goodbye"], hintEn:"You say 'Thank you very much' to thank a cashier when leaving a shop."},
+  "Hur svarar du på frågan 'Hur mår du'?": {questionEn:"How do you answer the question 'How are you?'", correctEn:"I feel good", optionsEn:["I feel good","My name is Per","I live in Sweden"], hintEn:"'I feel good' means 'I feel well' in Swedish."},
+  "Vad betyder 'ursäkta'?": {questionEn:"What does 'ursäkta' mean?", correctEn:"Excuse me", optionsEn:["Excuse me","Goodbye","Thank you"], hintEn:"'Ursäkta' is used to get someone's attention or apologize."},
+  "Vilket ord använder du om du vill ha kaffe?": {questionEn:"Which word do you use if you want coffee?", correctEn:"I would like coffee", optionsEn:["I would like coffee","I need water","I am looking for a job"], hintEn:"'I would like coffee' means 'I would like coffee'."},
+  "Vad säger du när du får hjälp?": {questionEn:"What do you say when you receive help?", correctEn:"Thank you", optionsEn:["Yes please","Thank you","No thanks"], hintEn:"You say 'Thank you' to thank someone who helps you."},
+  "Vad frågar du om du vill veta priset?": {questionEn:"What do you ask if you want to know the price?", correctEn:"How much does it cost?", optionsEn:["How much does it cost?","Where is the restroom?","Can you help me?"], hintEn:"You ask 'How much does it cost?' to find the price of something."},
+  "Vad är rätt sätt att säga 'hello' på svenska?": {questionEn:"What is the right way to say 'hello' in Swedish?", correctEn:"Hello", optionsEn:["Hello","Goodbye","Welcome"], hintEn:"'Hej' is the common Swedish greeting 'hello'."},
+  "Vilken fras använder du för att säga 'I do not understand'?": {questionEn:"Which phrase do you use to say 'I do not understand'?", correctEn:"I do not understand", optionsEn:["I do not understand","I do not know","I like it"], hintEn:"'I do not understand' means 'I do not understand'."},
+  "Vad behöver du för att arbeta i Sverige?": {questionEn:"What do you need to work in Sweden?", correctEn:"Personal number", optionsEn:["Personal number","Student card","Passport"], hintEn:"A 'personnummer' is required for employment in Sweden."},
+  "Vad heter det svenska ordet för 'application'?": {questionEn:"What is the Swedish word for 'application'?", correctEn:"Application", optionsEn:["Application","Agreement","Workplace"], hintEn:"'Ansökan' means application, for jobs or permits."}
+};
 // ---------- Citizenship pool — 13 official Sverige i fokus syllabus areas ----------
 const citCategories = ["All","Governance","Democracy & Elections","Law & Order","Labour & Economy","Welfare","History","Media","Religion","Traditions","Human Rights","Geography"];
 let activeCitCategory = "All";
@@ -439,46 +541,101 @@ const citizenshipQuestionPool = [
   {category:"Media",question:"Vad heter Sveriges public service-radio och TV-bolag (ett av dem)?",correct:"Sveriges Television (SVT)",options:["Sveriges Television (SVT)","TV4","Kanal 5"],hint:"SVT and Sveriges Radio are publicly funded, independent of the government."},
   {category:"Traditions",question:"Vilken högtid firas med lussekatter och tärningskastade dagar i december?",correct:"Lucia",options:["Lucia","Påsk","Midsommar"],hint:"Lucia, on 13 December, is marked with saffron buns (lussekatter) and candlelit processions."},
   {category:"Human Rights",question:"Vilket år fick kvinnor rösträtt i Sverige?",correct:"1921",options:["1919","1921","1945"],hint:"Women voted in a Swedish general election for the first time in 1921."},
-  {category:"Geography",question:"Vad kallas de tre landsdelarna Sverige traditionellt delas in i?",correct:"Norrland, Svealand, Götaland",options:["Norrland, Svealand, Götaland","Öst, Väst, Syd","Fjäll, Skog, Kust"],hint:"Sweden is traditionally divided into Norrland, Svealand and Götaland."}
+  {category:"Geography",question:"Vad kallas de tre landsdelarna Sverige traditionellt delas in i?",correct:"Norrland, Svealand, Götaland",options:["Norrland, Svealand, Götaland","Öst, Väst, Syd","Fjäll, Skog, Kust"],hint:"Sweden is traditionally divided into Norrland, Svealand and Götaland."},
+  {category:"Governance",question:"Vad heter Sveriges folkvalda parlament?",correct:"Riksdagen",options:["Riksdagen","Regeringen","Hovet"],hint:"Riksdagen is Sweden's elected parliament."},
+  {category:"Democracy & Elections",question:"Hur ofta hålls kommunfullmäktigeval i Sverige?",correct:"Vart fjärde år",options:["Vart tredje år","Vart fjärde år","Vart femte år"],hint:"Municipal elections are held every four years, with the general election."},
+  {category:"Law & Order",question:"Vad är en signalement i polisarbetet?",correct:"Beskrivning av en person",options:["Beskrivning av en person","Typ av brott","Avtal mellan parter"],hint:"A 'signalement' is a personal description used in police work."},
+  {category:"Labour & Economy",question:"Vad heter den svenska myndigheten som betalar ut pension?",correct:"Pensionsmyndigheten",options:["Skatteverket","Försäkringskassan","Pensionsmyndigheten"],hint:"Pensionsmyndigheten handles pensions in Sweden."},
+  {category:"Welfare",question:"Vad är målet med föräldraförsäkringen?",correct:"Att ge föräldrar ledighet vid barnets födelse",options:["Att ge pension till äldre","Att ge föräldrar ledighet vid barnets födelse","Att öka skatter"],hint:"Parental insurance allows parents time off when a child is born."},
+  {category:"History",question:"Vilket år blev Sverige medlem i FN?",correct:"1946",options:["1939","1946","1955"],hint:"Sweden joined the United Nations in 1946 after World War II."},
+  {category:"Media",question:"Vilken princip skyddar människors möjlighet att få information?",correct:"Offentlighetsprincipen",options:["Offentlighetsprincipen","Neutralitetsprincipen","Informationsprincipen"],hint:"The principle of public access gives citizens the right to public documents."},
+  {category:"Religion",question:"Får man tro vad man vill i Sverige?",correct:"Ja, religionsfrihet gäller",options:["Ja, religionsfrihet gäller","Nej, bara en religion","Endast kristendom"],hint:"Freedom of religion is protected in Sweden."},
+  {category:"Traditions",question:"Vad firas den 6 juni i Sverige?",correct:"Sveriges nationaldag",options:["Sveriges nationaldag","Midsommar","Lucia"],hint:"June 6 marks Sweden's national day."},
+  {category:"Human Rights",question:"Vad skyddar FN:s konvention om barns rättigheter?",correct:"Barns rätt till utbildning och skydd",options:["Bara vuxnas rättigheter","Barns rätt till utbildning och skydd","Bara förälders rättigheter"],hint:"The UN Convention on the Rights of the Child protects children's rights to education and safety."},
+  {category:"Geography",question:"Vilken stor sjö ligger i södra Sverige?",correct:"Vänern",options:["Vänern","Siljan","Mälaren"],hint:"Vänern is Sweden's largest lake and lies in southern Sweden."},
+  {category:"Democracy & Elections",question:"Vad kallas den som leder arbetet i Sveriges riksdag?",correct:"Talmannen",options:["Talmannen","Statsminister","Kanslern"],hint:"The Speaker of the Riksdag is called 'Talmannen'."},
+  {category:"Law & Order",question:"Vad betyder 'rättssäkerhet'?",correct:"Att alla behandlas lika inför lagen",options:["Att alla behandlas lika inför lagen","Att man får bestämma själv","Att det finns mer polis"],hint:"Rule of law means equal treatment under the law."},
+  {category:"History",question:"Vilken kung var regerande 1970-talets Sverige?",correct:"Carl XVI Gustaf","options":["Carl XVI Gustaf","Gustav V","Oskar II"],hint:"Carl XVI Gustaf became king in 1973 and is still Sweden's monarch."},
+  {category:"Labour & Economy",question:"Vad betyder 'fackligt medlemskap'?",correct:"Att gå med i en fackförening",options:["Att gå med i en fackförening","Att få lön varje månad","Att betala skatt"],hint:"A union membership gives workers collective bargaining power."},
+  {category:"Welfare",question:"Vem kan få bostadsbidrag?",correct:"Personer med låg inkomst och hyra","options":["Personer med låg inkomst och hyra","Endast pensionärer","Alla svenska medborgare"],hint:"Housing allowance is for those with low income and high rent."},
+  {category:"Traditions",question:"Vad är 'fika'?",correct:"En paus med kaffe och något att äta","options":["En paus med kaffe och något att äta","En formell överenskommelse","En nationaldag"],hint:"'Fika' is a social coffee break common in Sweden."},
+  {category:"Media",question:"Vad står SVT för?",correct:"Sveriges Television","options":["Sveriges Television","Svenska Veterinärförbundet","Svensk Teater"],hint:"SVT is Sweden's public television broadcaster."}
 ];
 const baseCitPoolLength = citizenshipQuestionPool.length;
-
+const citizenshipQuestionTranslations = {
+  "Vilket organ stiftar lagar i Sverige?": {questionEn:"Which body makes laws in Sweden?", correctEn:"The Riksdag", optionsEn:["The government","The Riksdag","Svea Court of Appeal"], hintEn:"Legislative power rests exclusively with parliament (Riksdagen)."},
+  "Vem är Sveriges statschef?": {questionEn:"Who is the head of state of Sweden?", correctEn:"The King", optionsEn:["The Prime Minister","The King","The Speaker"], hintEn:"Sweden is a constitutional monarchy — the King is head of state, but has no political power."},
+  "Vad heter Sveriges regeringschef?": {questionEn:"What is the name of Sweden's head of government?", correctEn:"Prime Minister", optionsEn:["President","Prime Minister","Chancellor"], hintEn:"The Prime Minister (statsminister) leads the government."},
+  "Hur ofta är det val till Sveriges riksdag?": {questionEn:"How often is the election to Sweden's parliament?", correctEn:"Every four years", optionsEn:["Every three years","Every four years","Every five years"], hintEn:"General elections in Sweden are held every 4 years."},
+  "Från vilken ålder får man rösta i svenska riksdagsval?": {questionEn:"From what age can one vote in Swedish parliamentary elections?", correctEn:"18 years", optionsEn:["16 years","18 years","21 years"], hintEn:"Voting age for national elections is 18."},
+  "Vad kallas de tre nivåerna man röstar till samtidigt i Sverige?": {questionEn:"What are the three levels people vote for at the same time in Sweden?", correctEn:"The Riksdag, region and municipality", optionsEn:["The Riksdag, region and municipality","The EU, UN and Nordic Council","The royal family, church and school"], hintEn:"Sweden holds simultaneous elections for national, regional and municipal parliaments."},
+  "Vilken av följande är en av Sveriges fyra grundlagar?": {questionEn:"Which of the following is one of Sweden's four fundamental laws?", correctEn:"The Instrument of Government", optionsEn:["Tax law","The Instrument of Government","Traffic regulation"], hintEn:"The 4 fundamental laws are Regeringsformen, Successionsordningen, Tryckfrihetsförordningen and Yttrandefrihetsgrundlagen."},
+  "Vem utreder brott i Sverige?": {questionEn:"Who investigates crimes in Sweden?", correctEn:"The police", optionsEn:["The municipality","The police","The tax agency"], hintEn:"The police investigate crimes; prosecutors then decide on charges."},
+  "Vilken myndighet hanterar personnummer och skatt?": {questionEn:"Which authority handles personal identity numbers and taxes?", correctEn:"The Tax Agency", optionsEn:["The Migration Agency","The Tax Agency","The Public Employment Service"], hintEn:"Skatteverket issues personnummer and handles taxation."},
+  "Vad kallas parterna som förhandlar om löner i Sverige?": {questionEn:"What are the parties called that negotiate wages in Sweden?", correctEn:"Unions and employers", optionsEn:["Unions and employers","Municipality and state","Bank and customer"], hintEn:"Swedish wages are largely set through collective bargaining between unions and employers."}
+};
 let score=0, streak=0, lives=3, currentItem={};
 let citScore=0, currentCitItem={};
 let totalWordsHeard=0, dayStreak=0;
 let seenQuestionSignatures = new Set(citizenshipQuestionPool.map(q => q.question.trim().toLowerCase()));
 
+function getAppStorage(){
+  if (window.storage) return window.storage;
+  if (typeof localStorage !== 'undefined') {
+    return {
+      async get(key){
+        try {
+          const value = localStorage.getItem(key);
+          return value === null ? null : { value };
+        } catch (e) {
+          return null;
+        }
+      },
+      async set(key, value){
+        try {
+          localStorage.setItem(key, value);
+          return true;
+        } catch (e) {
+          console.warn('storage set skipped:', e && e.message ? e.message : e);
+          return false;
+        }
+      }
+    };
+  }
+  return null;
+}
+
 // ---------- Persistence (queued to avoid overlapping writes) ----------
 let saveInProgress=false, savePending=false;
 async function saveProgress(){
-  if(!window.storage){ return; }
+  const storage = getAppStorage();
+  if(!storage){ return; }
   if(saveInProgress){ savePending=true; return; }
   saveInProgress=true;
   try{
-    await window.storage.set('sveahub-progress', JSON.stringify({score,totalWordsHeard,dayStreak,citScore}), false);
+    await storage.set('sveahub-progress', JSON.stringify({score,totalWordsHeard,dayStreak,citScore,sfiScore}), false);
   }catch(e){ console.warn('progress save skipped:', e && e.message ? e.message : e); }
   saveInProgress=false;
   if(savePending){ savePending=false; saveProgress(); }
 }
 async function loadProgress(){
   try{
-    if(!window.storage){ refreshStats(); return; }
-    const r = await window.storage.get('sveahub-progress', false);
+    const storage = getAppStorage();
+    if(!storage){ refreshStats(); return; }
+    const r = await storage.get('sveahub-progress', false);
     if(r && r.value){
       const d = JSON.parse(r.value);
-      score=d.score||0; totalWordsHeard=d.totalWordsHeard||0; dayStreak=d.dayStreak||0; citScore=d.citScore||0;
+      score=d.score||0; totalWordsHeard=d.totalWordsHeard||0; dayStreak=d.dayStreak||0; citScore=d.citScore||0; sfiScore=d.sfiScore||0;
     }
   }catch(e){ /* no saved progress yet, that's fine */ }
   refreshStats();
 }
 function refreshStats(){
-  document.getElementById('statStreak').innerText = dayStreak;
-  document.getElementById('statWords').innerText = totalWordsHeard;
-  document.getElementById('statScore').innerText = score;
+  // Stats cards removed from the dashboard; keep this helper harmless for compatibility.
 }
 async function resetProgress(){
-  score=0; totalWordsHeard=0; dayStreak=0; citScore=0; streak=0; lives=3;
-  await saveProgress(); refreshStats(); showProgress();
+  score=0; totalWordsHeard=0; dayStreak=0; citScore=0; sfiScore=0; streak=0; lives=3;
+  await saveProgress(); refreshStats();
 }
 
 // ---------- Alphabet ----------
@@ -513,22 +670,14 @@ function playRotatingPronunciation(letter){
 }
 
 // ---------- Navigation ----------
-function hideAll(){ ['homeScreen','gameScreen','citizenshipScreen','examScreen','progressScreen'].forEach(id=>{
+function hideAll(){ ['homeScreen','gameScreen','citizenshipScreen','sfiScreen','examScreen'].forEach(id=>{
   document.getElementById(id).classList.add('hidden');
 });}
 function showScreen(id, display){ hideAll(); const el=document.getElementById(id); el.classList.remove('hidden'); el.style.display=display; }
 function goHome(){ if(examTimerInterval) clearInterval(examTimerInterval); showScreen('homeScreen','flex'); refreshStats(); }
 function startLanguageGame(){ showScreen('gameScreen','flex'); buildCategoryChips(); fetchNewAIContent(); }
 function startCitizenshipGame(){ showScreen('citizenshipScreen','flex'); buildCitCategoryChips(); fetchNewCitizenshipQuestion(); }
-function showProgress(){
-  showScreen('progressScreen','flex');
-  const t = translations[currentLang];
-  document.getElementById('progressBody').innerHTML = `
-    <div class="card" style="padding:14px;border-radius:14px;display:flex;justify-content:space-between;"><span>${t.progScore}</span><b class="mono" style="color:var(--navy);">${score}</b></div>
-    <div class="card" style="padding:14px;border-radius:14px;display:flex;justify-content:space-between;"><span>${t.progWords}</span><b class="mono" style="color:var(--falu);">${totalWordsHeard}</b></div>
-    <div class="card" style="padding:14px;border-radius:14px;display:flex;justify-content:space-between;"><span>${t.progCit}</span><b class="mono" style="color:var(--gold);">${citScore}</b></div>
-    <div class="card" style="padding:14px;border-radius:14px;display:flex;justify-content:space-between;"><span>${t.progStreak}</span><b class="mono">${dayStreak}</b></div>`;
-}
+function startSfiPractice(){ showScreen('sfiScreen','flex'); buildSfiCategoryChips(); fetchNewSfiQuestion(); }
 
 // ---------- Sentence game ----------
 function buildCategoryChips(){
@@ -540,26 +689,114 @@ function buildCategoryChips(){
     wrap.appendChild(chip);
   });
 }
+function applySentenceTranslation(item){
+  const translation = aiDatabaseTranslations[item?.sentence] || {};
+  return {
+    ...item,
+    sentenceEn: translation.sentenceEn || '',
+    correctEn: translation.correctEn || '',
+    wrongEn: translation.wrongEn || ''
+  };
+}
+function applySfiTranslation(item){
+  const translation = sfiQuestionTranslations[item?.question] || {};
+  return {
+    ...item,
+    questionEn: translation.questionEn || '',
+    correctEn: translation.correctEn || '',
+    optionsEn: Array.isArray(translation.optionsEn) ? translation.optionsEn : [],
+    hintEn: translation.hintEn || ''
+  };
+}
+function applyCitTranslation(item){
+  const translation = citizenshipQuestionTranslations[item?.question] || {};
+  return {
+    ...item,
+    questionEn: translation.questionEn || '',
+    correctEn: translation.correctEn || '',
+    optionsEn: Array.isArray(translation.optionsEn) ? translation.optionsEn : [],
+    hintEn: translation.hintEn || ''
+  };
+}
 function fetchNewAIContent(){
   const pool = activeCategory==="All" ? aiDatabase : aiDatabase.filter(x=>x.category===activeCategory);
   const list = pool.length ? pool : aiDatabase;
-  currentItem = list[Math.floor(Math.random()*list.length)];
+  currentItem = applySentenceTranslation(list[Math.floor(Math.random()*list.length)]);
   updateGameUI();
 }
-function updateGameUI(){
-  document.getElementById("streakVal").innerText=streak;
-  document.getElementById("scoreText").innerText=`Score: ${score}`;
-  document.getElementById("livesText").innerText=`❤️ ${lives} / 3`;
-  document.getElementById("categoryTag").innerText=currentItem.category;
-  document.getElementById("sentenceText").innerText=currentItem.sentence.replace("[_____]","[ ________ ]");
-  document.getElementById("englishText").innerText=`"${currentItem.english}"`;
-  const container=document.getElementById("optionsContainer"); container.innerHTML="";
-  const choices=[currentItem.correct,currentItem.wrong].sort(()=>Math.random()-0.5);
-  choices.forEach(word=>{
-    const btn=document.createElement("button");
-    btn.innerText=word; btn.className="option-btn"; btn.style.padding="16px 0";
+function buildSfiCategoryChips(){
+  const wrap=document.getElementById('sfiCategoryChips'); wrap.innerHTML='';
+  sfiCategories.forEach(c=>{
+    const chip=document.createElement('button');
+    chip.innerText=c; chip.className='chip'+(c===activeSfiCategory?' active':'');
+    chip.onclick=()=>{ activeSfiCategory=c; buildSfiCategoryChips(); fetchNewSfiQuestion(); };
+    wrap.appendChild(chip);
+  });
+}
+function fetchNewSfiQuestion(){
+  const pool = activeSfiCategory==="All" ? sfiQuestionPool : sfiQuestionPool.filter(x=>x.category===activeSfiCategory);
+  const list = pool.length ? pool : sfiQuestionPool;
+  currentSfiItem = applySfiTranslation(list[Math.floor(Math.random()*list.length)]);
+  updateSfiUI();
+}
+function updateSfiUI(){
+  if(!currentSfiItem || !currentSfiItem.question) return;
+  const swQuestion = currentSfiItem.question || '';
+  const enQuestion = currentSfiItem.questionEn || '';
+  document.getElementById('sfiCategory').innerText=currentSfiItem.category;
+  renderLocalizedText(
+    currentLang === 'en' ? (enQuestion || swQuestion) : swQuestion,
+    currentLang === 'en' ? swQuestion : (enQuestion || swQuestion),
+    document.getElementById('sfiQuestionText'),
+    false
+  );
+  const hintPrimary = currentLang === 'en' ? (currentSfiItem.hintEn || currentSfiItem.hint || '') : (currentSfiItem.hint || '');
+  const hintSecondary = currentLang === 'en' ? (currentSfiItem.hint || '') : (currentSfiItem.hintEn || currentSfiItem.hint || '');
+  renderLocalizedText(`💡 ${hintPrimary}`, hintSecondary ? `💡 ${hintSecondary}` : '', document.getElementById('sfiHintText'));
+  document.getElementById('sfiScoreText').innerText=`Correct: ${sfiScore}`;
+  updateSfiPoolCount();
+  const container=document.getElementById('sfiOptionsContainer'); container.innerHTML='';
+  const swOptions = Array.isArray(currentSfiItem.options) ? currentSfiItem.options : [];
+  const enOptions = Array.isArray(currentSfiItem.optionsEn) ? currentSfiItem.optionsEn : [];
+  const correctValue = currentLang === 'en' ? (currentSfiItem.correctEn || currentSfiItem.correct) : currentSfiItem.correct;
+  const optionEntries = (currentLang === 'en' && enOptions.length ? enOptions : swOptions).map((displayValue, index)=>({
+    primary: displayValue,
+    secondary: currentLang === 'en' ? (swOptions[index] || displayValue) : (enOptions[index] || swOptions[index] || displayValue)
+  }));
+  const shuffled=[...optionEntries].sort(()=>Math.random()-0.5);
+  shuffled.forEach(entry=>{
+    const btn=document.createElement('button');
+    btn.className='option-btn'; btn.style.padding='13px 14px'; btn.style.textAlign='left';
+    setOptionButtonLabel(btn, entry.primary, entry.secondary);
     btn.onclick=()=>{
-      if(word===currentItem.correct){
+      if(entry.primary===correctValue){ btn.classList.add('correct'); sfiScore++; saveProgress(); setTimeout(()=>fetchNewSfiQuestion(),350); }
+      else { btn.classList.add('wrong'); setTimeout(()=>updateSfiUI(),350); }
+    };
+    container.appendChild(btn);
+  });
+}
+function updateSfiPoolCount(){
+  const el=document.getElementById('sfiPoolCount');
+  if(el) el.innerText = `${sfiQuestionPool.length} questions in pool`;
+}
+function updateGameUI(){
+  if(!currentItem || !currentItem.sentence) return;
+  document.getElementById("scoreText").innerText=`Score: ${score}`;
+  document.getElementById("categoryTag").innerText=currentItem.category;
+  const sentencePrimary = currentLang === 'en' ? (currentItem.sentenceEn || currentItem.sentence) : currentItem.sentence;
+  const sentenceSecondary = currentLang === 'en' ? currentItem.sentence : (currentItem.sentenceEn || currentItem.sentence);
+  renderLocalizedText(sentencePrimary.replace("[_____]","[ ________ ]"), sentenceSecondary.replace("[_____]","[ ________ ]"), document.getElementById("sentenceText"), false);
+  renderLocalizedText(`"${currentItem.english}"`, currentItem.sentence, document.getElementById("englishText"), false);
+  const container=document.getElementById("optionsContainer"); container.innerHTML="";
+  const correctValue = currentLang === 'en' ? (currentItem.correctEn || currentItem.correct) : currentItem.correct;
+  const wrongValue = currentLang === 'en' ? (currentItem.wrongEn || currentItem.wrong) : currentItem.wrong;
+  const choices=[{primary:correctValue, secondary: currentLang==='en' ? currentItem.correct : (currentItem.correctEn || currentItem.correct)}, {primary:wrongValue, secondary: currentLang==='en' ? currentItem.wrong : (currentItem.wrongEn || currentItem.wrong)}].sort(()=>Math.random()-0.5);
+  choices.forEach(choice=>{
+    const btn=document.createElement("button");
+    btn.className="option-btn"; btn.style.padding="16px 0";
+    setOptionButtonLabel(btn, choice.primary, choice.secondary);
+    btn.onclick=()=>{
+      if(choice.primary===correctValue){
         btn.classList.add('correct'); score+=30; streak++; totalWordsHeard++;
         saveProgress(); setTimeout(()=>fetchNewAIContent(),350);
       }else{
@@ -586,22 +823,40 @@ function buildCitCategoryChips(){
 function fetchNewCitizenshipQuestion(){
   const pool = activeCitCategory==="All" ? citizenshipQuestionPool : citizenshipQuestionPool.filter(x=>x.category===activeCitCategory);
   const list = pool.length ? pool : citizenshipQuestionPool;
-  currentCitItem = list[Math.floor(Math.random()*list.length)];
+  currentCitItem = applyCitTranslation(list[Math.floor(Math.random()*list.length)]);
   updateCitizenshipUI();
 }
 function updateCitizenshipUI(){
+  if(!currentCitItem || !currentCitItem.question) return;
+  const swQuestion = currentCitItem.question || '';
+  const enQuestion = currentCitItem.questionEn || '';
   document.getElementById("citCategory").innerText=currentCitItem.category;
-  document.getElementById("citQuestionText").innerText=currentCitItem.question;
-  document.getElementById("citHintText").innerText=`💡 ${currentCitItem.hint}`;
+  renderLocalizedText(
+    currentLang === 'en' ? (enQuestion || swQuestion) : swQuestion,
+    currentLang === 'en' ? swQuestion : (enQuestion || swQuestion),
+    document.getElementById("citQuestionText"),
+    false
+  );
+  const hintPrimary = currentLang === 'en' ? (currentCitItem.hintEn || currentCitItem.hint || '') : (currentCitItem.hint || '');
+  const hintSecondary = currentLang === 'en' ? (currentCitItem.hint || '') : (currentCitItem.hintEn || currentCitItem.hint || '');
+  renderLocalizedText(`💡 ${hintPrimary}`, hintSecondary ? `💡 ${hintSecondary}` : '', document.getElementById("citHintText"));
   document.getElementById("citScoreText").innerText=`Correct: ${citScore}`;
   updatePoolCount();
   const container=document.getElementById("citOptionsContainer"); container.innerHTML="";
-  const shuffled=[...currentCitItem.options].sort(()=>Math.random()-0.5);
-  shuffled.forEach(opt=>{
+  const swOptions = Array.isArray(currentCitItem.options) ? currentCitItem.options : [];
+  const enOptions = Array.isArray(currentCitItem.optionsEn) ? currentCitItem.optionsEn : [];
+  const correctValue = currentLang === 'en' ? (currentCitItem.correctEn || currentCitItem.correct) : currentCitItem.correct;
+  const optionEntries = (currentLang === 'en' && enOptions.length ? enOptions : swOptions).map((displayValue, index)=>({
+    primary: displayValue,
+    secondary: currentLang === 'en' ? (swOptions[index] || displayValue) : (enOptions[index] || swOptions[index] || displayValue)
+  }));
+  const shuffled=[...optionEntries].sort(()=>Math.random()-0.5);
+  shuffled.forEach(entry=>{
     const btn=document.createElement("button");
-    btn.innerText=opt; btn.className="option-btn"; btn.style.padding="13px 14px"; btn.style.textAlign="left";
+    btn.className="option-btn"; btn.style.padding="13px 14px"; btn.style.textAlign="left";
+    setOptionButtonLabel(btn, entry.primary, entry.secondary);
     btn.onclick=()=>{
-      if(opt===currentCitItem.correct){
+      if(entry.primary===correctValue){
         btn.classList.add('correct'); citScore++; saveProgress();
         setTimeout(()=>fetchNewCitizenshipQuestion(),450);
       }else{
@@ -616,7 +871,7 @@ function updateCitizenshipUI(){
 let examQuestions=[], examIndex=0, examCorrect=0, examTimerInterval=null, examSecondsLeft=45*60;
 function startExamMode(){
   const shuffled=[...citizenshipQuestionPool].sort(()=>Math.random()-0.5);
-  examQuestions = shuffled.slice(0, Math.min(24, shuffled.length));
+  examQuestions = shuffled.slice(0, Math.min(69, shuffled.length));
   examIndex=0; examCorrect=0; examSecondsLeft=45*60;
   document.getElementById('examResultBox').classList.add('hidden');
   showScreen('examScreen','flex');
@@ -634,19 +889,30 @@ function updateExamTimerDisplay(){
   document.getElementById('examTimer').innerText = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
 function renderExamQuestion(){
+  if(!examQuestions || examQuestions.length===0) return;
   if(examIndex>=examQuestions.length){ finishExam(); return; }
   const q=examQuestions[examIndex];
+  const swQuestion = q.question || '';
+  const enQuestion = q.questionEn || '';
   document.getElementById('examQNum').innerText = `Question ${examIndex+1} / ${examQuestions.length}`;
-  document.getElementById('examQuestionText').innerText = q.question;
+  renderLocalizedText(currentLang === 'en' ? (enQuestion || swQuestion) : swQuestion, currentLang === 'en' ? swQuestion : (enQuestion || swQuestion), document.getElementById('examQuestionText'), false);
   document.getElementById('examProgressFill').style.width = `${(examIndex/examQuestions.length)*100}%`;
   const container=document.getElementById('examOptionsContainer'); container.innerHTML='';
-  const shuffled=[...q.options].sort(()=>Math.random()-0.5);
-  shuffled.forEach(opt=>{
+  const swOptions = Array.isArray(q.options) ? q.options : [];
+  const enOptions = Array.isArray(q.optionsEn) ? q.optionsEn : [];
+  const correctValue = currentLang === 'en' ? (q.correctEn || q.correct) : q.correct;
+  const optionEntries = (currentLang === 'en' && enOptions.length ? enOptions : swOptions).map((displayValue, index)=>({
+    primary: displayValue,
+    secondary: currentLang === 'en' ? (swOptions[index] || displayValue) : (enOptions[index] || swOptions[index] || displayValue)
+  }));
+  const shuffled=[...optionEntries].sort(()=>Math.random()-0.5);
+  shuffled.forEach(entry=>{
     const btn=document.createElement('button');
-    btn.innerText=opt; btn.className='option-btn'; btn.style.padding='13px 14px'; btn.style.textAlign='left';
+    btn.className='option-btn'; btn.style.padding='13px 14px'; btn.style.textAlign='left';
+    setOptionButtonLabel(btn, entry.primary, entry.secondary);
     btn.onclick=()=>{
       Array.from(container.children).forEach(c=>c.disabled=true);
-      if(opt===q.correct){ btn.classList.add('correct'); examCorrect++; } else { btn.classList.add('wrong'); }
+      if(entry.primary===correctValue){ btn.classList.add('correct'); examCorrect++; } else { btn.classList.add('wrong'); }
       setTimeout(()=>{ examIndex++; renderExamQuestion(); },400);
     };
     container.appendChild(btn);
@@ -697,9 +963,41 @@ async function loadAIQuestions(){
   }catch(e){ /* nothing saved yet */ }
   updatePoolCount();
 }
+async function loadLocalSfiQuestions(){
+  function mergeQuestion(q){
+    if(q && q.question && q.correct && Array.isArray(q.options) && q.options.length>=2){
+      const sig = q.question.trim().toLowerCase();
+      if(!sfiQuestionSignatures.has(sig)){
+        sfiQuestionSignatures.add(sig);
+        sfiQuestionPool.push(q);
+      }
+    }
+  }
+  try{
+    if(window.storage){
+      const r = await window.storage.get('sveahub-sfi-questions', false);
+      if(r && r.value){
+        const extra = JSON.parse(r.value);
+        if(Array.isArray(extra)) extra.forEach(mergeQuestion);
+      }
+    }
+  }catch(e){ /* no saved SFI questions yet */ }
+  try{
+    const response = await fetch('sfi-questions.json');
+    if(response.ok){
+      const fileData = await response.json();
+      if(Array.isArray(fileData)) fileData.forEach(mergeQuestion);
+    }
+  }catch(e){ /* local JSON not available when loaded directly from file:// */ }
+  updateSfiPoolCount();
+}
 function updatePoolCount(){
   const el=document.getElementById('citPoolCount');
   if(el) el.innerText = `${citizenshipQuestionPool.length} questions in pool`;
+}
+function updateSfiPoolCount(){
+  const el=document.getElementById('sfiPoolCount');
+  if(el) el.innerText = `${sfiQuestionPool.length} questions in pool`;
 }
 async function generateAIQuestions(){
   const btn=document.getElementById('aiGenBtn');
@@ -750,7 +1048,165 @@ async function generateAIQuestions(){
   }
 }
 
-window.onload=()=>{ initAlphabetKeyboard(); loadProgress(); loadAIQuestions(); };
+function normalizeImportedOption(value){
+  if(typeof value === 'string') return value.trim();
+  if(value && typeof value === 'object'){
+    const candidate = value.text || value.label || value.value || value.option || value.answer || value.choice || '';
+    return String(candidate).trim();
+  }
+  return '';
+}
+function normalizeImportedQuestion(raw, fallbackCategory='General'){
+  if(!raw || typeof raw !== 'object') return null;
+  const findValue = (names) => {
+    for(const name of names){
+      const matchKey = Object.keys(raw).find(key => key.toLowerCase() === name.toLowerCase());
+      if(matchKey){
+        const value = raw[matchKey];
+        if(value !== undefined && value !== null && value !== '') return value;
+      }
+    }
+    return '';
+  };
+
+  const question = String(findValue(['question','questionText','prompt','text'])).trim();
+  const correct = String(findValue(['correct','answer','correctAnswer','correct_option','correctOption'])).trim();
+  const category = String(findValue(['category','topic','section']) || fallbackCategory).trim();
+  const hint = String(findValue(['hint','explanation','details']) || '').trim();
+  const optionsCandidate = findValue(['options','choices','answers']);
+  const correctIndex = Number(findValue(['correctIndex','correct_index','answerIndex','answer_index']));
+
+  let options = [];
+  if(Array.isArray(optionsCandidate)){
+    options = optionsCandidate.map(normalizeImportedOption).filter(Boolean);
+  }
+  if(options.length === 0 && Array.isArray(raw.choicesObject)){
+    options = raw.choicesObject.map(normalizeImportedOption).filter(Boolean);
+  }
+  if(options.length >= 2 && Number.isInteger(correctIndex) && correctIndex >= 0 && options[correctIndex]){
+    const normalizedCorrect = String(options[correctIndex]).trim();
+    if(normalizedCorrect) return { category, question, correct: normalizedCorrect, options: [normalizedCorrect, ...options.filter(opt => opt !== normalizedCorrect).slice(0,2)], hint };
+  }
+
+  if(!question || !correct || options.length < 2){
+    return null;
+  }
+
+  const uniqueOptions = [correct, ...options.filter(opt => String(opt).trim() !== correct)].map(String).filter(Boolean);
+  return {
+    category,
+    question,
+    correct,
+    options: uniqueOptions.slice(0, 3),
+    hint
+  };
+}
+function collectImportableQuestions(parsed){
+  if(Array.isArray(parsed)) return parsed;
+  if(parsed && typeof parsed === 'object'){
+    const candidates = parsed.questions || parsed.items || parsed.data || [];
+    if(Array.isArray(candidates)) return candidates;
+  }
+  return [];
+}
+async function triggerJsonImport(mode){
+  const input=document.createElement('input');
+  input.type='file';
+  input.accept='application/json';
+  input.onchange=()=>{
+    if(!input.files || !input.files.length) return;
+    const file=input.files[0];
+    const reader=new FileReader();
+    reader.onload=()=>{
+      try{
+        const parsed=JSON.parse(reader.result);
+        const candidates=collectImportableQuestions(parsed);
+        if(!candidates.length) throw new Error('JSON file did not contain any question objects');
+        if(mode==='sfi') handleSfiJsonImport(candidates);
+        else handleCitizenshipJsonImport(candidates);
+      }catch(e){ alert('Invalid JSON file: '+(e.message||e)); }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+function handleSfiJsonImport(parsed){
+  let added=0;
+  parsed.forEach(raw=>{
+    const q=normalizeImportedQuestion(raw,'General');
+    if(q){
+      const sig=q.question.trim().toLowerCase();
+      if(!sfiQuestionSignatures.has(sig)){
+        sfiQuestionSignatures.add(sig); sfiQuestionPool.push(q); added++;
+      }
+    }
+  });
+  updateSfiPoolCount();
+  const btn=document.getElementById('sfiImportBtn');
+  if(btn) btn.innerText=`✅ Added ${added} questions`;
+  if(added>0){ fetchNewSfiQuestion(); }
+  setTimeout(()=>{ if(btn) btn.innerText='📁 Import SFI JSON'; },2500);
+}
+function handleCitizenshipJsonImport(parsed){
+  let added=0;
+  parsed.forEach(raw=>{
+    const q=normalizeImportedQuestion(raw,'General');
+    if(q){
+      const sig=q.question.trim().toLowerCase();
+      if(!seenQuestionSignatures.has(sig)){
+        seenQuestionSignatures.add(sig); citizenshipQuestionPool.push(q); added++;
+      }
+    }
+  });
+  updatePoolCount();
+  const btn=document.getElementById('citImportBtn');
+  if(btn) btn.innerText=`✅ Added ${added} questions`;
+  if(added>0){ fetchNewCitizenshipQuestion(); }
+  setTimeout(()=>{ if(btn) btn.innerText='📁 Import Citizenship JSON'; },2500);
+}
+
+async function generateSfiAIQuestions(){
+  const btn=document.getElementById('sfiAiBtn');
+  if(!btn) return;
+  btn.disabled=true; const originalText=btn.innerText;
+  btn.innerText='⏳ Fetching SFI practice...';
+  try{
+    const existing = Array.from(sfiQuestionSignatures).slice(-40).join(' || ');
+    const prompt = `Generate 8 unique, user-friendly SFI interview practice questions in Swedish. Each object should include category (Daily Life, Work, Housing, Health, Authorities, Public Services, Communication, Transport), question (Swedish), correct (correct answer option), options (array of 3 Swedish answer choices including the correct answer), and hint (English short explanation). Ensure all questions are distinct and appropriate for SFI learners preparing for everyday conversations and public services.
+Return ONLY a raw JSON array with no markdown fences.`;
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 1600, messages: [{ role: "user", content: prompt }] })
+    });
+    const data = await response.json();
+    const textBlocks = (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n');
+    const cleaned=textBlocks.replace(/```json|```/g,'').trim();
+    const jsonStart=cleaned.indexOf('['); const jsonEnd=cleaned.lastIndexOf(']');
+    if(jsonStart===-1||jsonEnd===-1) throw new Error('no JSON found in AI response');
+    const parsed=JSON.parse(cleaned.slice(jsonStart,jsonEnd+1));
+    let added=0;
+    parsed.forEach(q=>{
+      if(q && q.question && q.correct && Array.isArray(q.options) && q.options.length>=2 && q.category){
+        const sig=q.question.trim().toLowerCase();
+        if(!sfiQuestionSignatures.has(sig)){
+          sfiQuestionSignatures.add(sig); sfiQuestionPool.push(q); added++;
+        }
+      }
+    });
+    updateSfiPoolCount();
+    if(added===0) throw new Error('no unique questions added');
+    btn.innerText=`✅ Added ${added} new questions`;
+    fetchNewSfiQuestion();
+  }catch(e){
+    console.warn('SFI AI generation failed:', e && e.message ? e.message : e);
+    btn.innerText='⚠️ Generation failed';
+  }finally{
+    setTimeout(()=>{ btn.disabled=false; btn.innerText=originalText; },2600);
+  }
+}
+
+window.onload=()=>{ initAlphabetKeyboard(); applyInterfaceLanguage(); loadProgress(); loadAIQuestions(); loadLocalSfiQuestions(); };
 </script>
 </body>
 </html>
