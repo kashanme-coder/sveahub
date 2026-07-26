@@ -112,13 +112,13 @@
   </div>
 
   <div style="width:100%; display:flex; flex-direction:column; gap:10px;">
-    <button onclick="startLanguageGame()" class="btn-primary" id="txtBtnLangGame">💬 Sentence Context Game</button>
+    <button onclick="startLanguageGame()" class="btn-primary" id="txtBtnLangGame">🚀 Sentence Context Game</button>
     <button onclick="startCitizenshipGame()" class="btn-outline" id="txtBtnCitGame">🏛️ Medborgarskap Quiz</button>
     <button onclick="startExamMode()" class="btn-outline" id="txtBtnExam" style="border-color:var(--gold);color:#7a5c0f;">⏱️ Exam Simulator (24Q, timed)</button>
   </div>
 
   <div class="info-note" id="txtHomeNote">
-    💡 Sweden's new citizenship law requires a civics knowledge test — <b>medborgarskapsprovet</b> — run by UHR, based on the official <i>Sverige i fokus</i> material. This app's quiz covers the same syllabus areas — it is practice material, not official UHR questions.
+    📘 Sweden's new citizenship law requires a civics knowledge test — <b>medborgarskapsprovet</b> — run by UHR, based on the official <i>Sverige i fokus</i> material. This app's quiz covers the same 13 syllabus areas — it is practice material, not official UHR questions.
   </div>
 
   <!-- Alphabet keyboard -->
@@ -183,7 +183,7 @@
   <div class="info-note" id="citPoolInfo">Pool expands dynamically via integrated live queries fetching official updates from UHR and verified Swedish civic databases.</div>
   <div style="width:100%;display:flex;justify-content:space-between;font-size:12px;font-weight:700;border-top:1px solid var(--line);padding-top:10px;">
     <span style="color:var(--navy);" id="citScoreText">Correct: 0</span>
-    <span style="color:var(--ink-soft);font-weight:600;font-size:10.5px;" id="citPoolCount">Syllabus areas</span>
+    <span style="color:var(--ink-soft);font-weight:600;font-size:10.5px;" id="citPoolCount">13 syllabus areas</span>
   </div>
 </div>
 
@@ -235,10 +235,10 @@ const translations = {
     streakLabel:"Day streak",
     wordsLabel:"Words heard",
     scoreLabel:"Total score",
-    btnLangGame:"💬 Sentence Context Game",
+    btnLangGame:"🚀 Sentence Context Game",
     btnCitGame:"🏛️ Medborgarskap Quiz",
     btnExam:"⏱️ Exam Simulator (24Q, timed)",
-    homeNote:"💡 Sweden's new citizenship law requires a civics knowledge test — <b>medborgarskapsprovet</b> — run by UHR, based on the official <i>Sverige i fokus</i> material. This app's quiz covers syllabus areas — it is practice material, not official UHR questions.",
+    homeNote:"📘 Sweden's new citizenship law requires a civics knowledge test — <b>medborgarskapsprovet</b> — run by UHR, based on the official <i>Sverige i fokus</i> material. This app's quiz covers the same 13 syllabus areas — it is practice material, not official UHR questions.",
     alphaHeader:"🔊 Say it right",
     alphaSub:"tap for next word",
     alphaPrompt:"Tap any letter to hear a new Swedish word, every time.",
@@ -272,10 +272,10 @@ const translations = {
     streakLabel:"Dagar i rad",
     wordsLabel:"Ord hörda",
     scoreLabel:"Totalpoäng",
-    btnLangGame:"💬 Meningskontext Spel",
+    btnLangGame:"🚀 Meningskontext Spel",
     btnCitGame:"🏛️ Medborgarskapstest",
     btnExam:"⏱️ Examenssimulator (24 frågor, tidsbegränsad)",
-    homeNote:"💡 Sveriges nya medborgarskapslag kräver ett medborgarskapsprov som administreras av UHR, baserat på materialet <i>Sverige i fokus</i>.",
+    homeNote:"📘 Sveriges nya medborgarskapslag kräver ett medborgarskapsprov som administreras av UHR, baserat på materialet <i>Sverige i fokus</i>.",
     alphaHeader:"🔊 Uttala rätt",
     alphaSub:"tryck för nästa ord",
     alphaPrompt:"Tryck på valfri bokstav för att höra ett nytt svenskt ord varje gång.",
@@ -323,19 +323,23 @@ function toggleAppLanguage(){
   document.getElementById('txtHomeFooter').innerText=t.homeFooter;
   document.getElementById('txtProgBtn').innerText='📊 ' + (currentLang==='en'?'Progress':'Framsteg');
   
+  // Game screen text
   document.getElementById('txtGameHome').innerText=t.gameHome;
   document.getElementById('txtGameNew').innerText=t.gameNew;
   document.getElementById('txtFillBlank').innerText=t.fillBlank;
   
+  // Cit screen text
   document.getElementById('txtCitHome').innerText=t.citHome;
   document.getElementById('txtCitNew').innerText=t.citNew;
   document.getElementById('citPoolInfo').innerText=t.citPoolInfo;
   document.getElementById('aiGenBtn').innerText=t.aiBtn;
   
+  // Exam screen text
   document.getElementById('txtExamHome').innerText=t.examHome;
   document.getElementById('txtExamSub').innerText=t.examSub;
   document.getElementById('txtExamNote').innerHTML=t.examNote;
   
+  // Progress screen text
   document.getElementById('txtProgHome').innerText=t.progHome;
   document.getElementById('txtProgHeading').innerText=t.progHeading;
   document.getElementById('txtResetProg').innerText=t.resetProg;
@@ -397,7 +401,7 @@ const aiDatabase = [
 const categories = ["All","Daily Life","Workplace","Transport","Family","SFI"];
 let activeCategory = "All";
 
-// ---------- Citizenship pool ----------
+// ---------- Citizenship pool — 13 official Sverige i fokus syllabus areas ----------
 const citCategories = ["All","Governance","Democracy & Elections","Law & Order","Labour & Economy","Welfare","History","Media","Religion","Traditions","Human Rights","Geography"];
 let activeCitCategory = "All";
 const citizenshipQuestionPool = [
@@ -444,6 +448,7 @@ let citScore=0, currentCitItem={};
 let totalWordsHeard=0, dayStreak=0;
 let seenQuestionSignatures = new Set(citizenshipQuestionPool.map(q => q.question.trim().toLowerCase()));
 
+// ---------- Persistence (queued to avoid overlapping writes) ----------
 let saveInProgress=false, savePending=false;
 async function saveProgress(){
   if(!window.storage){ return; }
@@ -463,7 +468,7 @@ async function loadProgress(){
       const d = JSON.parse(r.value);
       score=d.score||0; totalWordsHeard=d.totalWordsHeard||0; dayStreak=d.dayStreak||0; citScore=d.citScore||0;
     }
-  }catch(e){ /* no saved progress yet */ }
+  }catch(e){ /* no saved progress yet, that's fine */ }
   refreshStats();
 }
 function refreshStats(){
@@ -501,7 +506,7 @@ function playRotatingPronunciation(letter){
     <div class="mono" style="font-size:10px;color:var(--ink-soft);margin-top:4px;">[${entry.phonetic}]</div>`;
   if('speechSynthesis' in window){
     window.speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(${letter}... som i ${entry.word});
+    const u=new SpeechSynthesisUtterance(`${letter}... som i ${entry.word}`);
     u.lang='sv-SE'; u.rate=0.82; window.speechSynthesis.speak(u);
   }
   totalWordsHeard++; refreshStats(); saveProgress();
@@ -546,7 +551,7 @@ function updateGameUI(){
   document.getElementById("scoreText").innerText=`Score: ${score}`;
   document.getElementById("livesText").innerText=`❤️ ${lives} / 3`;
   document.getElementById("categoryTag").innerText=currentItem.category;
-  document.getElementById("sentenceText").innerText=currentItem.sentence.replace("[_____]","[ ______ ]");
+  document.getElementById("sentenceText").innerText=currentItem.sentence.replace("[_____]","[ ________ ]");
   document.getElementById("englishText").innerText=`"${currentItem.english}"`;
   const container=document.getElementById("optionsContainer"); container.innerHTML="";
   const choices=[currentItem.correct,currentItem.wrong].sort(()=>Math.random()-0.5);
@@ -560,7 +565,7 @@ function updateGameUI(){
       }else{
         btn.classList.add('wrong'); lives--;
         if(lives<=0){
-          setTimeout(()=>{ alert(Game over! Correct word was "${currentItem.correct}".); streak=0; lives=3; saveProgress(); updateGameUI(); },200);
+          setTimeout(()=>{ alert(`Game over! Correct word was "${currentItem.correct}".`); streak=0; lives=3; saveProgress(); updateGameUI(); },200);
         } else { updateGameUI(); }
       }
     };
@@ -626,14 +631,14 @@ function startExamMode(){
 }
 function updateExamTimerDisplay(){
   const m=Math.floor(examSecondsLeft/60), s=examSecondsLeft%60;
-  document.getElementById('examTimer').innerText = ${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')};
+  document.getElementById('examTimer').innerText = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
 function renderExamQuestion(){
   if(examIndex>=examQuestions.length){ finishExam(); return; }
   const q=examQuestions[examIndex];
-  document.getElementById('examQNum').innerText = Question ${examIndex+1} / ${examQuestions.length};
+  document.getElementById('examQNum').innerText = `Question ${examIndex+1} / ${examQuestions.length}`;
   document.getElementById('examQuestionText').innerText = q.question;
-  document.getElementById('examProgressFill').style.width = ${(examIndex/examQuestions.length)*100}%;
+  document.getElementById('examProgressFill').style.width = `${(examIndex/examQuestions.length)*100}%`;
   const container=document.getElementById('examOptionsContainer'); container.innerHTML='';
   const shuffled=[...q.options].sort(()=>Math.random()-0.5);
   shuffled.forEach(opt=>{
@@ -665,7 +670,7 @@ function finishExam(){
     </div>`;
 }
 
-// ---------- AI-generated question pool ----------
+// ---------- AI-generated question pool (Anthropic API + Google Search integration) ----------
 async function saveAIQuestions(){
   try{
     if(!window.storage) return;
@@ -694,7 +699,7 @@ async function loadAIQuestions(){
 }
 function updatePoolCount(){
   const el=document.getElementById('citPoolCount');
-  if(el) el.innerText = ${citizenshipQuestionPool.length} questions in pool;
+  if(el) el.innerText = `${citizenshipQuestionPool.length} questions in pool`;
 }
 async function generateAIQuestions(){
   const btn=document.getElementById('aiGenBtn');
@@ -702,7 +707,7 @@ async function generateAIQuestions(){
   btn.disabled=true; const originalText=btn.innerText; btn.innerText='⏳ Fetching live updates...';
   try{
     const existingList = Array.from(seenQuestionSignatures).slice(-40).join(' || ');
-    const prompt = You are building unique, highly varied practice questions for Sweden's civics citizenship test (medborgarskapsprovet), based on official "Sverige i fokus" study material and live updates. Generate 5 brand new, unique multiple-choice questions in Swedish that cover different topics (such as geography, history, labour market, welfare, law, or democracy) and are completely distinct from these existing questions: [${existingList}]. Return ONLY a raw JSON array, with no markdown fences, no extra text, containing exactly 5 objects with keys: category (one of Governance, Democracy & Elections, Law & Order, Labour & Economy, Welfare, History, Media, Religion, Traditions, Human Rights, Geography), question (in Swedish), correct (correct answer option string), options (array of exactly 3 unique option strings in Swedish including the correct one), hint (one concise sentence in English explaining the correct answer). Ensure all questions are entirely unique and diverse.;
+    const prompt = `You are building unique, highly varied practice questions for Sweden's civics citizenship test (medborgarskapsprovet), based on official "Sverige i fokus" study material and live updates. Generate 5 brand new, unique multiple-choice questions in Swedish that cover different topics (such as geography, history, labour market, welfare, law, or democracy) and are completely distinct from these existing questions: [${existingList}]. Return ONLY a raw JSON array, with no markdown fences, no extra text, containing exactly 5 objects with keys: category (one of Governance, Democracy & Elections, Law & Order, Labour & Economy, Welfare, History, Media, Religion, Traditions, Human Rights, Geography), question (in Swedish), correct (correct answer option string), options (array of exactly 3 unique option strings in Swedish including the correct one), hint (one concise sentence in English explaining the correct answer). Ensure all questions are entirely unique and diverse.`;
     
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -735,7 +740,7 @@ async function generateAIQuestions(){
     if(addedCount === 0) throw new Error('no new unique questions generated');
     await saveAIQuestions();
     updatePoolCount();
-    btn.innerText = ✅ Added ${addedCount} new questions — tap for more;
+    btn.innerText = `✅ Added ${addedCount} new questions — tap for more`;
     fetchNewCitizenshipQuestion();
   }catch(e){
     console.warn('AI question generation failed:', e && e.message ? e.message : e);
