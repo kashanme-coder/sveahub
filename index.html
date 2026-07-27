@@ -75,6 +75,9 @@
   }
   .hidden{display:none!important;}
   .info-note{ font-size:10px; color:var(--ink-soft); line-height:1.5; background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:14px; padding:10px 12px; text-align:left; }
+  .explain-box{ font-size:12px; color:var(--ink-soft); line-height:1.6; background:rgba(255,209,102,0.08); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:14px; padding:12px 14px; text-align:left; }
+  .explain-box b{ color:var(--ink); }
+  .btn-next{ width:100%; font-size:13px; }
   ::-webkit-scrollbar{width:6px;height:6px;}
   ::-webkit-scrollbar-thumb{background:rgba(148,163,184,0.25);border-radius:6px;}
 </style>
@@ -136,6 +139,8 @@
     <p id="englishText" style="font-size:12px;color:var(--ink-soft);font-style:italic;margin:0;border-top:1px solid var(--line);padding-top:8px;">...</p>
   </div>
   <div style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="optionsContainer"></div>
+  <div id="gameExplainBox" class="explain-box hidden"></div>
+  <button onclick="advanceGame()" id="gameNextBtn" class="btn-primary btn-next hidden">➡️ Nästa fråga</button>
   <div style="width:100%;display:flex;justify-content:flex-end;font-size:12px;font-weight:700;border-top:1px solid var(--line);padding-top:10px;">
     <span style="color:var(--navy);" id="scoreText">Score: 0</span>
   </div>
@@ -158,6 +163,8 @@
     <p id="citHintText" style="font-size:11.5px;color:var(--falu-deep);font-style:italic;margin:0;border-top:1px solid var(--line);padding-top:8px;">...</p>
   </div>
   <div style="width:100%;display:flex;flex-direction:column;gap:8px;" id="citOptionsContainer"></div>
+  <div id="citExplainBox" class="explain-box hidden"></div>
+  <button onclick="advanceCit()" id="citNextBtn" class="btn-primary btn-next hidden">➡️ Nästa fråga</button>
   <div style="width:100%;">
     <button onclick="generateAIQuestions()" id="aiGenBtn" class="btn-primary" style="width:100%;font-size:11.5px;padding:12px;background:linear-gradient(135deg,var(--navy),#0f2233);">✨ Get New AI Questions</button>
   </div>
@@ -185,6 +192,8 @@
     <p id="sfiHintText" style="font-size:11.5px;color:var(--falu-deep);font-style:italic;margin:0;border-top:1px solid var(--line);padding-top:8px;">...</p>
   </div>
   <div style="width:100%;display:flex;flex-direction:column;gap:8px;" id="sfiOptionsContainer"></div>
+  <div id="sfiExplainBox" class="explain-box hidden"></div>
+  <button onclick="advanceSfi()" id="sfiNextBtn" class="btn-primary btn-next hidden">➡️ Nästa fråga</button>
   <div style="width:100%;">
     <button onclick="generateSfiAIQuestions()" id="sfiAiBtn" class="btn-primary" style="width:100%;font-size:11.5px;padding:12px;background:linear-gradient(135deg,#2a5c34,#1f3d2a);">✨ Get New AI Swedish Language Questions</button>
   </div>
@@ -215,6 +224,8 @@
     <p id="examQuestionText" class="display" style="font-size:15px;font-weight:600;margin:10px 0;color:var(--ink);">...</p>
   </div>
   <div style="width:100%;display:flex;flex-direction:column;gap:8px;" id="examOptionsContainer"></div>
+  <div id="examExplainBox" class="explain-box hidden"></div>
+  <button onclick="advanceExam()" id="examNextBtn" class="btn-primary btn-next hidden">➡️ Nästa fråga</button>
   <div id="examResultBox" class="hidden" style="width:100%;text-align:center;"></div>
 </div>
 
@@ -248,7 +259,9 @@ const translations = {
     sfiHome:"🏠 Home",
     sfiNew:"🔄 New",
     sfiPoolInfo:"Practice questions for everyday Swedish, work, housing, health, public services and daily communication.",
-    sfiBtn:"✨ Get New AI Swedish Language Questions"
+    sfiBtn:"✨ Get New AI Swedish Language Questions",
+    nextQuestion:"➡️ Next Question",
+    explanationLabel:"Explanation"
   },
   sv:{
     ecosystem:"🇸🇪 SVEAHUB",
@@ -277,7 +290,9 @@ const translations = {
     sfiHome:"🏠 Hem",
     sfiNew:"🔄 Nytt",
     sfiPoolInfo:"Övningsfrågor för vardagssvenska, arbete, boende, hälsa, offentliga tjänster och daglig kommunikation.",
-    sfiBtn:"✨ Hämta nya AI-frågor för svenska språket"
+    sfiBtn:"✨ Hämta nya AI-frågor för svenska språket",
+    nextQuestion:"➡️ Nästa fråga",
+    explanationLabel:"Förklaring"
   }
 };
 
@@ -344,8 +359,29 @@ function applyInterfaceLanguage(){
   setText('txtExamHome', t.examHome);
   setText('txtExamSub', t.examSub);
   setText('txtExamNote', t.examNote, true);
+  setText('gameNextBtn', t.nextQuestion);
+  setText('citNextBtn', t.nextQuestion);
+  setText('sfiNextBtn', t.nextQuestion);
+  setText('examNextBtn', t.nextQuestion);
 
   refreshLocalizedContent();
+}
+// ---------- Manual progression helpers (answer feedback + Next Question) ----------
+function showExplanation(prefix, text){
+  const box = document.getElementById(`${prefix}ExplainBox`);
+  const nextBtn = document.getElementById(`${prefix}NextBtn`);
+  if(box){
+    const label = translations[currentLang].explanationLabel;
+    box.innerHTML = text ? `\u{1F4A1} <b>${label}:</b> ${text}` : '';
+    box.classList.toggle('hidden', !text);
+  }
+  if(nextBtn) nextBtn.classList.remove('hidden');
+}
+function hideExplanation(prefix){
+  const box = document.getElementById(`${prefix}ExplainBox`);
+  const nextBtn = document.getElementById(`${prefix}NextBtn`);
+  if(box) box.classList.add('hidden');
+  if(nextBtn) nextBtn.classList.add('hidden');
 }
 function toggleAppLanguage(){
   currentLang = currentLang==='en'?'sv':'en';
@@ -454,15 +490,15 @@ function playAlphabetWord(letter){
 
 // ---------- Sentence Game Logic ----------
 const aiDatabase = [
-  {category:"Daily Life",sentence:"Jag vill gärna ha en kopp [_____] på morgonen.",correct:"KAFFE",wrong:"BOK",english:"I would love to have a cup of coffee in the morning."},
-  {category:"Daily Life",sentence:"Det är viktigt att dricka rent [_____] varje dag.",correct:"VATTEN",wrong:"MJÖLK",english:"It is important to drink clean water every day."},
-  {category:"Workplace",sentence:"Mitt nya [_____] ligger i centrala Stockholm.",correct:"ARBETE",wrong:"SKOLA",english:"My new work is located in central Stockholm."},
-  {category:"Transport",sentence:"Ursäkta mig, går [_____] i tid idag?",correct:"TÅGET",wrong:"BUSSEN",english:"Excuse me, is the train running on time today?"},
-  {category:"Workplace",sentence:"Kan du skicka mig ditt [_____] innan intervjun?",correct:"CV",wrong:"KVITTO",english:"Can you send me your CV before the interview?"},
-  {category:"Workplace",sentence:"Min [_____] börjar klockan sju på morgonen.",correct:"SKIFT",wrong:"SEMESTER",english:"My shift starts at seven in the morning."},
-  {category:"Family",sentence:"Mitt barn går på [_____] i Järfälla.",correct:"FÖRSKOLA",wrong:"SJUKHUS",english:"My child goes to preschool in Järfälla."},
-  {category:"Workplace",sentence:"Glöm inte att stämpla din [_____] varje dag.",correct:"NÄRVARO",wrong:"FRUKOST",english:"Don't forget to register your attendance every day."},
-  {category:"Daily Life",sentence:"Vi handlar [_____] varje lördag.",correct:"MAT",wrong:"BIL",english:"We buy groceries every Saturday."}
+  {category:"Daily Life",sentence:"Jag vill gärna ha en kopp [_____] på morgonen.",correct:"KAFFE",wrong:"BOK",english:"I would love to have a cup of coffee in the morning.",explanation:"'Kaffe' (coffee) är en vanlig morgondryck i Sverige. 'Bok' betyder bok och passar inte ihop med 'en kopp'.",explanationEn:"'Kaffe' means coffee, a classic Swedish morning drink. 'Bok' means book, which cannot follow 'a cup of'."},
+  {category:"Daily Life",sentence:"Det är viktigt att dricka rent [_____] varje dag.",correct:"VATTEN",wrong:"MJÖLK",english:"It is important to drink clean water every day.",explanation:"'Rent vatten' (clean water) är ett vanligt uttryck. 'Mjölk' (milk) beskrivs sällan som 'rent'.",explanationEn:"'Rent vatten' (clean water) is a fixed everyday phrase. 'Mjölk' (milk) is rarely described with the adjective 'clean'."},
+  {category:"Workplace",sentence:"Mitt nya [_____] ligger i centrala Stockholm.",correct:"ARBETE",wrong:"SKOLA",english:"My new work is located in central Stockholm.",explanation:"'Arbete' (work/job) syftar på en arbetsplats. 'Skola' (school) passar inte med sammanhanget om ett nytt jobb.",explanationEn:"'Arbete' means work/job and refers to a workplace. 'Skola' (school) doesn't fit the context of a new job."},
+  {category:"Transport",sentence:"Ursäkta mig, går [_____] i tid idag?",correct:"TÅGET",wrong:"BUSSEN",english:"Excuse me, is the train running on time today?",explanation:"Meningen syftar specifikt på tåget ('the train'). 'Bussen' (the bus) är också ett fordon men matchar inte den bestämda kontexten här.",explanationEn:"The sentence specifically refers to 'the train' (tåget). 'Bussen' (the bus) is also a vehicle but doesn't match this specific context."},
+  {category:"Workplace",sentence:"Kan du skicka mig ditt [_____] innan intervjun?",correct:"CV",wrong:"KVITTO",english:"Can you send me your CV before the interview?",explanation:"Ett CV (meritförteckning) skickas alltid inför en anställningsintervju. Ett 'kvitto' (receipt) hör inte hemma i en anställningsprocess.",explanationEn:"A CV is always sent ahead of a job interview. A 'kvitto' (receipt) has no place in a hiring process."},
+  {category:"Workplace",sentence:"Min [_____] börjar klockan sju på morgonen.",correct:"SKIFT",wrong:"SEMESTER",english:"My shift starts at seven in the morning.",explanation:"'Skift' (shift) har en starttid, till exempel klockan sju. 'Semester' (vacation) beskriver inte en daglig starttid.",explanationEn:"A 'skift' (shift) has a start time, such as seven o'clock. 'Semester' (vacation) doesn't describe a daily start time."},
+  {category:"Family",sentence:"Mitt barn går på [_____] i Järfälla.",correct:"FÖRSKOLA",wrong:"SJUKHUS",english:"My child goes to preschool in Järfälla.",explanation:"'Förskola' (preschool) är dit små barn går varje dag. 'Sjukhus' (hospital) är inte en plats man 'går på' regelbundet som barn.",explanationEn:"'Förskola' (preschool) is where young children go daily. 'Sjukhus' (hospital) is not a place a child regularly 'attends'."},
+  {category:"Workplace",sentence:"Glöm inte att stämpla din [_____] varje dag.",correct:"NÄRVARO",wrong:"FRUKOST",english:"Don't forget to register your attendance every day.",explanation:"'Stämpla närvaro' betyder att registrera att man är på jobbet. 'Frukost' (breakfast) kan inte 'stämplas'.",explanationEn:"'Stämpla närvaro' means to clock in/register attendance. 'Frukost' (breakfast) cannot be 'clocked'."},
+  {category:"Daily Life",sentence:"Vi handlar [_____] varje lördag.",correct:"MAT",wrong:"BIL",english:"We buy groceries every Saturday.",explanation:"'Handla mat' (buy groceries/food) är en vanlig veckorutin. Man 'handlar' vanligtvis inte en 'bil' (car) varje lördag.",explanationEn:"'Handla mat' (buy groceries) is a common weekly routine. You don't typically 'shop for' a 'bil' (car) every Saturday."}
 ];
 const categories = ["All","Daily Life","Workplace","Transport","Family"];
 let activeCategory = "All";
@@ -500,6 +536,7 @@ function fetchNewAIContent(){
 }
 function updateGameUI(){
   if(!currentGameItem) return;
+  hideExplanation('game');
   document.getElementById('categoryTag').innerText = currentGameItem.category;
   document.getElementById('sentenceText').innerText = currentGameItem.sentence;
   document.getElementById('englishText').innerText = currentGameItem.english;
@@ -530,14 +567,18 @@ function handleGameAnswer(selected, btn){
       if(b.innerText === currentGameItem.correct) b.classList.add('correct');
     });
   }
-  setTimeout(fetchNewAIContent, 1200);
+  document.getElementById('scoreText').innerText = `Score: ${gameScore}`;
+  showExplanation('game', getLocalizedText(currentGameItem, 'explanation'));
+}
+function advanceGame(){
+  fetchNewAIContent();
 }
 
 // ---------- Citizenship Quiz Logic ----------
 const citizenshipPool = [
-  {category:"Society & Law",question:"Vem stiftar lagar i Sverige?",questionEn:"Who makes laws in Sweden?",options:["Riksdagen","Regeringen","Polisen","Kungen"],optionsEn:["The Riksdag (Parliament)","The Government","The Police","The King"],correct:0,hint:"Riksdagen är Sveriges högsta beslutande församling."},
-  {category:"History",question:"När infördes allmän och lika rösträtt i Sverige?",questionEn:"When was universal and equal suffrage introduced in Sweden?",options:["1919","1921","1948","1974"],optionsEn:["1919","1921","1948","1974"],correct:1,hint:"Det beslutsamma valet ägde rum 1921 efter grundlagsändring."},
-  {category:"Government",question:"Vilket statsskick har Sverige?",questionEn:"What form of government does Sweden have?",options:["Republik","Konstitutionell monarki","Diktatur","Federal stat"],optionsEn:["Republic","Constitutional Monarchy","Dictatorship","Federal State"],correct:1,hint:"Sverige har en kung som statschef men makten ligger hos riksdag och regering."}
+  {category:"Society & Law",question:"Vem stiftar lagar i Sverige?",questionEn:"Who makes laws in Sweden?",options:["Riksdagen","Regeringen","Polisen","Kungen"],optionsEn:["The Riksdag (Parliament)","The Government","The Police","The King"],correct:0,hint:"Riksdagen är Sveriges högsta beslutande församling.",explanation:"Riksdagen består av 349 folkvalda ledamöter och är Sveriges lagstiftande församling. Regeringen genomför politiken, men det är riksdagen som fattar beslut om lagar.",explanationEn:"The Riksdag consists of 349 elected members and is Sweden's law-making body. The Government implements policy, but it is the Riksdag that decides on laws."},
+  {category:"History",question:"När infördes allmän och lika rösträtt i Sverige?",questionEn:"When was universal and equal suffrage introduced in Sweden?",options:["1919","1921","1948","1974"],optionsEn:["1919","1921","1948","1974"],correct:1,hint:"Det beslutsamma valet ägde rum 1921 efter grundlagsändring.",explanation:"Riksdagen beslutade 1918-1919 om allmän och lika rösträtt för både kvinnor och män, men reformen tillämpades första gången i valet 1921, vilket räknas som genombrottsåret.",explanationEn:"The Riksdag decided in 1918-1919 to introduce universal and equal suffrage for both women and men, but the reform was first applied in the 1921 election, which is considered the breakthrough year."},
+  {category:"Government",question:"Vilket statsskick har Sverige?",questionEn:"What form of government does Sweden have?",options:["Republik","Konstitutionell monarki","Diktatur","Federal stat"],optionsEn:["Republic","Constitutional Monarchy","Dictatorship","Federal State"],correct:1,hint:"Sverige har en kung som statschef men makten ligger hos riksdag och regering.",explanation:"I en konstitutionell monarki är kungen/drottningen statschef med en främst ceremoniell roll, medan den faktiska politiska makten utövas av folkvalda organ som riksdag och regering.",explanationEn:"In a constitutional monarchy, the king/queen is head of state with a mostly ceremonial role, while actual political power is exercised by elected bodies such as the Riksdag and the Government."}
 ];
 let currentCitIndex = 0;
 let citScore = 0;
@@ -562,6 +603,7 @@ function fetchNewCitizenshipQuestion(){
   updateCitizenshipUI();
 }
 function updateCitizenshipUI(){
+  hideExplanation('cit');
   const item = citizenshipPool[currentCitIndex];
   document.getElementById('citCategory').innerText = item.category;
   renderLocalizedText(item.question, item.questionEn, document.getElementById('citQuestionText'));
@@ -592,7 +634,11 @@ function handleCitAnswer(selectedIdx, btn){
     btn.classList.add('wrong');
     buttons[item.correct].classList.add('correct');
   }
-  setTimeout(fetchNewCitizenshipQuestion, 1400);
+  document.getElementById('citScoreText').innerText = `Correct: ${citScore}`;
+  showExplanation('cit', getLocalizedText(item, 'explanation'));
+}
+function advanceCit(){
+  fetchNewCitizenshipQuestion();
 }
 function generateAIQuestions(){
   fetchNewCitizenshipQuestion();
@@ -600,7 +646,7 @@ function generateAIQuestions(){
 
 // ---------- SFI Practice Logic ----------
 const sfiQuestionPool = [
-  {category:"Daily Life",question:"Vad säger du när du lämnar en butik?",questionEn:"What do you say when leaving a shop?",options:["Varsågod","Tack så mycket","Hej då","God morgon"],optionsEn:["You're welcome","Thank you very much","Goodbye","Good morning"],correct:1,hint:"Du tackar kassören när du går."}
+  {category:"Daily Life",question:"Vad säger du när du lämnar en butik?",questionEn:"What do you say when leaving a shop?",options:["Varsågod","Tack så mycket","Hej då","God morgon"],optionsEn:["You're welcome","Thank you very much","Goodbye","Good morning"],correct:1,hint:"Du tackar kassören när du går.",explanation:"'Tack så mycket' (thank you very much) är en artig fras att använda när du lämnar en butik efter att ha handlat. 'Hej då' betyder också hejdå men uttrycker inte tacksamhet, vilket förväntas efter ett köp.",explanationEn:"'Tack så mycket' (thank you very much) is the polite phrase to use when leaving a shop after making a purchase. 'Hej då' also means goodbye, but doesn't express the gratitude expected after buying something."}
 ];
 let currentSfiIndex = 0;
 let sfiScore = 0;
@@ -613,6 +659,7 @@ function fetchNewSfiQuestion(){
   updateSfiUI();
 }
 function updateSfiUI(){
+  hideExplanation('sfi');
   const item = sfiQuestionPool[currentSfiIndex];
   document.getElementById('sfiCategory').innerText = item.category;
   renderLocalizedText(item.question, item.questionEn, document.getElementById('sfiQuestionText'));
@@ -643,7 +690,11 @@ function handleSfiAnswer(selectedIdx, btn){
     btn.classList.add('wrong');
     buttons[item.correct].classList.add('correct');
   }
-  setTimeout(fetchNewSfiQuestion, 1400);
+  document.getElementById('sfiScoreText').innerText = `Correct: ${sfiScore}`;
+  showExplanation('sfi', getLocalizedText(item, 'explanation'));
+}
+function advanceSfi(){
+  fetchNewSfiQuestion();
 }
 function generateSfiAIQuestions(){
   fetchNewSfiQuestion();
@@ -671,6 +722,7 @@ function startExamTimer(){
   }, 1000);
 }
 function renderExamQuestion(){
+  hideExplanation('exam');
   const qNum = currentExamQ + 1;
   document.getElementById('examQNum').innerText = `Question ${qNum} / 69`;
   document.getElementById('examProgressFill').style.width = `${(qNum / 69) * 100}%`;
@@ -687,18 +739,31 @@ function renderExamQuestion(){
     btn.style.padding = '12px 14px';
     btn.style.fontSize = '13px';
     btn.innerText = opt;
-    btn.onclick = () => {
-      currentExamQ++;
-      if(currentExamQ < 69){
-        renderExamQuestion();
-      } else {
-        if(examTimerInterval) clearInterval(examTimerInterval);
-        document.getElementById('examQuestionText').innerText = translations[currentLang].examComplete;
-        container.innerHTML = `<button class="btn-primary" onclick="goHome()">${translations[currentLang].tryAnother}</button>`;
-      }
-    };
+    btn.onclick = () => handleExamAnswer(idx, btn, item);
     container.appendChild(btn);
   });
+}
+function handleExamAnswer(selectedIdx, btn, item){
+  const buttons = document.querySelectorAll('#examOptionsContainer .option-btn');
+  buttons.forEach(b => b.disabled = true);
+  if(selectedIdx === item.correct){
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('wrong');
+    buttons[item.correct].classList.add('correct');
+  }
+  showExplanation('exam', getLocalizedText(item, 'explanation'));
+}
+function advanceExam(){
+  currentExamQ++;
+  if(currentExamQ < 69){
+    renderExamQuestion();
+  } else {
+    hideExplanation('exam');
+    if(examTimerInterval) clearInterval(examTimerInterval);
+    document.getElementById('examQuestionText').innerText = translations[currentLang].examComplete;
+    document.getElementById('examOptionsContainer').innerHTML = `<button class="btn-primary" onclick="goHome()">${translations[currentLang].tryAnother}</button>`;
+  }
 }
 
 window.onload = () => {
