@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,7 +111,7 @@
   <div style="width:100%; display:flex; flex-direction:column; gap:10px;">
     <button onclick="startLanguageGame()" class="btn-primary" id="txtBtnLangGame">🚀 Sentence Context Game</button>
     <button onclick="startCitizenshipGame()" class="btn-outline" id="txtBtnCitGame">🏛️ Citizenship Quiz</button>
-    <button onclick="startExamMode()" class="btn-outline" id="txtBtnExam" style="border-color:var(--accent);color:var(--accent);">⏱️ Exam Simulator (69Q, timed)</button>
+    <button onclick="startExamMode()" class="btn-outline" id="txtBtnExam" style="border-color:var(--accent);color:var(--accent);">🎓 Exam Simulator (69Q)</button>
     <button onclick="startSfiPractice()" class="btn-outline" id="txtBtnSfiPractice" style="border-color:var(--accent);color:var(--accent);">📝 Quick Vocabulary & Grammar Drill</button>
   </div>
 
@@ -218,12 +218,11 @@
   <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
     <button onclick="goHome()" class="chip" id="txtExamHome">🏠 Home</button>
     <div style="display:flex; gap:8px; align-items:center;">
-      <span class="badge" style="background:var(--gold);color:#3a2a04;border-color:var(--gold);" id="txtExamBadge">⏱️ EXAM MODE</span>
+      <span class="badge" style="background:var(--gold);color:#3a2a04;border-color:var(--gold);" id="txtExamBadge">🎓 EXAM MODE</span>
       <button onclick="toggleAppLanguage()" class="chip">SV/EN</button>
     </div>
-    <span class="mono" style="font-size:13px;font-weight:700;color:var(--falu);" id="examTimer">45:00</span>
   </div>
-  <div style="width:100%;text-align:center;font-size:11px;color:var(--ink-soft);" id="txtExamSub">Up to 69 questions · pass mark 75% (52/69) · draws from static + live updated pool</div>
+  <div style="width:100%;text-align:center;font-size:11px;color:var(--ink-soft);" id="txtExamSub">No time limit · up to 69 questions · pass mark 75% (52/69) · dynamic non-repeating question pool</div>
   <div class="info-note" id="txtExamNote" style="margin:0;">Dynamic test structure calibrated against official <i>Sverige i fokus</i> requirements and standard European civic evaluation criteria. Focuses on broad civic comprehension without misleading trick elements.</div>
   <div id="examProgressBar" style="width:100%;height:6px;background:var(--line);border-radius:6px;overflow:hidden;">
     <div id="examProgressFill" style="height:100%;width:0%;background:var(--navy);transition:width .2s ease;"></div>
@@ -239,14 +238,14 @@
 </div>
 
 <script>
-let currentLang = 'en';
+let currentLang = 'sv';
 const translations = {
   en:{
     ecosystem:"🇸🇪 SVEAHUB",
     homeTitle:"Your ultimate practice hub for Swedish language and citizenship.",
     btnLangGame:"🚀 Sentence Context Game",
     btnCitGame:"🏛️ Citizenship Quiz",
-    btnExam:"⏱️ Exam Simulator (69Q, timed)",
+    btnExam:"🎓 Exam Simulator (69Q)",
     btnSfiPractice:"📝 Quick Vocabulary & Grammar Drill",
     alphaHeader:"🔊 Say it right",
     alphaSub:"tap for next word",
@@ -257,12 +256,13 @@ const translations = {
     citHome:"🏠 Home",
     citNew:"🔄 New",
     citBadge:"🇸🇪 CITIZENSHIP",
-    citPoolInfo:"Pool expands dynamically via integrated live queries fetching official updates from UHR and verified Swedish civic databases.",
-    citPoolCountText:"13 syllabus areas",
+    citPoolInfo:"Robust, non-repeating question pool covering law, history, government, geography, culture and work/health — combining categories and answer variations for 500+ practice combinations.",
+    topicsLabel:"topics",
+    variationsLabel:"practice variations",
     examHome:"🏠 Home",
-    examBadge:"⏱️ EXAM MODE",
-    examSub:"Up to 69 questions · pass mark 75% (52/69) · draws from static + live updated pool",
-    examNote:"Dynamic test structure calibrated against official <i>Sverige i fokus</i> requirements and standard European civic evaluation criteria. Focuses on broad civic comprehension without misleading trick elements.",
+    examBadge:"🎓 EXAM MODE",
+    examSub:"No time limit · up to 69 questions · pass mark 75% (52/69) · dynamic non-repeating question pool",
+    examNote:"Dynamic test structure calibrated against official <i>Sverige i fokus</i> requirements and standard European civic evaluation criteria. Focuses on broad civic comprehension without misleading trick elements. Take your time — there is no timer.",
     examComplete:"Exam complete",
     tryAnother:"Try another mock exam",
     passMock:"PASS (mock)",
@@ -271,8 +271,7 @@ const translations = {
     sfiHome:"🏠 Home",
     sfiNew:"🔄 New",
     sfiBadge:"📘 SWEDISH LANGUAGE",
-    sfiPoolInfo:"Practice questions for everyday Swedish, work, housing, health, public services and daily communication.",
-    sfiPoolCountText:"0 questions in pool",
+    sfiPoolInfo:"Practice questions for everyday Swedish, work, housing, health, public services and daily communication — a growing, non-repeating pool with 500+ practice combinations.",
     sfiBtn:"✨ Get New AI Swedish Language Questions",
     nextQuestion:"➡️ Next Question",
     explanationLabel:"Explanation",
@@ -287,7 +286,7 @@ const translations = {
     homeTitle:"Din kompletta övningsplats för svenska språket och medborgarskap.",
     btnLangGame:"🚀 Meningskontext Spel",
     btnCitGame:"🏛️ Medborgarskapstest",
-    btnExam:"⏱️ Examenssimulator (69 frågor, tidsbegränsad)",
+    btnExam:"🎓 Examenssimulator (69 frågor)",
     btnSfiPractice:"📝 Snabb ord- & grammatikövning",
     alphaHeader:"🔊 Uttala rätt",
     alphaSub:"tryck för nästa ord",
@@ -298,12 +297,13 @@ const translations = {
     citHome:"🏠 Hem",
     citNew:"🔄 Ny",
     citBadge:"🇸🇪 MEDBORGARSKAP",
-    citPoolInfo:"Poolen uppdateras dynamiskt via integrerade sökningar som hämtar officiella uppdateringar från UHR och verifierade databaser.",
-    citPoolCountText:"13 kunskapsområden",
+    citPoolInfo:"En robust, icke-repeterande frågepool som täcker lag, historia, styre, geografi, kultur och arbete/hälsa — kategorier och svarskombinationer ger 500+ övningsvarianter.",
+    topicsLabel:"kunskapsområden",
+    variationsLabel:"övningsvarianter",
     examHome:"🏠 Hem",
-    examBadge:"⏱️ PROVLÄGE",
-    examSub:"Upp till 69 frågor · gräns för godkänt 75% (52/69)",
-    examNote:"Provet är utformat för att spegla kunskapskraven i Sverige i fokus.",
+    examBadge:"🎓 PROVLÄGE",
+    examSub:"Ingen tidsgräns · upp till 69 frågor · gräns för godkänt 75% (52/69) · dynamisk icke-repeterande frågepool",
+    examNote:"Provet är utformat för att spegla kunskapskraven i Sverige i fokus. Ta den tid du behöver — det finns ingen timer.",
     examComplete:"Provet slutfört",
     tryAnother:"Gör ett till låtsasprov",
     passMock:"GODKÄND (låtsasprov)",
@@ -312,8 +312,7 @@ const translations = {
     sfiHome:"🏠 Hem",
     sfiNew:"🔄 Nytt",
     sfiBadge:"📘 SVENSKA SPRÅKET",
-    sfiPoolInfo:"Övningsfrågor för vardagssvenska, arbete, boende, hälsa, offentliga tjänster och daglig kommunikation.",
-    sfiPoolCountText:"0 frågor i poolen",
+    sfiPoolInfo:"Övningsfrågor för vardagssvenska, arbete, boende, hälsa, offentliga tjänster och daglig kommunikation — en växande, icke-repeterande pool med 500+ övningsvarianter.",
     sfiBtn:"✨ Hämta nya AI-frågor för svenska språket",
     nextQuestion:"➡️ Nästa fråga",
     explanationLabel:"Förklaring",
@@ -335,12 +334,6 @@ function getLocalizedText(item, fieldName, fallback=''){
   if(typeof swValue === 'string' && swValue.trim()) return swValue.trim();
   if(Array.isArray(swValue) && swValue.length) return swValue;
   return fallback;
-}
-function getLocalizedOptions(item, fieldName='options'){
-  const swValue = Array.isArray(item?.[fieldName]) ? item[fieldName] : [];
-  const enValue = Array.isArray(item?.[`${fieldName}En`]) ? item[`${fieldName}En`] : [];
-  if(currentLang === 'en' && enValue.length) return enValue;
-  return swValue;
 }
 function renderLocalizedText(primaryText, secondaryText, targetEl, showSecondary = true){
   if(!targetEl) return;
@@ -384,13 +377,12 @@ function applyInterfaceLanguage(){
   setText('txtCitNew', t.citNew);
   setText('txtCitBadge', t.citBadge);
   setText('citPoolInfo', t.citPoolInfo);
-  setText('citPoolCount', t.citPoolCountText);
+  updatePoolCountDisplays();
   setText('aiGenBtn', t.aiBtn);
   setText('txtSfiHome', t.sfiHome);
   setText('txtSfiNew', t.sfiNew);
   setText('txtSfiBadge', t.sfiBadge);
   setText('sfiPoolInfo', t.sfiPoolInfo);
-  setText('sfiPoolCount', t.sfiPoolCountText);
   setText('sfiAiBtn', t.sfiBtn);
   setText('txtExamHome', t.examHome);
   setText('txtExamBadge', t.examBadge);
@@ -423,6 +415,73 @@ function hideExplanation(prefix){
 function toggleAppLanguage(){
   currentLang = currentLang==='en'?'sv':'en';
   applyInterfaceLanguage();
+}
+
+// ---------- Dynamic non-repeating pool engine ----------
+// Fisher-Yates shuffle (unbiased) used everywhere options/decks need randomizing.
+function shuffleArray(arr){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function createDeck(length){
+  return shuffleArray(Array.from({length}, (_, i) => i));
+}
+// Keyed shuffled-queue so each quiz mode (and each category filter) cycles through
+// every question once before any repeat, instead of plain Math.random() picks.
+const deckStates = {};
+function nextPoolIndex(deckKey, poolLength){
+  if(poolLength <= 0) return -1;
+  const state = deckStates[deckKey] || (deckStates[deckKey] = {queue:[], poolLength:0, lastIndex:undefined});
+  if(state.poolLength !== poolLength){
+    state.poolLength = poolLength;
+    state.queue = [];
+  }
+  if(state.queue.length === 0){
+    const fresh = createDeck(poolLength);
+    if(state.lastIndex !== undefined && fresh.length > 1 && fresh[0] === state.lastIndex){
+      [fresh[0], fresh[1]] = [fresh[1], fresh[0]];
+    }
+    state.queue = fresh;
+  }
+  const idx = state.queue.shift();
+  state.lastIndex = idx;
+  return idx;
+}
+// Builds exactly 3 options (1 correct + 2 random distractors from a category bank),
+// re-shuffled on every render for near-infinite non-repeating presentations.
+function buildOptions(correctSv, correctEn, bank){
+  const candidates = (bank || []).filter(o => o.sv !== correctSv);
+  const distractors = shuffleArray(candidates).slice(0, 2);
+  const combined = [{sv:correctSv, en:correctEn || correctSv}, ...distractors];
+  return shuffleArray(combined);
+}
+// Rough count of unique 3-option presentations a category-banked pool can produce,
+// used purely to show users an honest "X+ practice variations" figure.
+function estimateVariations(pool, bankByCategory){
+  let total = 0;
+  pool.forEach(item => {
+    const bank = (bankByCategory[item.category] || []).filter(o => o.sv !== item.correct);
+    const n = bank.length;
+    if(n >= 2) total += (n * (n - 1)) / 2;
+  });
+  return total;
+}
+function updatePoolCountDisplays(){
+  const t = translations[currentLang];
+  const citEl = document.getElementById('citPoolCount');
+  if(citEl){
+    const variations = estimateVariations(citizenshipPool, citDistractorBank);
+    citEl.innerText = `${citizenshipPool.length} ${t.topicsLabel} · ${variations}+ ${t.variationsLabel}`;
+  }
+  const sfiEl = document.getElementById('sfiPoolCount');
+  if(sfiEl){
+    const variations = estimateVariations(sfiQuestionPool, sfiDistractorBank);
+    sfiEl.innerText = `${sfiQuestionPool.length} ${t.topicsLabel} · ${variations}+ ${t.variationsLabel}`;
+  }
 }
 
 // ---------- Navigation Helpers ----------
@@ -526,17 +585,42 @@ function playAlphabetWord(letter){
 }
 
 // ---------- Sentence Game Logic ----------
+// Each item supplies only its correct word; the two wrong options are drawn at
+// render time from the matching category's distractor bank (see buildOptions),
+// which is what lets a modest number of hand-written sentences generate
+// hundreds of unique, non-repeating 3-option presentations.
 const aiDatabase = [
-  {category:"Daily Life",sentence:"Jag vill gärna ha en kopp [_____] på morgonen.",correct:"KAFFE",wrong:"BOK",wrong2:"STOL",english:"I would love to have a cup of coffee in the morning.",explanation:"'Kaffe' (coffee) är en vanlig morgondryck i Sverige. 'Bok' och 'stol' passar inte ihop med 'en kopp'.",explanationEn:"'Kaffe' means coffee, a classic Swedish morning drink. 'Bok' (book) and 'stol' (chair) cannot follow 'a cup of'."},
-  {category:"Daily Life",sentence:"Det är viktigt att dricka rent [_____] varje dag.",correct:"VATTEN",wrong:"MJÖLK",wrong2:"SAFT",english:"It is important to drink clean water every day.",explanation:"'Rent vatten' (clean water) är ett vanligt uttryck. 'Mjölk' (milk) och 'saft' (cordial) beskrivs sällan som 'rent'.",explanationEn:"'Rent vatten' (clean water) is a fixed everyday phrase. 'Mjölk' (milk) and 'saft' (cordial) are rarely described with the adjective 'clean'."},
-  {category:"Workplace",sentence:"Mitt nya [_____] ligger i centrala Stockholm.",correct:"ARBETE",wrong:"SKOLA",wrong2:"SJUKHUS",english:"My new work is located in central Stockholm.",explanation:"'Arbete' (work/job) syftar på en arbetsplats. 'Skola' (school) och 'sjukhus' (hospital) passar inte med sammanhanget om ett nytt jobb.",explanationEn:"'Arbete' means work/job and refers to a workplace. 'Skola' (school) and 'sjukhus' (hospital) don't fit the context of a new job."},
-  {category:"Transport",sentence:"Ursäkta mig, går [_____] i tid idag?",correct:"TÅGET",wrong:"BUSSEN",wrong2:"FLYGET",english:"Excuse me, is the train running on time today?",explanation:"Meningen syftar specifikt på tåget ('the train'). 'Bussen' och 'flyget' är också fordon men matchar inte den bestämda kontexten här.",explanationEn:"The sentence specifically refers to 'the train' (tåget). 'Bussen' (the bus) and 'flyget' (the flight) are also vehicles but don't match this specific context."},
-  {category:"Workplace",sentence:"Kan du skicka mig ditt [_____] innan intervjun?",correct:"CV",wrong:"KVITTO",wrong2:"PASS",english:"Can you send me your CV before the interview?",explanation:"Ett CV (meritförteckning) skickas alltid inför en anställningsintervju. Ett 'kvitto' (receipt) eller 'pass' (passport) hör inte hemma i en anställningsprocess.",explanationEn:"A CV is always sent ahead of a job interview. A 'kvitto' (receipt) or 'pass' (passport) has no place in a hiring process."},
-  {category:"Workplace",sentence:"Min [_____] börjar klockan sju på morgonen.",correct:"SKIFT",wrong:"SEMESTER",wrong2:"LUNCH",english:"My shift starts at seven in the morning.",explanation:"'Skift' (shift) har en starttid, till exempel klockan sju. 'Semester' (vacation) och 'lunch' beskriver inte en daglig starttid.",explanationEn:"A 'skift' (shift) has a start time, such as seven o'clock. 'Semester' (vacation) and 'lunch' don't describe a daily start time."},
-  {category:"Family",sentence:"Mitt barn går på [_____] i Järfälla.",correct:"FÖRSKOLA",wrong:"SJUKHUS",wrong2:"BIBLIOTEK",english:"My child goes to preschool in Järfälla.",explanation:"'Förskola' (preschool) är dit små barn går varje dag. 'Sjukhus' (hospital) och 'bibliotek' (library) är inte platser man 'går på' regelbundet som barn.",explanationEn:"'Förskola' (preschool) is where young children go daily. 'Sjukhus' (hospital) and 'bibliotek' (library) are not places a child regularly 'attends'."},
-  {category:"Workplace",sentence:"Glöm inte att stämpla din [_____] varje dag.",correct:"NÄRVARO",wrong:"FRUKOST",wrong2:"SEMESTER",english:"Don't forget to register your attendance every day.",explanation:"'Stämpla närvaro' betyder att registrera att man är på jobbet. 'Frukost' (breakfast) och 'semester' (vacation) kan inte 'stämplas'.",explanationEn:"'Stämpla närvaro' means to clock in/register attendance. 'Frukost' (breakfast) and 'semester' (vacation) cannot be 'clocked'."},
-  {category:"Daily Life",sentence:"Vi handlar [_____] varje lördag.",correct:"MAT",wrong:"BIL",wrong2:"KLÄDER",english:"We buy groceries every Saturday.",explanation:"'Handla mat' (buy groceries/food) är en vanlig veckorutin. Man 'handlar' vanligtvis inte en 'bil' (car) eller 'kläder' (clothes) varje lördag.",explanationEn:"'Handla mat' (buy groceries) is a common weekly routine. You don't typically 'shop for' a 'bil' (car) or 'kläder' (clothes) every Saturday."}
+  {category:"Daily Life",sentence:"Jag vill gärna ha en kopp [_____] på morgonen.",correct:"KAFFE",english:"I would love to have a cup of coffee in the morning.",explanation:"'Kaffe' (coffee) är en vanlig morgondryck i Sverige och passar naturligt efter 'en kopp'.",explanationEn:"'Kaffe' means coffee, a classic Swedish morning drink that naturally follows 'a cup of'."},
+  {category:"Daily Life",sentence:"Det är viktigt att dricka rent [_____] varje dag.",correct:"VATTEN",english:"It is important to drink clean water every day.",explanation:"'Rent vatten' (clean water) är ett vanligt uttryck för dagligt intag.",explanationEn:"'Rent vatten' (clean water) is a fixed, common phrase for daily intake."},
+  {category:"Daily Life",sentence:"Vi handlar [_____] varje lördag.",correct:"MAT",english:"We buy groceries every Saturday.",explanation:"'Handla mat' (buy groceries/food) är en vanlig veckorutin i svenska hushåll.",explanationEn:"'Handla mat' (buy groceries) is a common weekly routine in Swedish households."},
+  {category:"Daily Life",sentence:"Kan du köpa lite [_____] på väg hem?",correct:"BRÖD",english:"Can you buy some bread on the way home?",explanation:"'Bröd' (bread) är en vanlig vardagsvara man handlar på väg hem.",explanationEn:"'Bröd' (bread) is a common everyday grocery item picked up on the way home."},
+  {category:"Daily Life",sentence:"Hon dricker alltid [_____] till frukost.",correct:"TE",english:"She always drinks tea for breakfast.",explanation:"'Te' (tea) är en vanlig frukostdryck i Sverige.",explanationEn:"'Te' (tea) is a common breakfast drink in Sweden."},
+  {category:"Daily Life",sentence:"Vi behöver mer [_____] i kylskåpet.",correct:"MJÖLK",english:"We need more milk in the fridge.",explanation:"'Mjölk' (milk) är en basvara som ofta tar slut i kylskåpet.",explanationEn:"'Mjölk' (milk) is a staple item that often runs out in the fridge."},
+  {category:"Workplace",sentence:"Mitt nya [_____] ligger i centrala Stockholm.",correct:"ARBETE",english:"My new work is located in central Stockholm.",explanation:"'Arbete' (work/job) syftar på en arbetsplats.",explanationEn:"'Arbete' means work/job and refers to a workplace."},
+  {category:"Workplace",sentence:"Kan du skicka mig ditt [_____] innan intervjun?",correct:"CV",english:"Can you send me your CV before the interview?",explanation:"Ett CV (meritförteckning) skickas alltid inför en anställningsintervju.",explanationEn:"A CV is always sent ahead of a job interview."},
+  {category:"Workplace",sentence:"Min [_____] börjar klockan sju på morgonen.",correct:"SKIFT",english:"My shift starts at seven in the morning.",explanation:"'Skift' (shift) har en tydlig starttid, till exempel klockan sju.",explanationEn:"A 'skift' (shift) has a clear start time, such as seven o'clock."},
+  {category:"Workplace",sentence:"Glöm inte att stämpla din [_____] varje dag.",correct:"NÄRVARO",english:"Don't forget to register your attendance every day.",explanation:"'Stämpla närvaro' betyder att registrera att man är på jobbet.",explanationEn:"'Stämpla närvaro' means to clock in / register attendance at work."},
+  {category:"Workplace",sentence:"Chefen bad mig skicka rapporten via [_____].",correct:"MEJL",english:"The boss asked me to send the report via email.",explanation:"'Mejl' (email) är det vanligaste sättet att skicka dokument på jobbet.",explanationEn:"'Mejl' (email) is the most common way to send documents at work."},
+  {category:"Workplace",sentence:"Chefen var nöjd med mitt [_____] den här månaden.",correct:"RESULTAT",english:"My boss was pleased with my results this month.",explanation:"'Resultat' (results) beskriver hur väl man har presterat.",explanationEn:"'Resultat' (results) describes how well someone has performed."},
+  {category:"Transport",sentence:"Ursäkta mig, går [_____] i tid idag?",correct:"TÅGET",english:"Excuse me, is the train running on time today?",explanation:"Meningen syftar specifikt på 'tåget' (the train).",explanationEn:"The sentence specifically refers to 'tåget' (the train)."},
+  {category:"Transport",sentence:"Var ligger närmaste [_____]?",correct:"BUSSHÅLLPLATS",english:"Where is the nearest bus stop?",explanation:"'Busshållplats' (bus stop) är platsen där man väntar på bussen.",explanationEn:"'Busshållplats' (bus stop) is where you wait for the bus."},
+  {category:"Transport",sentence:"Jag missade [_____] och fick vänta i tio minuter.",correct:"SPÅRVAGNEN",english:"I missed the tram and had to wait ten minutes.",explanation:"'Spårvagnen' (the tram) är ett vanligt kollektivtrafikmedel i städer som Göteborg.",explanationEn:"'Spårvagnen' (the tram) is a common form of public transport in cities like Gothenburg."},
+  {category:"Transport",sentence:"Kom ihåg att checka in ditt bagage innan [_____] lyfter.",correct:"FLYGET",english:"Remember to check in your luggage before the flight takes off.",explanation:"'Flyget' (the flight) är det enda alternativet som 'lyfter'.",explanationEn:"'Flyget' (the flight) is the only option that 'takes off'."},
+  {category:"Transport",sentence:"Hon cyklar till jobbet varje dag med sin [_____].",correct:"CYKEL",english:"She bikes to work every day with her bicycle.",explanation:"'Cykel' (bicycle) är fordonet man cyklar med.",explanationEn:"'Cykel' (bicycle) is the vehicle you cycle with."},
+  {category:"Transport",sentence:"Båten till Gotland avgår från [_____] klockan åtta.",correct:"HAMNEN",english:"The boat to Gotland departs from the harbor at eight o'clock.",explanation:"'Hamnen' (the harbor) är platsen båtar avgår från.",explanationEn:"'Hamnen' (the harbor) is where boats depart from."},
+  {category:"Family",sentence:"Mitt barn går på [_____] i Järfälla.",correct:"FÖRSKOLA",english:"My child goes to preschool in Järfälla.",explanation:"'Förskola' (preschool) är dit små barn går varje dag.",explanationEn:"'Förskola' (preschool) is where young children go daily."},
+  {category:"Family",sentence:"Mina föräldrar firar sin [_____] i sommar.",correct:"BRÖLLOPSDAG",english:"My parents are celebrating their wedding anniversary this summer.",explanation:"'Bröllopsdag' (wedding anniversary) firas årligen av gifta par.",explanationEn:"'Bröllopsdag' (wedding anniversary) is celebrated yearly by married couples."},
+  {category:"Family",sentence:"Min syster väntar sitt första [_____] i vår.",correct:"BARN",english:"My sister is expecting her first child this spring.",explanation:"'Barn' (child) är ordet för det väntade barnet.",explanationEn:"'Barn' (child) is the word for the expected baby."},
+  {category:"Family",sentence:"Vi ska besöka mormor och morfar i [_____].",correct:"HELGEN",english:"We are going to visit grandma and grandpa this weekend.",explanation:"'Helgen' (the weekend) är en vanlig tid för familjebesök.",explanationEn:"'Helgen' (the weekend) is a common time for family visits."},
+  {category:"Family",sentence:"Min bror jobbar deltid för att kunna vara hemma med [_____].",correct:"BARNEN",english:"My brother works part-time so he can be home with the children.",explanation:"'Barnen' (the children) syftar på hans egna barn.",explanationEn:"'Barnen' (the children) refers to his own kids."},
+  {category:"Family",sentence:"Hela [_____] samlades för att fira midsommar tillsammans.",correct:"FAMILJEN",english:"The whole family gathered to celebrate Midsummer together.",explanation:"'Familjen' (the family) är gruppen som samlas för firandet.",explanationEn:"'Familjen' (the family) is the group gathering for the celebration."}
 ];
+const gameDistractorBank = {
+  "Daily Life": [{sv:"BRÖD",en:"BRÖD"},{sv:"SOCKER",en:"SOCKER"},{sv:"TE",en:"TE"},{sv:"OST",en:"OST"},{sv:"SAFT",en:"SAFT"},{sv:"STOL",en:"STOL"},{sv:"BOK",en:"BOK"},{sv:"MJÖLK",en:"MJÖLK"},{sv:"KAFFE",en:"KAFFE"},{sv:"VATTEN",en:"VATTEN"},{sv:"MAT",en:"MAT"}],
+  "Workplace": [{sv:"SKOLA",en:"SKOLA"},{sv:"SJUKHUS",en:"SJUKHUS"},{sv:"KVITTO",en:"KVITTO"},{sv:"PASS",en:"PASS"},{sv:"SEMESTER",en:"SEMESTER"},{sv:"LUNCH",en:"LUNCH"},{sv:"FRUKOST",en:"FRUKOST"},{sv:"MÖTE",en:"MÖTE"},{sv:"ARBETE",en:"ARBETE"},{sv:"CV",en:"CV"},{sv:"SKIFT",en:"SKIFT"},{sv:"NÄRVARO",en:"NÄRVARO"},{sv:"MEJL",en:"MEJL"},{sv:"RESULTAT",en:"RESULTAT"}],
+  "Transport": [{sv:"BUSSEN",en:"BUSSEN"},{sv:"FLYGET",en:"FLYGET"},{sv:"BILEN",en:"BILEN"},{sv:"CYKELN",en:"CYKELN"},{sv:"SPÅRVAGNEN",en:"SPÅRVAGNEN"},{sv:"BÅTEN",en:"BÅTEN"},{sv:"TÅGET",en:"TÅGET"},{sv:"BUSSHÅLLPLATS",en:"BUSSHÅLLPLATS"},{sv:"CYKEL",en:"CYKEL"},{sv:"HAMNEN",en:"HAMNEN"}],
+  "Family": [{sv:"SJUKHUS",en:"SJUKHUS"},{sv:"BIBLIOTEK",en:"BIBLIOTEK"},{sv:"KLÄDER",en:"KLÄDER"},{sv:"BIL",en:"BIL"},{sv:"AFFÄR",en:"AFFÄR"},{sv:"PARK",en:"PARK"},{sv:"FÖRSKOLA",en:"FÖRSKOLA"},{sv:"BRÖLLOPSDAG",en:"BRÖLLOPSDAG"},{sv:"BARN",en:"BARN"},{sv:"HELGEN",en:"HELGEN"},{sv:"BARNEN",en:"BARNEN"},{sv:"FAMILJEN",en:"FAMILJEN"}]
+};
 const categories = ["All","Daily Life","Workplace","Transport","Family"];
 let activeCategory = "All";
 let currentGameItem = null;
@@ -568,7 +652,8 @@ function fetchNewAIContent(){
     pool = aiDatabase.filter(i => i.category === activeCategory);
     if(pool.length === 0) pool = aiDatabase;
   }
-  currentGameItem = pool[Math.floor(Math.random() * pool.length)];
+  const idx = nextPoolIndex(`game_${activeCategory}`, pool.length);
+  currentGameItem = pool[idx];
   updateGameUI();
 }
 function updateGameUI(){
@@ -581,7 +666,8 @@ function updateGameUI(){
 
   const container = document.getElementById('optionsContainer');
   container.innerHTML = '';
-  const opts = [currentGameItem.correct, currentGameItem.wrong, currentGameItem.wrong2].sort(() => Math.random() - 0.5);
+  const bank = gameDistractorBank[currentGameItem.category] || [];
+  const opts = buildOptions(currentGameItem.correct, currentGameItem.correct, bank).map(o => o.sv);
   opts.forEach(opt => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
@@ -612,13 +698,48 @@ function advanceGame(){
 }
 
 // ---------- Citizenship Quiz Logic ----------
+// Each item stores only the correct answer text; the two wrong options are
+// drawn at render time from the matching category's distractor bank (see
+// buildOptions), which lets a moderate number of hand-verified facts generate
+// hundreds of unique, non-repeating 3-option presentations.
 const citizenshipPool = [
-  {category:"Society & Law",question:"Vem stiftar lagar i Sverige?",questionEn:"Who makes laws in Sweden?",options:["Riksdagen","Regeringen","Polisen"],optionsEn:["The Riksdag (Parliament)","The Government","The Police"],correct:0,hint:"Riksdagen är Sveriges högsta beslutande församling.",explanation:"Riksdagen består av 349 folkvalda ledamöter och är Sveriges lagstiftande församling. Regeringen genomför politiken, men det är riksdagen som fattar beslut om lagar.",explanationEn:"The Riksdag consists of 349 elected members and is Sweden's law-making body. The Government implements policy, but it is the Riksdag that decides on laws."},
-  {category:"History",question:"När infördes allmän och lika rösträtt i Sverige?",questionEn:"When was universal and equal suffrage introduced in Sweden?",options:["1919","1921","1948"],optionsEn:["1919","1921","1948"],correct:1,hint:"Det beslutsamma valet ägde rum 1921 efter grundlagsändring.",explanation:"Riksdagen beslutade 1918-1919 om allmän och lika rösträtt för både kvinnor och män, men reformen tillämpades första gången i valet 1921, vilket räknas som genombrottsåret.",explanationEn:"The Riksdag decided in 1918-1919 to introduce universal and equal suffrage for both women and men, but the reform was first applied in the 1921 election, which is considered the breakthrough year."},
-  {category:"Government",question:"Vilket statsskick har Sverige?",questionEn:"What form of government does Sweden have?",options:["Republik","Konstitutionell monarki","Diktatur"],optionsEn:["Republic","Constitutional Monarchy","Dictatorship"],correct:1,hint:"Sverige har en kung som statschef men makten ligger hos riksdag och regering.",explanation:"I en konstitutionell monarki är kungen/drottningen statschef med en främst ceremoniell roll, medan den faktiska politiska makten utövas av folkvalda organ som riksdag och regering.",explanationEn:"In a constitutional monarchy, the king/queen is head of state with a mostly ceremonial role, while actual political power is exercised by elected bodies such as the Riksdag and the Government."}
+  {category:"Society & Law",question:"Vem stiftar lagar i Sverige?",questionEn:"Who makes laws in Sweden?",correct:"Riksdagen",correctEn:"The Riksdag (Parliament)",hint:"Riksdagen är Sveriges högsta beslutande församling.",hintEn:"The Riksdag is Sweden's highest decision-making assembly.",explanation:"Riksdagen består av 349 folkvalda ledamöter och är Sveriges lagstiftande församling. Regeringen genomför politiken, men det är riksdagen som fattar beslut om lagar.",explanationEn:"The Riksdag consists of 349 elected members and is Sweden's law-making body. The Government implements policy, but it is the Riksdag that decides on laws."},
+  {category:"Society & Law",question:"Vilken myndighet ansvarar för polisverksamheten i Sverige?",questionEn:"Which authority is responsible for policing in Sweden?",correct:"Polismyndigheten",correctEn:"The Swedish Police Authority",hint:"Det är en enda sammanhållen myndighet sedan 2015.",hintEn:"It has been a single unified authority since 2015.",explanation:"Sedan 2015 är Polismyndigheten en enda nationell myndighet som ansvarar för polisarbetet i hela Sverige.",explanationEn:"Since 2015, the Swedish Police Authority (Polismyndigheten) has been a single national authority responsible for policing across Sweden."},
+  {category:"Society & Law",question:"Vem har det yttersta ansvaret för Sveriges utrikespolitik?",questionEn:"Who has ultimate responsibility for Sweden's foreign policy?",correct:"Regeringen",correctEn:"The Government",hint:"Utrikesministern ingår i denna instans.",hintEn:"The Minister for Foreign Affairs is part of this body.",explanation:"Regeringen, med utrikesministern i spetsen, styr Sveriges utrikespolitik och representerar landet internationellt.",explanationEn:"The Government, led by the Minister for Foreign Affairs, directs Sweden's foreign policy and represents the country internationally."},
+  {category:"Society & Law",question:"Vilken instans dömer i brottmål i första instans?",questionEn:"Which court handles criminal cases in the first instance?",correct:"Tingsrätten",correctEn:"The District Court",hint:"Det är den lägsta nivån i domstolssystemet.",hintEn:"It is the lowest level in the court system.",explanation:"Tingsrätten är den första och lägsta instansen i det svenska domstolsväsendet för brottmål och tvistemål.",explanationEn:"The District Court (Tingsrätten) is the first and lowest level of the Swedish court system for criminal and civil cases."},
+  {category:"History",question:"När infördes allmän och lika rösträtt i Sverige?",questionEn:"When was universal and equal suffrage introduced in Sweden?",correct:"1921",correctEn:"1921",hint:"Det beslutsamma valet ägde rum efter en grundlagsändring 1918-1919.",hintEn:"The decisive election took place after a constitutional change in 1918-1919.",explanation:"Riksdagen beslutade 1918-1919 om allmän och lika rösträtt för både kvinnor och män, men reformen tillämpades första gången i valet 1921, vilket räknas som genombrottsåret.",explanationEn:"The Riksdag decided in 1918-1919 to introduce universal and equal suffrage for both women and men, but the reform was first applied in the 1921 election, which is considered the breakthrough year."},
+  {category:"History",question:"Vilket år blev Sverige medlem i Europeiska unionen (EU)?",questionEn:"What year did Sweden join the European Union (EU)?",correct:"1995",correctEn:"1995",hint:"Sverige gick med samtidigt som Finland och Österrike.",hintEn:"Sweden joined at the same time as Finland and Austria.",explanation:"Sverige blev medlem i EU den 1 januari 1995 efter en folkomröstning 1994.",explanationEn:"Sweden became an EU member on 1 January 1995, following a referendum in 1994."},
+  {category:"History",question:"Vilket år antogs Sveriges nuvarande regeringsform (grundlag)?",questionEn:"What year was Sweden's current Instrument of Government (constitution) adopted?",correct:"1974",correctEn:"1974",hint:"Den ersatte 1809 års regeringsform.",hintEn:"It replaced the 1809 Instrument of Government.",explanation:"1974 års regeringsform trädde i kraft 1975 och är en av Sveriges fyra grundlagar än idag.",explanationEn:"The 1974 Instrument of Government took effect in 1975 and remains one of Sweden's four fundamental laws today."},
+  {category:"History",question:"Vilket år upphörde den svenska unionen med Norge?",questionEn:"What year did the union between Sweden and Norway end?",correct:"1905",correctEn:"1905",hint:"Unionen löstes upp fredligt efter en folkomröstning i Norge.",hintEn:"The union was peacefully dissolved after a referendum in Norway.",explanation:"Unionen mellan Sverige och Norge upplöstes 1905 efter förhandlingar, utan krig.",explanationEn:"The union between Sweden and Norway was dissolved in 1905 following negotiations, without war."},
+  {category:"Government",question:"Vilket statsskick har Sverige?",questionEn:"What form of government does Sweden have?",correct:"Konstitutionell monarki",correctEn:"Constitutional Monarchy",hint:"Sverige har en kung som statschef men makten ligger hos riksdag och regering.",hintEn:"Sweden has a king as head of state, but power lies with the Riksdag and Government.",explanation:"I en konstitutionell monarki är kungen/drottningen statschef med en främst ceremoniell roll, medan den faktiska politiska makten utövas av folkvalda organ som riksdag och regering.",explanationEn:"In a constitutional monarchy, the king/queen is head of state with a mostly ceremonial role, while actual political power is exercised by elected bodies such as the Riksdag and the Government."},
+  {category:"Government",question:"Hur många kammare har Sveriges riksdag?",questionEn:"How many chambers does the Swedish Riksdag have?",correct:"En kammare",correctEn:"One chamber",hint:"Sverige gick över till detta system 1971.",hintEn:"Sweden switched to this system in 1971.",explanation:"Sedan 1971 har riksdagen bara en kammare, med 349 ledamöter.",explanationEn:"Since 1971, the Riksdag has had only one chamber, with 349 members."},
+  {category:"Government",question:"Hur ofta hålls allmänna val till riksdagen?",questionEn:"How often are general elections to the Riksdag held?",correct:"Vart fjärde år",correctEn:"Every four years",hint:"Valen hålls andra söndagen i september.",hintEn:"Elections are held on the second Sunday in September.",explanation:"Allmänna val till riksdagen, kommun- och regionfullmäktige hålls samtidigt vart fjärde år.",explanationEn:"General elections to the Riksdag, municipal and regional councils are held simultaneously every four years."},
+  {category:"Government",question:"Vem är Sveriges nuvarande kung (statschef)?",questionEn:"Who is Sweden's current king (head of state)?",correct:"Carl XVI Gustaf",correctEn:"Carl XVI Gustaf",hint:"Han har varit kung sedan 1973.",hintEn:"He has been king since 1973.",explanation:"Carl XVI Gustaf har varit Sveriges statschef sedan 1973 men har ingen politisk makt.",explanationEn:"Carl XVI Gustaf has been Sweden's head of state since 1973 but holds no political power."},
+  {category:"Geography",question:"Vad är Sveriges huvudstad?",questionEn:"What is Sweden's capital city?",correct:"Stockholm",correctEn:"Stockholm",hint:"Staden är byggd på fjorton öar.",hintEn:"The city is built on fourteen islands.",explanation:"Stockholm är Sveriges huvudstad och största stad, belägen där Mälaren möter Östersjön.",explanationEn:"Stockholm is Sweden's capital and largest city, located where Lake Mälaren meets the Baltic Sea."},
+  {category:"Geography",question:"Vilken är Sveriges till invånarantal näst största stad?",questionEn:"Which is Sweden's second largest city by population?",correct:"Göteborg",correctEn:"Gothenburg",hint:"Staden ligger på västkusten.",hintEn:"The city is located on the west coast.",explanation:"Göteborg, beläget på västkusten, är Sveriges näst största stad efter Stockholm.",explanationEn:"Gothenburg, located on the west coast, is Sweden's second largest city after Stockholm."},
+  {category:"Geography",question:"I vilken svensk landsdel ligger fjällen och där midnattssolen syns?",questionEn:"In which Swedish region are the mountains and the midnight sun visible?",correct:"Norrland",correctEn:"Norrland",hint:"Det är den norra, glest befolkade delen av landet.",hintEn:"It is the northern, sparsely populated part of the country.",explanation:"Norrland omfattar norra Sverige, med fjäll, glesbygd och midnattssol under sommaren.",explanationEn:"Norrland covers northern Sweden, featuring mountains, sparse population and the midnight sun in summer."},
+  {category:"Geography",question:"Vilken sjö är Sveriges till ytan största?",questionEn:"Which lake is the largest in Sweden by area?",correct:"Vänern",correctEn:"Lake Vänern",hint:"Den ligger i västra Sverige.",hintEn:"It is located in western Sweden.",explanation:"Vänern är Sveriges och EU:s till ytan tredje största sjö, belägen i västra Sverige.",explanationEn:"Vänern is Sweden's largest lake by area and the EU's third largest, located in western Sweden."},
+  {category:"Culture & Holidays",question:"Vilken högtid firas med majstång och dans i juni?",questionEn:"Which holiday is celebrated with a maypole and dancing in June?",correct:"Midsommar",correctEn:"Midsummer",hint:"Firas kring sommarsolståndet.",hintEn:"Celebrated around the summer solstice.",explanation:"Midsommar firas med majstång, blomkransar och dans och är en av Sveriges mest älskade högtider.",explanationEn:"Midsummer is celebrated with a maypole, flower wreaths and dancing, and is one of Sweden's most beloved holidays."},
+  {category:"Culture & Holidays",question:"Vilken dag firas Sveriges nationaldag?",questionEn:"On which day is Sweden's National Day celebrated?",correct:"6 juni",correctEn:"June 6",hint:"Dagen är en allmän helgdag sedan 2005.",hintEn:"The day has been a public holiday since 2005.",explanation:"Sveriges nationaldag firas den 6 juni till minne av Gustav Vasas val till kung 1523.",explanationEn:"Sweden's National Day is celebrated on June 6, commemorating Gustav Vasa's election as king in 1523."},
+  {category:"Culture & Holidays",question:"Vad heter firandet i december med ljus och ett luciatåg?",questionEn:"What is the December celebration with candles and a procession called?",correct:"Lucia",correctEn:"Lucia",hint:"Firas den 13 december.",hintEn:"Celebrated on December 13.",explanation:"Luciafirandet den 13 december innebär sång och ett tåg med ljus, en särskilt svensk tradition.",explanationEn:"The Lucia celebration on December 13 involves singing and a candlelit procession, a distinctly Swedish tradition."},
+  {category:"Culture & Holidays",question:"Vilken helgdag infaller alltid på en fredag i mars eller april?",questionEn:"Which holiday always falls on a Friday in March or April?",correct:"Långfredagen",correctEn:"Good Friday",hint:"Det är fredagen före påskdagen.",hintEn:"It is the Friday before Easter Sunday.",explanation:"Långfredagen är fredagen före påskdagen och en allmän helgdag i Sverige.",explanationEn:"Good Friday (Långfredagen) is the Friday before Easter Sunday and a public holiday in Sweden."},
+  {category:"Work & Health",question:"Vilken myndighet betalar ut sjukpenning och föräldrapenning?",questionEn:"Which authority pays out sickness benefit and parental benefit?",correct:"Försäkringskassan",correctEn:"The Swedish Social Insurance Agency",hint:"Myndigheten hanterar det mesta av socialförsäkringen.",hintEn:"The agency handles most of the social insurance system.",explanation:"Försäkringskassan ansvarar för socialförsäkringen, inklusive sjukpenning och föräldrapenning.",explanationEn:"Försäkringskassan is responsible for social insurance, including sickness benefit and parental benefit."},
+  {category:"Work & Health",question:"Vilket telefonnummer ringer man för sjukvårdsrådgivning som inte är akut?",questionEn:"Which phone number do you call for non-emergency healthcare advice?",correct:"1177",correctEn:"1177",hint:"Numret finns i hela landet, dygnet runt.",hintEn:"The number is available nationwide, around the clock.",explanation:"1177 är telefonnumret till sjukvårdsrådgivningen som ger råd om vård dygnet runt.",explanationEn:"1177 is the phone number for healthcare advice available around the clock across Sweden."},
+  {category:"Work & Health",question:"Vilken myndighet hjälper till med att hitta jobb?",questionEn:"Which authority helps people find jobs?",correct:"Arbetsförmedlingen",correctEn:"The Swedish Public Employment Service",hint:"Myndigheten registrerar arbetssökande.",hintEn:"The agency registers job seekers.",explanation:"Arbetsförmedlingen hjälper arbetssökande att hitta jobb och arbetsgivare att hitta personal.",explanationEn:"The Swedish Public Employment Service (Arbetsförmedlingen) helps job seekers find work and employers find staff."},
+  {category:"Work & Health",question:"Vilken myndighet hanterar uppehållstillstånd och medborgarskapsansökningar?",questionEn:"Which authority handles residence permits and citizenship applications?",correct:"Migrationsverket",correctEn:"The Swedish Migration Agency",hint:"Myndigheten prövar även asylansökningar.",hintEn:"The agency also processes asylum applications.",explanation:"Migrationsverket prövar ansökningar om uppehållstillstånd, medborgarskap och asyl.",explanationEn:"The Swedish Migration Agency (Migrationsverket) processes applications for residence permits, citizenship and asylum."}
 ];
+const citDistractorBank = {
+  "Society & Law": [{sv:"Regeringen",en:"The Government"},{sv:"Polisen",en:"The Police"},{sv:"Kommunen",en:"The Municipality"},{sv:"Länsstyrelsen",en:"The County Administrative Board"},{sv:"EU-parlamentet",en:"The EU Parliament"},{sv:"Riksdagen",en:"The Riksdag (Parliament)"},{sv:"Polismyndigheten",en:"The Swedish Police Authority"},{sv:"Tingsrätten",en:"The District Court"},{sv:"Hovrätten",en:"The Court of Appeal"}],
+  "History": [{sv:"1809",en:"1809"},{sv:"1919",en:"1919"},{sv:"1943",en:"1943"},{sv:"1948",en:"1948"},{sv:"1974",en:"1974"},{sv:"1995",en:"1995"},{sv:"2000",en:"2000"},{sv:"1905",en:"1905"},{sv:"1921",en:"1921"}],
+  "Government": [{sv:"Republik",en:"Republic"},{sv:"Diktatur",en:"Dictatorship"},{sv:"Federal stat",en:"Federal State"},{sv:"Teokrati",en:"Theocracy"},{sv:"Enpartistat",en:"One-party state"},{sv:"Konstitutionell monarki",en:"Constitutional Monarchy"},{sv:"Två kamrar",en:"Two chambers"},{sv:"Vart femte år",en:"Every five years"},{sv:"Vart sjätte år",en:"Every six years"},{sv:"Carl XVI Gustaf",en:"Carl XVI Gustaf"},{sv:"Victoria",en:"Victoria"}],
+  "Geography": [{sv:"Göteborg",en:"Gothenburg"},{sv:"Malmö",en:"Malmö"},{sv:"Uppsala",en:"Uppsala"},{sv:"Kiruna",en:"Kiruna"},{sv:"Norrland",en:"Norrland"},{sv:"Skåne",en:"Skåne"},{sv:"Stockholm",en:"Stockholm"},{sv:"Vänern",en:"Lake Vänern"},{sv:"Vättern",en:"Lake Vättern"},{sv:"Svealand",en:"Svealand"}],
+  "Culture & Holidays": [{sv:"Påsk",en:"Easter"},{sv:"Jul",en:"Christmas"},{sv:"Valborg",en:"Walpurgis Night"},{sv:"Nationaldagen",en:"National Day"},{sv:"Lucia",en:"Lucia"},{sv:"Midsommar",en:"Midsummer"},{sv:"Långfredagen",en:"Good Friday"},{sv:"6 juni",en:"June 6"},{sv:"Alla helgons dag",en:"All Saints' Day"}],
+  "Work & Health": [{sv:"Försäkringskassan",en:"The Swedish Social Insurance Agency"},{sv:"Arbetsförmedlingen",en:"The Swedish Public Employment Service"},{sv:"Skatteverket",en:"The Swedish Tax Agency"},{sv:"Migrationsverket",en:"The Swedish Migration Agency"},{sv:"1177",en:"1177"},{sv:"112",en:"112"},{sv:"Kommunen",en:"The Municipality"},{sv:"Socialstyrelsen",en:"The National Board of Health and Welfare"}]
+};
 let currentCitIndex = 0;
 let citScore = 0;
+let activeCitCategory = "All";
+const citCategories = ["All","Society & Law","History","Government","Geography","Culture & Holidays","Work & Health"];
 
 function initCitizenshipGame(){
   renderCitChips();
@@ -628,48 +749,61 @@ function renderCitChips(){
   const container = document.getElementById('citCategoryChips');
   if(!container) return;
   container.innerHTML = '';
-  ["All","Society & Law","History","Government"].forEach(cat => {
+  citCategories.forEach(cat => {
     const chip = document.createElement('button');
-    chip.className = 'chip';
+    chip.className = `chip ${activeCitCategory === cat ? 'active' : ''}`;
     chip.innerText = cat;
+    chip.onclick = () => {
+      activeCitCategory = cat;
+      renderCitChips();
+      fetchNewCitizenshipQuestion();
+    };
     container.appendChild(chip);
   });
 }
+function getCitPool(){
+  if(activeCitCategory === "All") return citizenshipPool;
+  const filtered = citizenshipPool.filter(i => i.category === activeCitCategory);
+  return filtered.length ? filtered : citizenshipPool;
+}
 function fetchNewCitizenshipQuestion(){
-  currentCitIndex = Math.floor(Math.random() * citizenshipPool.length);
+  const pool = getCitPool();
+  currentCitIndex = nextPoolIndex(`cit_${activeCitCategory}`, pool.length);
   updateCitizenshipUI();
 }
 function updateCitizenshipUI(){
   hideExplanation('cit');
-  const item = citizenshipPool[currentCitIndex];
+  const item = getCitPool()[currentCitIndex];
   document.getElementById('citCategory').innerText = item.category;
   renderLocalizedText(item.question, item.questionEn, document.getElementById('citQuestionText'));
-  renderLocalizedText(`Tips: ${item.hint}`, '', document.getElementById('citHintText'));
+  renderLocalizedText(`Tips: ${getLocalizedText(item, 'hint')}`, '', document.getElementById('citHintText'));
   document.getElementById('citScoreText').innerText = `${translations[currentLang].correctLabel}: ${citScore}`;
 
   const container = document.getElementById('citOptionsContainer');
   container.innerHTML = '';
-  const opts = getLocalizedOptions(item, 'options');
-  opts.forEach((opt, idx) => {
+  const bank = citDistractorBank[item.category] || [];
+  const opts = buildOptions(item.correct, item.correctEn, bank);
+  opts.forEach(opt => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
     btn.style.padding = '12px 14px';
     btn.style.fontSize = '13px';
-    btn.innerText = opt;
-    btn.onclick = () => handleCitAnswer(idx, btn);
+    btn.innerText = currentLang === 'en' ? opt.en : opt.sv;
+    btn.onclick = () => handleCitAnswer(opt.sv === item.correct, btn);
     container.appendChild(btn);
   });
 }
-function handleCitAnswer(selectedIdx, btn){
-  const item = citizenshipPool[currentCitIndex];
+function handleCitAnswer(isCorrect, btn){
+  const item = getCitPool()[currentCitIndex];
   const buttons = document.querySelectorAll('#citOptionsContainer .option-btn');
   buttons.forEach(b => b.disabled = true);
-  if(selectedIdx === item.correct){
+  const correctText = currentLang === 'en' ? item.correctEn : item.correct;
+  if(isCorrect){
     btn.classList.add('correct');
     citScore++;
   } else {
     btn.classList.add('wrong');
-    buttons[item.correct].classList.add('correct');
+    buttons.forEach(b => { if(b.innerText === correctText) b.classList.add('correct'); });
   }
   document.getElementById('citScoreText').innerText = `${translations[currentLang].correctLabel}: ${citScore}`;
   showExplanation('cit', getLocalizedText(item, 'explanation'));
@@ -682,9 +816,37 @@ function generateAIQuestions(){
 }
 
 // ---------- SFI Practice Logic ----------
+// Same category-distractor-bank pattern as the citizenship quiz: each item
+// stores only its correct answer, and the 2 wrong options are drawn fresh
+// from the category bank on every render.
 const sfiQuestionPool = [
-  {category:"Daily Life",question:"Vad säger du när du lämnar en butik?",questionEn:"What do you say when leaving a shop?",options:["Varsågod","Tack så mycket","Hej då"],optionsEn:["You're welcome","Thank you very much","Goodbye"],correct:1,hint:"Du tackar kassören när du går.",explanation:"'Tack så mycket' (thank you very much) är en artig fras att använda när du lämnar en butik efter att ha handlat. 'Hej då' betyder också hejdå men uttrycker inte tacksamhet, vilket förväntas efter ett köp.",explanationEn:"'Tack så mycket' (thank you very much) is the polite phrase to use when leaving a shop after making a purchase. 'Hej då' also means goodbye, but doesn't express the gratitude expected after buying something."}
+  {category:"Daily Life",question:"Vad säger du när du lämnar en butik?",questionEn:"What do you say when leaving a shop?",correct:"Tack så mycket",correctEn:"Thank you very much",hint:"Du tackar kassören när du går.",hintEn:"You thank the cashier as you leave.",explanation:"'Tack så mycket' är en artig fras att använda när du lämnar en butik efter att ha handlat.",explanationEn:"'Tack så mycket' (thank you very much) is the polite phrase to use when leaving a shop after making a purchase."},
+  {category:"Daily Life",question:"Vad säger du om du vill be någon upprepa något?",questionEn:"What do you say if you want someone to repeat something?",correct:"Förlåt, kan du säga det igen?",correctEn:"Sorry, can you say that again?",hint:"En artig fras när du inte hörde eller förstod.",hintEn:"A polite phrase when you didn't hear or understand.",explanation:"'Förlåt, kan du säga det igen?' är ett artigt sätt att be någon upprepa sig.",explanationEn:"'Förlåt, kan du säga det igen?' is a polite way to ask someone to repeat themselves."},
+  {category:"Daily Life",question:"Vilket ord använder du för att hälsa på någon på morgonen?",questionEn:"Which word do you use to greet someone in the morning?",correct:"God morgon",correctEn:"Good morning",hint:"Det används bara tidigt på dagen.",hintEn:"It is only used early in the day.",explanation:"'God morgon' används som hälsning tidigt på dagen, till skillnad från andra hälsningsfraser.",explanationEn:"'God morgon' (good morning) is used as a greeting early in the day, unlike other greeting phrases."},
+  {category:"Daily Life",question:"Vad säger du när du vill tacka någon för hjälpen?",questionEn:"What do you say to thank someone for their help?",correct:"Tack för hjälpen",correctEn:"Thanks for the help",hint:"En vanlig artighetsfras efter att någon hjälpt dig.",hintEn:"A common polite phrase after someone has helped you.",explanation:"'Tack för hjälpen' används specifikt för att visa tacksamhet för hjälp du fått.",explanationEn:"'Tack för hjälpen' is used specifically to show gratitude for help you received."},
+  {category:"Daily Life",question:"Hur frågar du artigt var toaletten finns?",questionEn:"How do you politely ask where the toilet is?",correct:"Var är toaletten, tack?",correctEn:"Where is the toilet, please?",hint:"Lägg till 'tack' för att låta artig.",hintEn:"Add 'please' to sound polite.",explanation:"Att lägga till 'tack' gör frågan artigare, vilket är vanligt i svenska vardagssamtal.",explanationEn:"Adding 'please' makes the question more polite, which is common in everyday Swedish conversation."},
+  {category:"Work",question:"Vad heter dokumentet som sammanfattar din utbildning och erfarenhet?",questionEn:"What is the document that summarizes your education and experience called?",correct:"CV",correctEn:"CV",hint:"Det skickas alltid inför en anställningsintervju.",hintEn:"It is always sent ahead of a job interview.",explanation:"Ett CV (meritförteckning) sammanfattar din utbildning, erfarenhet och kompetens för en arbetsgivare.",explanationEn:"A CV summarizes your education, experience and skills for an employer."},
+  {category:"Work",question:"Vad säger du om du blir sjuk och inte kan gå till jobbet?",questionEn:"What do you say if you become ill and cannot go to work?",correct:"Jag sjukanmäler mig",correctEn:"I am calling in sick",hint:"Detta ska göras så tidigt som möjligt samma dag.",hintEn:"This should be done as early as possible the same day.",explanation:"Att 'sjukanmäla sig' betyder att meddela sin arbetsgivare att man är sjuk och inte kan arbeta.",explanationEn:"To 'sjukanmäla sig' means to inform your employer that you are sick and cannot work."},
+  {category:"Work",question:"Vad kallas tiden man är ledig med lön varje år?",questionEn:"What is the paid time off you get every year called?",correct:"Semester",correctEn:"Vacation",hint:"De flesta har minst 25 dagar per år.",hintEn:"Most people get at least 25 days per year.",explanation:"'Semester' är den betalda ledighet man har rätt till varje år enligt semesterlagen.",explanationEn:"'Semester' (vacation) is the paid time off you are entitled to each year under Swedish law."},
+  {category:"Work",question:"Vad heter personen som är din chef på jobbet?",questionEn:"What do you call the person who is your boss at work?",correct:"Chef",correctEn:"Boss",hint:"Den person som leder din avdelning eller ditt team.",hintEn:"The person who leads your department or team.",explanation:"'Chef' är ordet för den person som leder och ansvarar för dig på arbetsplatsen.",explanationEn:"'Chef' is the word for the person who manages and is responsible for you at the workplace."},
+  {category:"Work",question:"Vad kallas pengarna du får för ditt arbete varje månad?",questionEn:"What is the money you receive for your work each month called?",correct:"Lön",correctEn:"Salary",hint:"Betalas oftast ut den 25:e i månaden.",hintEn:"Usually paid out on the 25th of the month.",explanation:"'Lön' är den ersättning du får från din arbetsgivare för utfört arbete.",explanationEn:"'Lön' (salary) is the payment you receive from your employer for work performed."},
+  {category:"Housing",question:"Vad kallas avgiften du betalar varje månad för din lägenhet?",questionEn:"What is the monthly fee you pay for your apartment called?",correct:"Hyra",correctEn:"Rent",hint:"Betalas oftast i förskott varje månad.",hintEn:"Usually paid in advance each month.",explanation:"'Hyra' är den summa du betalar varje månad för att bo i en hyreslägenhet.",explanationEn:"'Hyra' (rent) is the amount you pay each month to live in a rental apartment."},
+  {category:"Housing",question:"Vem äger och hyr ut de flesta hyreslägenheter i Sverige?",questionEn:"Who owns and rents out most rental apartments in Sweden?",correct:"Hyresvärden",correctEn:"The landlord",hint:"Det kan vara ett bostadsbolag eller en privatperson.",hintEn:"It can be a housing company or a private individual.",explanation:"'Hyresvärden' är ägaren av fastigheten som hyr ut lägenheter till boende.",explanationEn:"'Hyresvärden' (the landlord) is the property owner who rents out apartments to tenants."},
+  {category:"Housing",question:"Vad kallar man en lägenhet man äger via en bostadsförening?",questionEn:"What do you call an apartment owned through a housing association?",correct:"Bostadsrätt",correctEn:"Cooperative apartment",hint:"Skiljer sig från att hyra en lägenhet.",hintEn:"Different from renting an apartment.",explanation:"En 'bostadsrätt' innebär att du äger rätten att bo i lägenheten via en bostadsrättsförening.",explanationEn:"A 'bostadsrätt' means you own the right to live in the apartment through a housing cooperative."},
+  {category:"Housing",question:"Vart vänder du dig om något är trasigt i lägenheten?",questionEn:"Who do you contact if something is broken in the apartment?",correct:"Fastighetsskötaren",correctEn:"The property caretaker",hint:"Den person som sköter underhåll i fastigheten.",hintEn:"The person who handles maintenance in the building.",explanation:"'Fastighetsskötaren' ansvarar för underhåll och reparationer i fastigheten.",explanationEn:"'Fastighetsskötaren' (the property caretaker) is responsible for maintenance and repairs in the building."},
+  {category:"Housing",question:"Vad heter avtalet du skriver under när du flyttar in?",questionEn:"What is the agreement you sign when you move in called?",correct:"Hyreskontrakt",correctEn:"Rental contract",hint:"Det reglerar hyra, uppsägningstid med mera.",hintEn:"It regulates rent, notice period and more.",explanation:"Ett 'hyreskontrakt' reglerar villkoren för boendet, till exempel hyra och uppsägningstid.",explanationEn:"A 'hyreskontrakt' (rental contract) sets out the terms of the tenancy, such as rent and notice period."},
+  {category:"Health & Emergency",question:"Vilket nummer ringer du vid en akut nödsituation?",questionEn:"Which number do you call in an acute emergency?",correct:"112",correctEn:"112",hint:"Numret gäller polis, brand och ambulans.",hintEn:"The number covers police, fire and ambulance.",explanation:"112 är det gemensamma larmnumret för akuta nödsituationer i hela Sverige och EU.",explanationEn:"112 is the common emergency number for acute situations across Sweden and the EU."},
+  {category:"Health & Emergency",question:"Vart går du för att hämta ut receptbelagd medicin?",questionEn:"Where do you go to pick up prescription medicine?",correct:"Apoteket",correctEn:"The pharmacy",hint:"Du behöver oftast ett recept från en läkare.",hintEn:"You usually need a prescription from a doctor.",explanation:"'Apoteket' är platsen där du hämtar ut receptbelagd och receptfri medicin.",explanationEn:"'Apoteket' (the pharmacy) is where you pick up both prescription and over-the-counter medicine."},
+  {category:"Health & Emergency",question:"Vem bokar du tid hos för allmän sjukvård som inte är akut?",questionEn:"Who do you book an appointment with for non-emergency healthcare?",correct:"Vårdcentralen",correctEn:"The health center",hint:"Det är den första kontakten för de flesta hälsobesvär.",hintEn:"It is the first point of contact for most health concerns.",explanation:"'Vårdcentralen' är den vanliga första kontakten inom vården för icke-akuta besvär.",explanationEn:"'Vårdcentralen' (the health center) is the usual first point of contact for non-emergency healthcare."},
+  {category:"Health & Emergency",question:"Vilket telefonnummer ringer du för sjukvårdsrådgivning som inte är akut?",questionEn:"Which phone number do you call for non-emergency healthcare advice?",correct:"1177",correctEn:"1177",hint:"Tillgängligt dygnet runt i hela landet.",hintEn:"Available around the clock nationwide.",explanation:"1177 ger sjukvårdsrådgivning och information dygnet runt i hela Sverige.",explanationEn:"1177 provides healthcare advice and information around the clock across Sweden."},
+  {category:"Health & Emergency",question:"Vart vänder du dig för att boka en tid hos tandläkaren?",questionEn:"Who do you contact to book a dentist's appointment?",correct:"Tandvården",correctEn:"Dental care",hint:"Detta är separat från den vanliga vårdcentralen.",hintEn:"This is separate from the regular health center.",explanation:"'Tandvården' hanterar tandläkarbesök, som är separat från den allmänna sjukvården.",explanationEn:"'Tandvården' (dental care) handles dentist visits, which is separate from general healthcare."}
 ];
+const sfiDistractorBank = {
+  "Daily Life": [{sv:"Varsågod",en:"You're welcome"},{sv:"Hej då",en:"Goodbye"},{sv:"God kväll",en:"Good evening"},{sv:"Ursäkta mig",en:"Excuse me"},{sv:"Hej så länge",en:"See you later"},{sv:"Tack så mycket",en:"Thank you very much"},{sv:"Förlåt, kan du säga det igen?",en:"Sorry, can you say that again?"},{sv:"God morgon",en:"Good morning"},{sv:"Tack för hjälpen",en:"Thanks for the help"},{sv:"Var är toaletten, tack?",en:"Where is the toilet, please?"}],
+  "Work": [{sv:"Kvitto",en:"Receipt"},{sv:"Pass",en:"Passport"},{sv:"Lunch",en:"Lunch"},{sv:"Möte",en:"Meeting"},{sv:"Frukost",en:"Breakfast"},{sv:"CV",en:"CV"},{sv:"Jag sjukanmäler mig",en:"I am calling in sick"},{sv:"Semester",en:"Vacation"},{sv:"Chef",en:"Boss"},{sv:"Lön",en:"Salary"}],
+  "Housing": [{sv:"Kvitto",en:"Receipt"},{sv:"Grannen",en:"The neighbor"},{sv:"Elräkning",en:"Electricity bill"},{sv:"Möbler",en:"Furniture"},{sv:"Hyra",en:"Rent"},{sv:"Hyresvärden",en:"The landlord"},{sv:"Bostadsrätt",en:"Cooperative apartment"},{sv:"Fastighetsskötaren",en:"The property caretaker"},{sv:"Hyreskontrakt",en:"Rental contract"}],
+  "Health & Emergency": [{sv:"114 14",en:"114 14 (non-emergency police)"},{sv:"Skolan",en:"The school"},{sv:"Biblioteket",en:"The library"},{sv:"Frisören",en:"The hairdresser"},{sv:"112",en:"112"},{sv:"Apoteket",en:"The pharmacy"},{sv:"Vårdcentralen",en:"The health center"},{sv:"1177",en:"1177"},{sv:"Tandvården",en:"Dental care"}]
+};
 let currentSfiIndex = 0;
 let sfiScore = 0;
 
@@ -692,7 +854,7 @@ function initSfiPractice(){
   fetchNewSfiQuestion();
 }
 function fetchNewSfiQuestion(){
-  currentSfiIndex = Math.floor(Math.random() * sfiQuestionPool.length);
+  currentSfiIndex = nextPoolIndex('sfi', sfiQuestionPool.length);
   updateSfiUI();
 }
 function updateSfiUI(){
@@ -700,32 +862,34 @@ function updateSfiUI(){
   const item = sfiQuestionPool[currentSfiIndex];
   document.getElementById('sfiCategory').innerText = item.category;
   renderLocalizedText(item.question, item.questionEn, document.getElementById('sfiQuestionText'));
-  renderLocalizedText(`Tips: ${item.hint}`, '', document.getElementById('sfiHintText'));
+  renderLocalizedText(`Tips: ${getLocalizedText(item, 'hint')}`, '', document.getElementById('sfiHintText'));
   document.getElementById('sfiScoreText').innerText = `${translations[currentLang].correctLabel}: ${sfiScore}`;
 
   const container = document.getElementById('sfiOptionsContainer');
   container.innerHTML = '';
-  const opts = getLocalizedOptions(item, 'options');
-  opts.forEach((opt, idx) => {
+  const bank = sfiDistractorBank[item.category] || [];
+  const opts = buildOptions(item.correct, item.correctEn, bank);
+  opts.forEach(opt => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
     btn.style.padding = '12px 14px';
     btn.style.fontSize = '13px';
-    btn.innerText = opt;
-    btn.onclick = () => handleSfiAnswer(idx, btn);
+    btn.innerText = currentLang === 'en' ? opt.en : opt.sv;
+    btn.onclick = () => handleSfiAnswer(opt.sv === item.correct, btn);
     container.appendChild(btn);
   });
 }
-function handleSfiAnswer(selectedIdx, btn){
+function handleSfiAnswer(isCorrect, btn){
   const item = sfiQuestionPool[currentSfiIndex];
   const buttons = document.querySelectorAll('#sfiOptionsContainer .option-btn');
   buttons.forEach(b => b.disabled = true);
-  if(selectedIdx === item.correct){
+  const correctText = currentLang === 'en' ? item.correctEn : item.correct;
+  if(isCorrect){
     btn.classList.add('correct');
     sfiScore++;
   } else {
     btn.classList.add('wrong');
-    buttons[item.correct].classList.add('correct');
+    buttons.forEach(b => { if(b.innerText === correctText) b.classList.add('correct'); });
   }
   document.getElementById('sfiScoreText').innerText = `${translations[currentLang].correctLabel}: ${sfiScore}`;
   showExplanation('sfi', getLocalizedText(item, 'explanation'));
@@ -738,8 +902,9 @@ function generateSfiAIQuestions(){
 }
 
 // ---------- Exam Simulator Logic ----------
-let examTimerInterval = null;
-let examTimeLeft = 2700; // 45 mins
+// No timer — users can take as long as they like. Reuses the citizenshipPool
+// and its distractor bank (see Citizenship Quiz Logic) so the exam benefits
+// from the same large, non-repeating pool of question presentations.
 let currentExamQ = 0;
 let examAnswers = [];
 const EXAM_TOTAL_QUESTIONS = 69;
@@ -747,22 +912,10 @@ const EXAM_TOTAL_QUESTIONS = 69;
 function initExamMode(){
   currentExamQ = 0;
   examAnswers = [];
-  examTimeLeft = 2700;
   document.getElementById('examResultBox').classList.add('hidden');
   document.getElementById('examResultBox').innerHTML = '';
   document.getElementById('examOptionsContainer').classList.remove('hidden');
-  startExamTimer();
   renderExamQuestion();
-}
-function startExamTimer(){
-  if(examTimerInterval) clearInterval(examTimerInterval);
-  examTimerInterval = setInterval(() => {
-    examTimeLeft--;
-    let m = Math.floor(examTimeLeft / 60);
-    let s = examTimeLeft % 60;
-    document.getElementById('examTimer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-    if(examTimeLeft <= 0) clearInterval(examTimerInterval);
-  }, 1000);
 }
 function renderExamQuestion(){
   hideExplanation('exam');
@@ -770,37 +923,38 @@ function renderExamQuestion(){
   document.getElementById('examQNum').innerText = `${translations[currentLang].questionLabel} ${qNum} / ${EXAM_TOTAL_QUESTIONS}`;
   document.getElementById('examProgressFill').style.width = `${(qNum / EXAM_TOTAL_QUESTIONS) * 100}%`;
 
-  const item = citizenshipPool[currentExamQ % citizenshipPool.length];
+  const idx = nextPoolIndex('exam', citizenshipPool.length);
+  const item = citizenshipPool[idx];
   renderLocalizedText(item.question, item.questionEn, document.getElementById('examQuestionText'));
 
   const container = document.getElementById('examOptionsContainer');
   container.innerHTML = '';
-  const opts = getLocalizedOptions(item, 'options');
-  opts.forEach((opt, idx) => {
+  const bank = citDistractorBank[item.category] || [];
+  const opts = buildOptions(item.correct, item.correctEn, bank);
+  opts.forEach(opt => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
     btn.style.padding = '12px 14px';
     btn.style.fontSize = '13px';
-    btn.innerText = opt;
-    btn.onclick = () => handleExamAnswer(idx, btn, item);
+    btn.innerText = currentLang === 'en' ? opt.en : opt.sv;
+    btn.onclick = () => handleExamAnswer(opt.sv === item.correct, opt, btn, item);
     container.appendChild(btn);
   });
 }
-function handleExamAnswer(selectedIdx, btn, item){
+function handleExamAnswer(isCorrect, selectedOpt, btn, item){
   const buttons = document.querySelectorAll('#examOptionsContainer .option-btn');
   buttons.forEach(b => b.disabled = true);
-  const opts = getLocalizedOptions(item, 'options');
-  const isCorrect = selectedIdx === item.correct;
+  const correctText = currentLang === 'en' ? item.correctEn : item.correct;
   if(isCorrect){
     btn.classList.add('correct');
   } else {
     btn.classList.add('wrong');
-    buttons[item.correct].classList.add('correct');
+    buttons.forEach(b => { if(b.innerText === correctText) b.classList.add('correct'); });
   }
   examAnswers[currentExamQ] = {
     question: getLocalizedText(item, 'question'),
-    userAnswer: opts[selectedIdx],
-    correctAnswer: opts[item.correct],
+    userAnswer: currentLang === 'en' ? selectedOpt.en : selectedOpt.sv,
+    correctAnswer: correctText,
     isCorrect
   };
   showExplanation('exam', getLocalizedText(item, 'explanation'));
@@ -811,7 +965,6 @@ function advanceExam(){
     renderExamQuestion();
   } else {
     hideExplanation('exam');
-    if(examTimerInterval) clearInterval(examTimerInterval);
     document.getElementById('examNextBtn').classList.add('hidden');
     document.getElementById('examOptionsContainer').classList.add('hidden');
     renderExamSummary();
