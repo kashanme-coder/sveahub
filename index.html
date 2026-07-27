@@ -8,22 +8,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#111c2e; --paper-2:#16233c; --paper-3:#22364d; --ink:#f8fafc; --ink-soft:#c4d4ee;
-    --falu:#ff8d84; --falu-deep:#ff6f62; --navy:#88c2ff; --gold:#ffd166;
-    --line:rgba(180, 201, 232, 0.22); --ok:#4ade80; --accent:#79b7ff; --accent-2:#9ea8ff;
+    --paper:#eef2ff; --paper-2:#ffffff; --paper-3:#f8fafc; --ink:#0f172a; --ink-soft:#475569;
+    --falu:#f43f5e; --falu-deep:#e11d48; --navy:#2563eb; --gold:#f59e0b;
+    --line:rgba(15, 23, 42, 0.12); --ok:#16a34a; --danger:#ef4444; --accent:#4f46e5; --accent-2:#7c3aed;
   }
   *{box-sizing:border-box;}
   body{
-    margin:0; min-height:100vh; background:radial-gradient(circle at top left, rgba(121,183,255,0.2), transparent 24%), linear-gradient(135deg, #111c2e 0%, #16233c 45%, #21334f 100%);
+    margin:0; min-height:100vh; background:radial-gradient(circle at top left, rgba(79,70,229,0.14), transparent 45%), linear-gradient(135deg, #eef2ff 0%, #f8fafc 50%, #eef6ff 100%);
     color:var(--ink); font-family:'Inter',sans-serif;
     display:flex; flex-direction:column; align-items:center; padding:28px 16px 64px;
   }
   h1,h2,.display{font-family:'Fraunces',serif; letter-spacing:-0.01em;}
   .mono{font-family:'IBM Plex Mono',monospace;}
   .card{
-    background:linear-gradient(145deg, rgba(24,32,44,0.96), rgba(15,23,32,0.96));
-    border:1px solid rgba(148,163,184,0.22); border-radius:24px;
-    box-shadow:0 18px 60px -30px rgba(2, 8, 23, 0.8), inset 0 1px 0 rgba(255,255,255,0.04);
+    background:linear-gradient(145deg, #ffffff, #f8fafc);
+    border:1px solid rgba(15,23,42,0.08); border-radius:24px;
+    box-shadow:0 18px 45px -28px rgba(15, 23, 42, 0.28), inset 0 1px 0 rgba(255,255,255,0.8);
     backdrop-filter:blur(14px);
   }
   .cross-divider{display:flex; align-items:center; gap:10px; width:100%; margin:8px 0 6px;}
@@ -36,50 +36,59 @@
     background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; border:none; border-radius:16px;
     font-family:'Inter',sans-serif; font-weight:700; letter-spacing:.01em;
     padding:15px 16px; min-height:46px; cursor:pointer; transition:transform .15s ease, box-shadow .2s ease, filter .2s ease;
-    box-shadow:0 12px 30px -14px rgba(96, 165, 250, 0.36);
+    box-shadow:0 12px 26px -12px rgba(79, 70, 229, 0.45);
   }
   .btn-primary:hover{ transform:translateY(-2px); filter:brightness(1.06); }
   .btn-outline{
-    background:rgba(248,250,252,0.03); color:var(--ink); border:1.5px solid rgba(148,163,184,0.22);
+    background:#ffffff; color:var(--ink); border:1.5px solid rgba(15,23,42,0.14);
     border-radius:16px; font-weight:700; padding:15px 16px; min-height:46px; cursor:pointer;
     transition:transform .15s ease, border-color .2s ease, background .2s ease;
   }
-  .btn-outline:hover{ transform:translateY(-2px); background:rgba(255,255,255,0.08); border-color:var(--accent); }
+  .btn-outline:hover{ transform:translateY(-2px); background:#f5f7ff; border-color:var(--accent); }
   .chip{
-    border:1px solid rgba(148,163,184,0.18); background:rgba(248,250,252,0.04); border-radius:999px;
+    border:1px solid rgba(15,23,42,0.12); background:#f1f5f9; border-radius:999px;
     padding:8px 13px; font-size:11px; font-weight:600; color:var(--ink-soft);
     cursor:pointer; transition:all .15s ease; white-space:nowrap;
   }
   .chip:hover{ border-color:var(--accent); color:var(--ink); }
-  .chip.active{ background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; border-color:transparent; box-shadow:0 10px 24px -14px rgba(56,189,248,0.45); }
+  .chip.active{ background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; border-color:transparent; box-shadow:0 10px 22px -12px rgba(79,70,229,0.5); }
   .alpha-key{
-    background:rgba(255,255,255,0.05); border:1.5px solid var(--line); border-radius:14px;
+    background:#f8fafc; border:1.5px solid var(--line); border-radius:14px;
     font-family:'Fraunces',serif; font-weight:600; color:var(--ink);
     transition: all .12s ease; cursor:pointer;
   }
-  .alpha-key:hover{ border-color:var(--accent); background:rgba(56,189,248,0.12); transform:translateY(-2px); }
+  .alpha-key:hover{ border-color:var(--accent); background:rgba(79,70,229,0.1); transform:translateY(-2px); }
   .alpha-key:active{ transform:scale(.94); }
   .option-btn{
-    background:rgba(255,255,255,0.05); border:1.5px solid var(--line); border-radius:16px;
+    background:#f8fafc; border:1.5px solid var(--line); border-radius:16px;
     color:var(--ink); font-weight:700; transition:all .15s ease; cursor:pointer;
   }
-  .option-btn:hover{ border-color:var(--accent); transform:translateY(-2px); box-shadow:0 12px 24px -16px rgba(56,189,248,0.35); }
-  .option-btn.correct{ background:rgba(52,211,153,0.16); border-color:var(--ok); color:var(--ok); }
-  .option-btn.wrong{ background:rgba(255,123,114,0.16); border-color:var(--falu); color:var(--falu-deep); }
-  .translation-line{font-size:11px;opacity:.72;margin-top:4px;color:var(--ink-soft);}
+  .option-btn:hover{ border-color:var(--accent); transform:translateY(-2px); box-shadow:0 12px 22px -14px rgba(79,70,229,0.32); }
+  .option-btn:disabled{ cursor:default; }
+  .option-btn:disabled:hover{ transform:none; box-shadow:none; }
+  .option-btn.correct{ background:var(--ok); border-color:var(--ok); color:#fff; box-shadow:0 10px 20px -10px rgba(22,163,74,0.55); }
+  .option-btn.wrong{ background:var(--danger); border-color:var(--danger); color:#fff; box-shadow:0 10px 20px -10px rgba(239,68,68,0.5); }
+  .translation-line{font-size:11px;opacity:.78;margin-top:4px;color:var(--ink-soft);}
   .option-btn .translation-line{font-size:10.5px;font-weight:500;}
+  .option-btn.correct .translation-line, .option-btn.wrong .translation-line{color:rgba(255,255,255,0.9);opacity:1;}
   .badge{
     font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
     padding:4px 10px; border-radius:999px; border:1px solid var(--line); color:var(--ink-soft);
-    background:rgba(255,255,255,0.05);
+    background:#f1f5f9;
   }
   .hidden{display:none!important;}
-  .info-note{ font-size:10px; color:var(--ink-soft); line-height:1.5; background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:14px; padding:10px 12px; text-align:left; }
-  .explain-box{ font-size:12px; color:var(--ink-soft); line-height:1.6; background:rgba(255,209,102,0.08); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:14px; padding:12px 14px; text-align:left; }
+  .info-note{ font-size:10px; color:var(--ink-soft); line-height:1.5; background:#f8fafc; border:1px solid var(--line); border-radius:14px; padding:10px 12px; text-align:left; }
+  .explain-box{ font-size:12px; color:var(--ink-soft); line-height:1.6; background:rgba(245,158,11,0.1); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:14px; padding:12px 14px; text-align:left; }
   .explain-box b{ color:var(--ink); }
   .btn-next{ width:100%; font-size:13px; }
+  .review-row{ display:flex; flex-direction:column; gap:2px; padding:10px 12px; border-radius:12px; border:1px solid var(--line); text-align:left; }
+  .review-row.is-correct{ background:rgba(22,163,74,0.08); border-color:var(--ok); }
+  .review-row.is-wrong{ background:rgba(239,68,68,0.08); border-color:var(--danger); }
+  .review-row .rq{ font-size:12px; font-weight:700; color:var(--ink); }
+  .review-row .ra{ font-size:11px; color:var(--ink-soft); }
+  .review-row .ra b{ color:var(--ink); }
   ::-webkit-scrollbar{width:6px;height:6px;}
-  ::-webkit-scrollbar-thumb{background:rgba(148,163,184,0.25);border-radius:6px;}
+  ::-webkit-scrollbar-thumb{background:rgba(100,116,139,0.35);border-radius:6px;}
 </style>
 </head>
 <body>
@@ -87,33 +96,33 @@
 <!-- ==================== HOME ==================== -->
 <div id="homeScreen" class="card" style="max-width:480px;width:100%;padding:28px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;">
   <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
-    <span class="badge" style="background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-color:transparent;box-shadow:0 8px 24px -14px rgba(56,189,248,0.5);" id="txtEcosystem">🇸🇪 SVEAHUB</span>
+    <span class="badge" style="background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-color:transparent;box-shadow:0 8px 20px -12px rgba(79,70,229,0.5);" id="txtEcosystem">🇸🇪 SVEAHUB</span>
     <div style="display:flex; gap:8px;">
       <button onclick="toggleAppLanguage()" class="chip" id="langToggleBtn">SV/EN</button>
     </div>
   </div>
 
   <div style="width:100%;">
-    <h1 class="display" id="txtHomeTitle" style="font-size:28px;font-weight:800;margin:6px 0 2px;color:var(--ink);letter-spacing:-0.02em;">Din kompletta övningsplats för svenska språket och medborgarskap.</h1>
+    <h1 class="display" id="txtHomeTitle" style="font-size:28px;font-weight:800;margin:6px 0 2px;color:var(--ink);letter-spacing:-0.02em;">Your ultimate practice hub for Swedish language and citizenship.</h1>
   </div>
 
   <div class="cross-divider"><span class="arm"></span><span class="plus"></span><span class="arm"></span></div>
 
   <div style="width:100%; display:flex; flex-direction:column; gap:10px;">
-    <button onclick="startLanguageGame()" class="btn-primary" id="txtBtnLangGame">🚀 Meningskontext Spel</button>
-    <button onclick="startCitizenshipGame()" class="btn-outline" id="txtBtnCitGame">🏛️ Medborgarskapstest</button>
-    <button onclick="startExamMode()" class="btn-outline" id="txtBtnExam" style="border-color:var(--accent);color:var(--accent);">⏱️ Examenssimulator (69 frågor, tidsbegränsad)</button>
-    <button onclick="startSfiPractice()" class="btn-outline" id="txtBtnSfiPractice" style="border-color:var(--accent);color:var(--accent);">📝 Snabb ord- & grammatikövning</button>
+    <button onclick="startLanguageGame()" class="btn-primary" id="txtBtnLangGame">🚀 Sentence Context Game</button>
+    <button onclick="startCitizenshipGame()" class="btn-outline" id="txtBtnCitGame">🏛️ Citizenship Quiz</button>
+    <button onclick="startExamMode()" class="btn-outline" id="txtBtnExam" style="border-color:var(--accent);color:var(--accent);">⏱️ Exam Simulator (69Q, timed)</button>
+    <button onclick="startSfiPractice()" class="btn-outline" id="txtBtnSfiPractice" style="border-color:var(--accent);color:var(--accent);">📝 Quick Vocabulary & Grammar Drill</button>
   </div>
 
   <!-- Alphabet keyboard -->
-  <div style="width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:18px; padding:14px; text-align:left; box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);">
+  <div style="width:100%; background:#f8fafc; border:1px solid var(--line); border-radius:18px; padding:14px; text-align:left; box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
       <span style="font-size:10px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;" id="txtAlphaHeader">🔊 Say it right</span>
       <span style="font-size:9px;color:var(--falu);font-weight:600;" id="txtAlphaSub">tap for next word</span>
     </div>
     <div id="alphabetKeyboard" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;"></div>
-    <div id="audioFeedbackBox" style="margin-top:10px;background:rgba(255,255,255,0.05);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;">
+    <div id="audioFeedbackBox" style="margin-top:10px;background:#f1f5f9;border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;">
       <span style="font-size:10.5px;color:var(--ink-soft);font-style:italic;" id="txtAlphaPrompt">Tap any letter to hear a new Swedish word, every time.</span>
     </div>
   </div>
@@ -133,14 +142,14 @@
   <div style="width:100%;text-align:center;">
     <span class="badge" id="categoryTag">Daily Life</span>
   </div>
-  <div style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-left:4px solid var(--falu);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);">
+  <div style="width:100%;background:#f8fafc;border:1px solid var(--line);border-left:4px solid var(--falu);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);">
     <span style="font-size:9px;font-weight:700;color:var(--falu);text-transform:uppercase;letter-spacing:.08em;" id="txtFillBlank">Fill in the blank</span>
     <p id="sentenceText" class="display" style="font-size:17px;font-weight:600;margin:10px 0;color:var(--ink);">...</p>
     <p id="englishText" style="font-size:12px;color:var(--ink-soft);font-style:italic;margin:0;border-top:1px solid var(--line);padding-top:8px;">...</p>
   </div>
-  <div style="width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="optionsContainer"></div>
+  <div style="width:100%;display:flex;flex-direction:column;gap:10px;" id="optionsContainer"></div>
   <div id="gameExplainBox" class="explain-box hidden"></div>
-  <button onclick="advanceGame()" id="gameNextBtn" class="btn-primary btn-next hidden">➡️ Nästa fråga</button>
+  <button onclick="advanceGame()" id="gameNextBtn" class="btn-primary btn-next hidden">➡️ Next Question</button>
   <div style="width:100%;display:flex;justify-content:flex-end;font-size:12px;font-weight:700;border-top:1px solid var(--line);padding-top:10px;">
     <span style="color:var(--navy);" id="scoreText">Score: 0</span>
   </div>
@@ -151,22 +160,22 @@
   <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
     <button onclick="goHome()" class="chip" id="txtCitHome">🏠 Home</button>
     <div style="display:flex; gap:8px; align-items:center;">
-      <span class="badge" style="background:var(--navy);color:#fff;border-color:var(--navy);">🇸🇪 MEDBORGARSKAP</span>
+      <span class="badge" style="background:var(--navy);color:#fff;border-color:var(--navy);" id="txtCitBadge">🇸🇪 CITIZENSHIP</span>
       <button onclick="toggleAppLanguage()" class="chip">SV/EN</button>
     </div>
     <button onclick="fetchNewCitizenshipQuestion()" class="chip" id="txtCitNew">🔄 New</button>
   </div>
   <div style="width:100%;display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;" id="citCategoryChips"></div>
-  <div style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);">
+  <div style="width:100%;background:#f8fafc;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);">
     <span style="font-size:9px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;" id="citCategory">Society & Law</span>
     <p id="citQuestionText" class="display" style="font-size:15px;font-weight:600;margin:10px 0;color:var(--ink);">...</p>
     <p id="citHintText" style="font-size:11.5px;color:var(--falu-deep);font-style:italic;margin:0;border-top:1px solid var(--line);padding-top:8px;">...</p>
   </div>
   <div style="width:100%;display:flex;flex-direction:column;gap:8px;" id="citOptionsContainer"></div>
   <div id="citExplainBox" class="explain-box hidden"></div>
-  <button onclick="advanceCit()" id="citNextBtn" class="btn-primary btn-next hidden">➡️ Nästa fråga</button>
+  <button onclick="advanceCit()" id="citNextBtn" class="btn-primary btn-next hidden">➡️ Next Question</button>
   <div style="width:100%;">
-    <button onclick="generateAIQuestions()" id="aiGenBtn" class="btn-primary" style="width:100%;font-size:11.5px;padding:12px;background:linear-gradient(135deg,var(--navy),#0f2233);">✨ Get New AI Questions</button>
+    <button onclick="generateAIQuestions()" id="aiGenBtn" class="btn-primary" style="width:100%;font-size:11.5px;padding:12px;background:linear-gradient(135deg,var(--navy),var(--accent-2));">✨ Get New AI Questions</button>
   </div>
   <div class="info-note" id="citPoolInfo">Pool expands dynamically via integrated live queries fetching official updates from UHR and verified Swedish civic databases.</div>
   <div style="width:100%;display:flex;justify-content:space-between;font-size:12px;font-weight:700;border-top:1px solid var(--line);padding-top:10px;">
@@ -180,26 +189,26 @@
   <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
     <button onclick="goHome()" class="chip" id="txtSfiHome">🏠 Home</button>
     <div style="display:flex; gap:8px; align-items:center;">
-      <span class="badge" style="background:#2a5c34;color:#fff;border-color:#2a5c34;">📘 SWEDISH LANGUAGE</span>
+      <span class="badge" style="background:var(--ok);color:#fff;border-color:var(--ok);" id="txtSfiBadge">📘 SWEDISH LANGUAGE</span>
       <button onclick="toggleAppLanguage()" class="chip">SV/EN</button>
     </div>
     <button onclick="fetchNewSfiQuestion()" class="chip" id="txtSfiNew">🔄 New</button>
   </div>
   <div style="width:100%;display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;" id="sfiCategoryChips"></div>
-  <div style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);">
+  <div style="width:100%;background:#f8fafc;border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);">
     <span style="font-size:9px;font-weight:700;color:var(--ok);text-transform:uppercase;letter-spacing:.08em;" id="sfiCategory">Everyday Swedish</span>
     <p id="sfiQuestionText" class="display" style="font-size:15px;font-weight:600;margin:10px 0;color:var(--ink);">...</p>
     <p id="sfiHintText" style="font-size:11.5px;color:var(--falu-deep);font-style:italic;margin:0;border-top:1px solid var(--line);padding-top:8px;">...</p>
   </div>
   <div style="width:100%;display:flex;flex-direction:column;gap:8px;" id="sfiOptionsContainer"></div>
   <div id="sfiExplainBox" class="explain-box hidden"></div>
-  <button onclick="advanceSfi()" id="sfiNextBtn" class="btn-primary btn-next hidden">➡️ Nästa fråga</button>
+  <button onclick="advanceSfi()" id="sfiNextBtn" class="btn-primary btn-next hidden">➡️ Next Question</button>
   <div style="width:100%;">
-    <button onclick="generateSfiAIQuestions()" id="sfiAiBtn" class="btn-primary" style="width:100%;font-size:11.5px;padding:12px;background:linear-gradient(135deg,#2a5c34,#1f3d2a);">✨ Get New AI Swedish Language Questions</button>
+    <button onclick="generateSfiAIQuestions()" id="sfiAiBtn" class="btn-primary" style="width:100%;font-size:11.5px;padding:12px;background:linear-gradient(135deg,#16a34a,#22c55e);">✨ Get New AI Swedish Language Questions</button>
   </div>
   <div class="info-note" id="sfiPoolInfo">Practice questions for everyday Swedish, work, housing, health, public services and daily communication.</div>
   <div style="width:100%;display:flex;justify-content:space-between;font-size:12px;font-weight:700;border-top:1px solid var(--line);padding-top:10px;">
-    <span style="color:#2a5c34;" id="sfiScoreText">Correct: 0</span>
+    <span style="color:var(--ok);" id="sfiScoreText">Correct: 0</span>
     <span style="color:var(--ink-soft);font-weight:600;font-size:10.5px;" id="sfiPoolCount">0 questions in pool</span>
   </div>
 </div>
@@ -209,7 +218,7 @@
   <div style="width:100%;display:flex;justify-content:space-between;align-items:center;">
     <button onclick="goHome()" class="chip" id="txtExamHome">🏠 Home</button>
     <div style="display:flex; gap:8px; align-items:center;">
-      <span class="badge" style="background:var(--gold);color:#3a2a04;border-color:var(--gold);">⏱️ EXAM MODE</span>
+      <span class="badge" style="background:var(--gold);color:#3a2a04;border-color:var(--gold);" id="txtExamBadge">⏱️ EXAM MODE</span>
       <button onclick="toggleAppLanguage()" class="chip">SV/EN</button>
     </div>
     <span class="mono" style="font-size:13px;font-weight:700;color:var(--falu);" id="examTimer">45:00</span>
@@ -219,18 +228,18 @@
   <div id="examProgressBar" style="width:100%;height:6px;background:var(--line);border-radius:6px;overflow:hidden;">
     <div id="examProgressFill" style="height:100%;width:0%;background:var(--navy);transition:width .2s ease;"></div>
   </div>
-  <div style="width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);">
+  <div style="width:100%;background:#f8fafc;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:16px;padding:20px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);">
     <span style="font-size:9px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;" id="examQNum">Question 1 / 69</span>
     <p id="examQuestionText" class="display" style="font-size:15px;font-weight:600;margin:10px 0;color:var(--ink);">...</p>
   </div>
   <div style="width:100%;display:flex;flex-direction:column;gap:8px;" id="examOptionsContainer"></div>
   <div id="examExplainBox" class="explain-box hidden"></div>
-  <button onclick="advanceExam()" id="examNextBtn" class="btn-primary btn-next hidden">➡️ Nästa fråga</button>
+  <button onclick="advanceExam()" id="examNextBtn" class="btn-primary btn-next hidden">➡️ Next Question</button>
   <div id="examResultBox" class="hidden" style="width:100%;text-align:center;"></div>
 </div>
 
 <script>
-let currentLang = 'sv';
+let currentLang = 'en';
 const translations = {
   en:{
     ecosystem:"🇸🇪 SVEAHUB",
@@ -247,8 +256,11 @@ const translations = {
     fillBlank:"Fill in the blank",
     citHome:"🏠 Home",
     citNew:"🔄 New",
+    citBadge:"🇸🇪 CITIZENSHIP",
     citPoolInfo:"Pool expands dynamically via integrated live queries fetching official updates from UHR and verified Swedish civic databases.",
+    citPoolCountText:"13 syllabus areas",
     examHome:"🏠 Home",
+    examBadge:"⏱️ EXAM MODE",
     examSub:"Up to 69 questions · pass mark 75% (52/69) · draws from static + live updated pool",
     examNote:"Dynamic test structure calibrated against official <i>Sverige i fokus</i> requirements and standard European civic evaluation criteria. Focuses on broad civic comprehension without misleading trick elements.",
     examComplete:"Exam complete",
@@ -258,10 +270,17 @@ const translations = {
     aiBtn:"✨ Get New AI Questions",
     sfiHome:"🏠 Home",
     sfiNew:"🔄 New",
+    sfiBadge:"📘 SWEDISH LANGUAGE",
     sfiPoolInfo:"Practice questions for everyday Swedish, work, housing, health, public services and daily communication.",
+    sfiPoolCountText:"0 questions in pool",
     sfiBtn:"✨ Get New AI Swedish Language Questions",
     nextQuestion:"➡️ Next Question",
-    explanationLabel:"Explanation"
+    explanationLabel:"Explanation",
+    scoreLabel:"Score",
+    correctLabel:"Correct",
+    questionLabel:"Question",
+    yourAnswerLabel:"Your answer",
+    correctAnswerLabel:"Correct answer"
   },
   sv:{
     ecosystem:"🇸🇪 SVEAHUB",
@@ -278,8 +297,11 @@ const translations = {
     fillBlank:"Fyll i det tomma utrymmet",
     citHome:"🏠 Hem",
     citNew:"🔄 Ny",
+    citBadge:"🇸🇪 MEDBORGARSKAP",
     citPoolInfo:"Poolen uppdateras dynamiskt via integrerade sökningar som hämtar officiella uppdateringar från UHR och verifierade databaser.",
+    citPoolCountText:"13 kunskapsområden",
     examHome:"🏠 Hem",
+    examBadge:"⏱️ PROVLÄGE",
     examSub:"Upp till 69 frågor · gräns för godkänt 75% (52/69)",
     examNote:"Provet är utformat för att spegla kunskapskraven i Sverige i fokus.",
     examComplete:"Provet slutfört",
@@ -289,10 +311,17 @@ const translations = {
     aiBtn:"✨ Hämta nya AI-frågor",
     sfiHome:"🏠 Hem",
     sfiNew:"🔄 Nytt",
+    sfiBadge:"📘 SVENSKA SPRÅKET",
     sfiPoolInfo:"Övningsfrågor för vardagssvenska, arbete, boende, hälsa, offentliga tjänster och daglig kommunikation.",
+    sfiPoolCountText:"0 frågor i poolen",
     sfiBtn:"✨ Hämta nya AI-frågor för svenska språket",
     nextQuestion:"➡️ Nästa fråga",
-    explanationLabel:"Förklaring"
+    explanationLabel:"Förklaring",
+    scoreLabel:"Poäng",
+    correctLabel:"Rätt",
+    questionLabel:"Fråga",
+    yourAnswerLabel:"Ditt svar",
+    correctAnswerLabel:"Rätt svar"
   }
 };
 
@@ -325,7 +354,10 @@ function refreshLocalizedContent(){
   if(!document.getElementById('gameScreen').classList.contains('hidden')) updateGameUI();
   if(!document.getElementById('citizenshipScreen').classList.contains('hidden')) updateCitizenshipUI();
   if(!document.getElementById('sfiScreen').classList.contains('hidden')) updateSfiUI();
-  if(!document.getElementById('examScreen').classList.contains('hidden')) renderExamQuestion();
+  if(!document.getElementById('examScreen').classList.contains('hidden')){
+    if(currentExamQ >= 69) renderExamSummary();
+    else renderExamQuestion();
+  }
 }
 function applyInterfaceLanguage(){
   const t = translations[currentLang];
@@ -350,13 +382,18 @@ function applyInterfaceLanguage(){
   setText('txtFillBlank', t.fillBlank);
   setText('txtCitHome', t.citHome);
   setText('txtCitNew', t.citNew);
+  setText('txtCitBadge', t.citBadge);
   setText('citPoolInfo', t.citPoolInfo);
+  setText('citPoolCount', t.citPoolCountText);
   setText('aiGenBtn', t.aiBtn);
   setText('txtSfiHome', t.sfiHome);
   setText('txtSfiNew', t.sfiNew);
+  setText('txtSfiBadge', t.sfiBadge);
   setText('sfiPoolInfo', t.sfiPoolInfo);
+  setText('sfiPoolCount', t.sfiPoolCountText);
   setText('sfiAiBtn', t.sfiBtn);
   setText('txtExamHome', t.examHome);
+  setText('txtExamBadge', t.examBadge);
   setText('txtExamSub', t.examSub);
   setText('txtExamNote', t.examNote, true);
   setText('gameNextBtn', t.nextQuestion);
@@ -490,15 +527,15 @@ function playAlphabetWord(letter){
 
 // ---------- Sentence Game Logic ----------
 const aiDatabase = [
-  {category:"Daily Life",sentence:"Jag vill gärna ha en kopp [_____] på morgonen.",correct:"KAFFE",wrong:"BOK",english:"I would love to have a cup of coffee in the morning.",explanation:"'Kaffe' (coffee) är en vanlig morgondryck i Sverige. 'Bok' betyder bok och passar inte ihop med 'en kopp'.",explanationEn:"'Kaffe' means coffee, a classic Swedish morning drink. 'Bok' means book, which cannot follow 'a cup of'."},
-  {category:"Daily Life",sentence:"Det är viktigt att dricka rent [_____] varje dag.",correct:"VATTEN",wrong:"MJÖLK",english:"It is important to drink clean water every day.",explanation:"'Rent vatten' (clean water) är ett vanligt uttryck. 'Mjölk' (milk) beskrivs sällan som 'rent'.",explanationEn:"'Rent vatten' (clean water) is a fixed everyday phrase. 'Mjölk' (milk) is rarely described with the adjective 'clean'."},
-  {category:"Workplace",sentence:"Mitt nya [_____] ligger i centrala Stockholm.",correct:"ARBETE",wrong:"SKOLA",english:"My new work is located in central Stockholm.",explanation:"'Arbete' (work/job) syftar på en arbetsplats. 'Skola' (school) passar inte med sammanhanget om ett nytt jobb.",explanationEn:"'Arbete' means work/job and refers to a workplace. 'Skola' (school) doesn't fit the context of a new job."},
-  {category:"Transport",sentence:"Ursäkta mig, går [_____] i tid idag?",correct:"TÅGET",wrong:"BUSSEN",english:"Excuse me, is the train running on time today?",explanation:"Meningen syftar specifikt på tåget ('the train'). 'Bussen' (the bus) är också ett fordon men matchar inte den bestämda kontexten här.",explanationEn:"The sentence specifically refers to 'the train' (tåget). 'Bussen' (the bus) is also a vehicle but doesn't match this specific context."},
-  {category:"Workplace",sentence:"Kan du skicka mig ditt [_____] innan intervjun?",correct:"CV",wrong:"KVITTO",english:"Can you send me your CV before the interview?",explanation:"Ett CV (meritförteckning) skickas alltid inför en anställningsintervju. Ett 'kvitto' (receipt) hör inte hemma i en anställningsprocess.",explanationEn:"A CV is always sent ahead of a job interview. A 'kvitto' (receipt) has no place in a hiring process."},
-  {category:"Workplace",sentence:"Min [_____] börjar klockan sju på morgonen.",correct:"SKIFT",wrong:"SEMESTER",english:"My shift starts at seven in the morning.",explanation:"'Skift' (shift) har en starttid, till exempel klockan sju. 'Semester' (vacation) beskriver inte en daglig starttid.",explanationEn:"A 'skift' (shift) has a start time, such as seven o'clock. 'Semester' (vacation) doesn't describe a daily start time."},
-  {category:"Family",sentence:"Mitt barn går på [_____] i Järfälla.",correct:"FÖRSKOLA",wrong:"SJUKHUS",english:"My child goes to preschool in Järfälla.",explanation:"'Förskola' (preschool) är dit små barn går varje dag. 'Sjukhus' (hospital) är inte en plats man 'går på' regelbundet som barn.",explanationEn:"'Förskola' (preschool) is where young children go daily. 'Sjukhus' (hospital) is not a place a child regularly 'attends'."},
-  {category:"Workplace",sentence:"Glöm inte att stämpla din [_____] varje dag.",correct:"NÄRVARO",wrong:"FRUKOST",english:"Don't forget to register your attendance every day.",explanation:"'Stämpla närvaro' betyder att registrera att man är på jobbet. 'Frukost' (breakfast) kan inte 'stämplas'.",explanationEn:"'Stämpla närvaro' means to clock in/register attendance. 'Frukost' (breakfast) cannot be 'clocked'."},
-  {category:"Daily Life",sentence:"Vi handlar [_____] varje lördag.",correct:"MAT",wrong:"BIL",english:"We buy groceries every Saturday.",explanation:"'Handla mat' (buy groceries/food) är en vanlig veckorutin. Man 'handlar' vanligtvis inte en 'bil' (car) varje lördag.",explanationEn:"'Handla mat' (buy groceries) is a common weekly routine. You don't typically 'shop for' a 'bil' (car) every Saturday."}
+  {category:"Daily Life",sentence:"Jag vill gärna ha en kopp [_____] på morgonen.",correct:"KAFFE",wrong:"BOK",wrong2:"STOL",english:"I would love to have a cup of coffee in the morning.",explanation:"'Kaffe' (coffee) är en vanlig morgondryck i Sverige. 'Bok' och 'stol' passar inte ihop med 'en kopp'.",explanationEn:"'Kaffe' means coffee, a classic Swedish morning drink. 'Bok' (book) and 'stol' (chair) cannot follow 'a cup of'."},
+  {category:"Daily Life",sentence:"Det är viktigt att dricka rent [_____] varje dag.",correct:"VATTEN",wrong:"MJÖLK",wrong2:"SAFT",english:"It is important to drink clean water every day.",explanation:"'Rent vatten' (clean water) är ett vanligt uttryck. 'Mjölk' (milk) och 'saft' (cordial) beskrivs sällan som 'rent'.",explanationEn:"'Rent vatten' (clean water) is a fixed everyday phrase. 'Mjölk' (milk) and 'saft' (cordial) are rarely described with the adjective 'clean'."},
+  {category:"Workplace",sentence:"Mitt nya [_____] ligger i centrala Stockholm.",correct:"ARBETE",wrong:"SKOLA",wrong2:"SJUKHUS",english:"My new work is located in central Stockholm.",explanation:"'Arbete' (work/job) syftar på en arbetsplats. 'Skola' (school) och 'sjukhus' (hospital) passar inte med sammanhanget om ett nytt jobb.",explanationEn:"'Arbete' means work/job and refers to a workplace. 'Skola' (school) and 'sjukhus' (hospital) don't fit the context of a new job."},
+  {category:"Transport",sentence:"Ursäkta mig, går [_____] i tid idag?",correct:"TÅGET",wrong:"BUSSEN",wrong2:"FLYGET",english:"Excuse me, is the train running on time today?",explanation:"Meningen syftar specifikt på tåget ('the train'). 'Bussen' och 'flyget' är också fordon men matchar inte den bestämda kontexten här.",explanationEn:"The sentence specifically refers to 'the train' (tåget). 'Bussen' (the bus) and 'flyget' (the flight) are also vehicles but don't match this specific context."},
+  {category:"Workplace",sentence:"Kan du skicka mig ditt [_____] innan intervjun?",correct:"CV",wrong:"KVITTO",wrong2:"PASS",english:"Can you send me your CV before the interview?",explanation:"Ett CV (meritförteckning) skickas alltid inför en anställningsintervju. Ett 'kvitto' (receipt) eller 'pass' (passport) hör inte hemma i en anställningsprocess.",explanationEn:"A CV is always sent ahead of a job interview. A 'kvitto' (receipt) or 'pass' (passport) has no place in a hiring process."},
+  {category:"Workplace",sentence:"Min [_____] börjar klockan sju på morgonen.",correct:"SKIFT",wrong:"SEMESTER",wrong2:"LUNCH",english:"My shift starts at seven in the morning.",explanation:"'Skift' (shift) har en starttid, till exempel klockan sju. 'Semester' (vacation) och 'lunch' beskriver inte en daglig starttid.",explanationEn:"A 'skift' (shift) has a start time, such as seven o'clock. 'Semester' (vacation) and 'lunch' don't describe a daily start time."},
+  {category:"Family",sentence:"Mitt barn går på [_____] i Järfälla.",correct:"FÖRSKOLA",wrong:"SJUKHUS",wrong2:"BIBLIOTEK",english:"My child goes to preschool in Järfälla.",explanation:"'Förskola' (preschool) är dit små barn går varje dag. 'Sjukhus' (hospital) och 'bibliotek' (library) är inte platser man 'går på' regelbundet som barn.",explanationEn:"'Förskola' (preschool) is where young children go daily. 'Sjukhus' (hospital) and 'bibliotek' (library) are not places a child regularly 'attends'."},
+  {category:"Workplace",sentence:"Glöm inte att stämpla din [_____] varje dag.",correct:"NÄRVARO",wrong:"FRUKOST",wrong2:"SEMESTER",english:"Don't forget to register your attendance every day.",explanation:"'Stämpla närvaro' betyder att registrera att man är på jobbet. 'Frukost' (breakfast) och 'semester' (vacation) kan inte 'stämplas'.",explanationEn:"'Stämpla närvaro' means to clock in/register attendance. 'Frukost' (breakfast) and 'semester' (vacation) cannot be 'clocked'."},
+  {category:"Daily Life",sentence:"Vi handlar [_____] varje lördag.",correct:"MAT",wrong:"BIL",wrong2:"KLÄDER",english:"We buy groceries every Saturday.",explanation:"'Handla mat' (buy groceries/food) är en vanlig veckorutin. Man 'handlar' vanligtvis inte en 'bil' (car) eller 'kläder' (clothes) varje lördag.",explanationEn:"'Handla mat' (buy groceries) is a common weekly routine. You don't typically 'shop for' a 'bil' (car) or 'kläder' (clothes) every Saturday."}
 ];
 const categories = ["All","Daily Life","Workplace","Transport","Family"];
 let activeCategory = "All";
@@ -540,11 +577,11 @@ function updateGameUI(){
   document.getElementById('categoryTag').innerText = currentGameItem.category;
   document.getElementById('sentenceText').innerText = currentGameItem.sentence;
   document.getElementById('englishText').innerText = currentGameItem.english;
-  document.getElementById('scoreText').innerText = `Score: ${gameScore}`;
+  document.getElementById('scoreText').innerText = `${translations[currentLang].scoreLabel}: ${gameScore}`;
 
   const container = document.getElementById('optionsContainer');
   container.innerHTML = '';
-  const opts = [currentGameItem.correct, currentGameItem.wrong].sort(() => Math.random() - 0.5);
+  const opts = [currentGameItem.correct, currentGameItem.wrong, currentGameItem.wrong2].sort(() => Math.random() - 0.5);
   opts.forEach(opt => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
@@ -567,7 +604,7 @@ function handleGameAnswer(selected, btn){
       if(b.innerText === currentGameItem.correct) b.classList.add('correct');
     });
   }
-  document.getElementById('scoreText').innerText = `Score: ${gameScore}`;
+  document.getElementById('scoreText').innerText = `${translations[currentLang].scoreLabel}: ${gameScore}`;
   showExplanation('game', getLocalizedText(currentGameItem, 'explanation'));
 }
 function advanceGame(){
@@ -576,9 +613,9 @@ function advanceGame(){
 
 // ---------- Citizenship Quiz Logic ----------
 const citizenshipPool = [
-  {category:"Society & Law",question:"Vem stiftar lagar i Sverige?",questionEn:"Who makes laws in Sweden?",options:["Riksdagen","Regeringen","Polisen","Kungen"],optionsEn:["The Riksdag (Parliament)","The Government","The Police","The King"],correct:0,hint:"Riksdagen är Sveriges högsta beslutande församling.",explanation:"Riksdagen består av 349 folkvalda ledamöter och är Sveriges lagstiftande församling. Regeringen genomför politiken, men det är riksdagen som fattar beslut om lagar.",explanationEn:"The Riksdag consists of 349 elected members and is Sweden's law-making body. The Government implements policy, but it is the Riksdag that decides on laws."},
-  {category:"History",question:"När infördes allmän och lika rösträtt i Sverige?",questionEn:"When was universal and equal suffrage introduced in Sweden?",options:["1919","1921","1948","1974"],optionsEn:["1919","1921","1948","1974"],correct:1,hint:"Det beslutsamma valet ägde rum 1921 efter grundlagsändring.",explanation:"Riksdagen beslutade 1918-1919 om allmän och lika rösträtt för både kvinnor och män, men reformen tillämpades första gången i valet 1921, vilket räknas som genombrottsåret.",explanationEn:"The Riksdag decided in 1918-1919 to introduce universal and equal suffrage for both women and men, but the reform was first applied in the 1921 election, which is considered the breakthrough year."},
-  {category:"Government",question:"Vilket statsskick har Sverige?",questionEn:"What form of government does Sweden have?",options:["Republik","Konstitutionell monarki","Diktatur","Federal stat"],optionsEn:["Republic","Constitutional Monarchy","Dictatorship","Federal State"],correct:1,hint:"Sverige har en kung som statschef men makten ligger hos riksdag och regering.",explanation:"I en konstitutionell monarki är kungen/drottningen statschef med en främst ceremoniell roll, medan den faktiska politiska makten utövas av folkvalda organ som riksdag och regering.",explanationEn:"In a constitutional monarchy, the king/queen is head of state with a mostly ceremonial role, while actual political power is exercised by elected bodies such as the Riksdag and the Government."}
+  {category:"Society & Law",question:"Vem stiftar lagar i Sverige?",questionEn:"Who makes laws in Sweden?",options:["Riksdagen","Regeringen","Polisen"],optionsEn:["The Riksdag (Parliament)","The Government","The Police"],correct:0,hint:"Riksdagen är Sveriges högsta beslutande församling.",explanation:"Riksdagen består av 349 folkvalda ledamöter och är Sveriges lagstiftande församling. Regeringen genomför politiken, men det är riksdagen som fattar beslut om lagar.",explanationEn:"The Riksdag consists of 349 elected members and is Sweden's law-making body. The Government implements policy, but it is the Riksdag that decides on laws."},
+  {category:"History",question:"När infördes allmän och lika rösträtt i Sverige?",questionEn:"When was universal and equal suffrage introduced in Sweden?",options:["1919","1921","1948"],optionsEn:["1919","1921","1948"],correct:1,hint:"Det beslutsamma valet ägde rum 1921 efter grundlagsändring.",explanation:"Riksdagen beslutade 1918-1919 om allmän och lika rösträtt för både kvinnor och män, men reformen tillämpades första gången i valet 1921, vilket räknas som genombrottsåret.",explanationEn:"The Riksdag decided in 1918-1919 to introduce universal and equal suffrage for both women and men, but the reform was first applied in the 1921 election, which is considered the breakthrough year."},
+  {category:"Government",question:"Vilket statsskick har Sverige?",questionEn:"What form of government does Sweden have?",options:["Republik","Konstitutionell monarki","Diktatur"],optionsEn:["Republic","Constitutional Monarchy","Dictatorship"],correct:1,hint:"Sverige har en kung som statschef men makten ligger hos riksdag och regering.",explanation:"I en konstitutionell monarki är kungen/drottningen statschef med en främst ceremoniell roll, medan den faktiska politiska makten utövas av folkvalda organ som riksdag och regering.",explanationEn:"In a constitutional monarchy, the king/queen is head of state with a mostly ceremonial role, while actual political power is exercised by elected bodies such as the Riksdag and the Government."}
 ];
 let currentCitIndex = 0;
 let citScore = 0;
@@ -608,7 +645,7 @@ function updateCitizenshipUI(){
   document.getElementById('citCategory').innerText = item.category;
   renderLocalizedText(item.question, item.questionEn, document.getElementById('citQuestionText'));
   renderLocalizedText(`Tips: ${item.hint}`, '', document.getElementById('citHintText'));
-  document.getElementById('citScoreText').innerText = `Correct: ${citScore}`;
+  document.getElementById('citScoreText').innerText = `${translations[currentLang].correctLabel}: ${citScore}`;
 
   const container = document.getElementById('citOptionsContainer');
   container.innerHTML = '';
@@ -634,7 +671,7 @@ function handleCitAnswer(selectedIdx, btn){
     btn.classList.add('wrong');
     buttons[item.correct].classList.add('correct');
   }
-  document.getElementById('citScoreText').innerText = `Correct: ${citScore}`;
+  document.getElementById('citScoreText').innerText = `${translations[currentLang].correctLabel}: ${citScore}`;
   showExplanation('cit', getLocalizedText(item, 'explanation'));
 }
 function advanceCit(){
@@ -646,7 +683,7 @@ function generateAIQuestions(){
 
 // ---------- SFI Practice Logic ----------
 const sfiQuestionPool = [
-  {category:"Daily Life",question:"Vad säger du när du lämnar en butik?",questionEn:"What do you say when leaving a shop?",options:["Varsågod","Tack så mycket","Hej då","God morgon"],optionsEn:["You're welcome","Thank you very much","Goodbye","Good morning"],correct:1,hint:"Du tackar kassören när du går.",explanation:"'Tack så mycket' (thank you very much) är en artig fras att använda när du lämnar en butik efter att ha handlat. 'Hej då' betyder också hejdå men uttrycker inte tacksamhet, vilket förväntas efter ett köp.",explanationEn:"'Tack så mycket' (thank you very much) is the polite phrase to use when leaving a shop after making a purchase. 'Hej då' also means goodbye, but doesn't express the gratitude expected after buying something."}
+  {category:"Daily Life",question:"Vad säger du när du lämnar en butik?",questionEn:"What do you say when leaving a shop?",options:["Varsågod","Tack så mycket","Hej då"],optionsEn:["You're welcome","Thank you very much","Goodbye"],correct:1,hint:"Du tackar kassören när du går.",explanation:"'Tack så mycket' (thank you very much) är en artig fras att använda när du lämnar en butik efter att ha handlat. 'Hej då' betyder också hejdå men uttrycker inte tacksamhet, vilket förväntas efter ett köp.",explanationEn:"'Tack så mycket' (thank you very much) is the polite phrase to use when leaving a shop after making a purchase. 'Hej då' also means goodbye, but doesn't express the gratitude expected after buying something."}
 ];
 let currentSfiIndex = 0;
 let sfiScore = 0;
@@ -664,7 +701,7 @@ function updateSfiUI(){
   document.getElementById('sfiCategory').innerText = item.category;
   renderLocalizedText(item.question, item.questionEn, document.getElementById('sfiQuestionText'));
   renderLocalizedText(`Tips: ${item.hint}`, '', document.getElementById('sfiHintText'));
-  document.getElementById('sfiScoreText').innerText = `Correct: ${sfiScore}`;
+  document.getElementById('sfiScoreText').innerText = `${translations[currentLang].correctLabel}: ${sfiScore}`;
 
   const container = document.getElementById('sfiOptionsContainer');
   container.innerHTML = '';
@@ -690,7 +727,7 @@ function handleSfiAnswer(selectedIdx, btn){
     btn.classList.add('wrong');
     buttons[item.correct].classList.add('correct');
   }
-  document.getElementById('sfiScoreText').innerText = `Correct: ${sfiScore}`;
+  document.getElementById('sfiScoreText').innerText = `${translations[currentLang].correctLabel}: ${sfiScore}`;
   showExplanation('sfi', getLocalizedText(item, 'explanation'));
 }
 function advanceSfi(){
@@ -704,10 +741,16 @@ function generateSfiAIQuestions(){
 let examTimerInterval = null;
 let examTimeLeft = 2700; // 45 mins
 let currentExamQ = 0;
+let examAnswers = [];
+const EXAM_TOTAL_QUESTIONS = 69;
 
 function initExamMode(){
   currentExamQ = 0;
+  examAnswers = [];
   examTimeLeft = 2700;
+  document.getElementById('examResultBox').classList.add('hidden');
+  document.getElementById('examResultBox').innerHTML = '';
+  document.getElementById('examOptionsContainer').classList.remove('hidden');
   startExamTimer();
   renderExamQuestion();
 }
@@ -724,8 +767,8 @@ function startExamTimer(){
 function renderExamQuestion(){
   hideExplanation('exam');
   const qNum = currentExamQ + 1;
-  document.getElementById('examQNum').innerText = `Question ${qNum} / 69`;
-  document.getElementById('examProgressFill').style.width = `${(qNum / 69) * 100}%`;
+  document.getElementById('examQNum').innerText = `${translations[currentLang].questionLabel} ${qNum} / ${EXAM_TOTAL_QUESTIONS}`;
+  document.getElementById('examProgressFill').style.width = `${(qNum / EXAM_TOTAL_QUESTIONS) * 100}%`;
 
   const item = citizenshipPool[currentExamQ % citizenshipPool.length];
   renderLocalizedText(item.question, item.questionEn, document.getElementById('examQuestionText'));
@@ -746,24 +789,63 @@ function renderExamQuestion(){
 function handleExamAnswer(selectedIdx, btn, item){
   const buttons = document.querySelectorAll('#examOptionsContainer .option-btn');
   buttons.forEach(b => b.disabled = true);
-  if(selectedIdx === item.correct){
+  const opts = getLocalizedOptions(item, 'options');
+  const isCorrect = selectedIdx === item.correct;
+  if(isCorrect){
     btn.classList.add('correct');
   } else {
     btn.classList.add('wrong');
     buttons[item.correct].classList.add('correct');
   }
+  examAnswers[currentExamQ] = {
+    question: getLocalizedText(item, 'question'),
+    userAnswer: opts[selectedIdx],
+    correctAnswer: opts[item.correct],
+    isCorrect
+  };
   showExplanation('exam', getLocalizedText(item, 'explanation'));
 }
 function advanceExam(){
   currentExamQ++;
-  if(currentExamQ < 69){
+  if(currentExamQ < EXAM_TOTAL_QUESTIONS){
     renderExamQuestion();
   } else {
     hideExplanation('exam');
     if(examTimerInterval) clearInterval(examTimerInterval);
-    document.getElementById('examQuestionText').innerText = translations[currentLang].examComplete;
-    document.getElementById('examOptionsContainer').innerHTML = `<button class="btn-primary" onclick="goHome()">${translations[currentLang].tryAnother}</button>`;
+    document.getElementById('examNextBtn').classList.add('hidden');
+    document.getElementById('examOptionsContainer').classList.add('hidden');
+    renderExamSummary();
   }
+}
+function renderExamSummary(){
+  const t = translations[currentLang];
+  document.getElementById('examQuestionText').innerText = t.examComplete;
+  document.getElementById('examQNum').innerText = t.examComplete;
+  document.getElementById('examProgressFill').style.width = '100%';
+
+  const answered = examAnswers.filter(Boolean);
+  const total = answered.length;
+  const correctCount = answered.filter(a => a.isCorrect).length;
+  const percent = total ? Math.round((correctCount / total) * 100) : 0;
+  const passed = percent >= 75;
+
+  const reviewHTML = answered.map((a, i) => `
+    <div class="review-row ${a.isCorrect ? 'is-correct' : 'is-wrong'}">
+      <div class="rq">${i + 1}. ${a.question}</div>
+      <div class="ra">${t.yourAnswerLabel}: <b>${a.userAnswer}</b></div>
+      ${a.isCorrect ? '' : `<div class="ra">${t.correctAnswerLabel}: <b>${a.correctAnswer}</b></div>`}
+    </div>
+  `).join('');
+
+  const resultBox = document.getElementById('examResultBox');
+  resultBox.innerHTML = `
+    <div style="font-size:15px;font-weight:800;color:${passed ? 'var(--ok)' : 'var(--danger)'};margin-bottom:10px;">
+      ${correctCount} / ${total} — ${percent}% · ${passed ? t.passMock : t.belowPass}
+    </div>
+    <div style="max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin:0 0 14px;">${reviewHTML}</div>
+    <button class="btn-primary" style="width:100%;" onclick="goHome()">${t.tryAnother}</button>
+  `;
+  resultBox.classList.remove('hidden');
 }
 
 window.onload = () => {
