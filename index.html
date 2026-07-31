@@ -177,7 +177,7 @@
   <div style="width:100%;">
     <button onclick="generateAIQuestions()" id="aiGenBtn" class="btn-primary" style="width:100%;font-size:11.5px;padding:12px;background:linear-gradient(135deg,var(--navy),var(--accent-2));">✨ Get New AI Questions</button>
   </div>
-  <div class="info-note" id="citPoolInfo">Pool expands dynamically via integrated live queries fetching official updates from UHR and verified Swedish civic databases.</div>
+  <div class="info-note" id="citPoolInfo">New practice questions are AI-generated on demand based on the publicly available <i>Sverige i fokus</i> syllabus. These are unofficial practice questions and are not sourced directly from UHR or any official Swedish database.</div>
   <div style="width:100%;display:flex;justify-content:space-between;font-size:12px;font-weight:700;border-top:1px solid var(--line);padding-top:10px;">
     <span style="color:var(--navy);" id="citScoreText">Correct: 0</span>
     <span style="color:var(--ink-soft);font-weight:600;font-size:10.5px;" id="citPoolCount">13 syllabus areas</span>
@@ -223,7 +223,7 @@
     </div>
   </div>
   <div style="width:100%;text-align:center;font-size:11px;color:var(--ink-soft);" id="txtExamSub">No time limit · up to 69 questions · pass mark 75% (52/69) · dynamic non-repeating question pool</div>
-  <div class="info-note" id="txtExamNote" style="margin:0;">Dynamic test structure calibrated against official <i>Sverige i fokus</i> requirements and standard European civic evaluation criteria. Focuses on broad civic comprehension without misleading trick elements.</div>
+  <div class="info-note" id="txtExamNote" style="margin:0;">This mock exam uses the app's practice question pool and publicly available <i>Sverige i fokus</i> syllabus topics. It is an unofficial study tool and is not connected to UHR or any government database.</div>
   <div id="examProgressBar" style="width:100%;height:6px;background:var(--line);border-radius:6px;overflow:hidden;">
     <div id="examProgressFill" style="height:100%;width:0%;background:var(--navy);transition:width .2s ease;"></div>
   </div>
@@ -256,13 +256,13 @@ const translations = {
     citHome:"🏠 Home",
     citNew:"🔄 New",
     citBadge:"🇸🇪 CITIZENSHIP",
-    citPoolInfo:"Robust, non-repeating question pool covering law, history, government, geography, culture and work/health — combining categories and answer variations for 500+ practice combinations.",
+    citPoolInfo:"New practice questions are AI-generated on demand based on the publicly available <i>Sverige i fokus</i> syllabus. These are unofficial practice questions and are not sourced directly from UHR or any official Swedish database.",
     topicsLabel:"topics",
     variationsLabel:"practice variations",
     examHome:"🏠 Home",
     examBadge:"🎓 EXAM MODE",
     examSub:"No time limit · up to 69 questions · pass mark 75% (52/69) · dynamic non-repeating question pool",
-    examNote:"Dynamic test structure calibrated against official <i>Sverige i fokus</i> requirements and standard European civic evaluation criteria. Focuses on broad civic comprehension without misleading trick elements. Take your time — there is no timer.",
+    examNote:"This mock exam uses the app's practice question pool and publicly available <i>Sverige i fokus</i> syllabus topics. It is an unofficial study tool and is not connected to UHR or any government database. Take your time — there is no timer.",
     examComplete:"Exam complete",
     tryAnother:"Try another mock exam",
     passMock:"PASS (mock)",
@@ -297,13 +297,13 @@ const translations = {
     citHome:"🏠 Hem",
     citNew:"🔄 Ny",
     citBadge:"🇸🇪 MEDBORGARSKAP",
-    citPoolInfo:"En robust, icke-repeterande frågepool som täcker lag, historia, styre, geografi, kultur och arbete/hälsa — kategorier och svarskombinationer ger 500+ övningsvarianter.",
+    citPoolInfo:"Nya övningsfrågor AI-genereras vid behov utifrån den offentligt tillgängliga kursplanen för <i>Sverige i fokus</i>. Det här är inofficiella övningsfrågor och de hämtas inte direkt från UHR eller någon svensk myndighetsdatabas.",
     topicsLabel:"kunskapsområden",
     variationsLabel:"övningsvarianter",
     examHome:"🏠 Hem",
     examBadge:"🎓 PROVLÄGE",
     examSub:"Ingen tidsgräns · upp till 69 frågor · gräns för godkänt 75% (52/69) · dynamisk icke-repeterande frågepool",
-    examNote:"Provet är utformat för att spegla kunskapskraven i Sverige i fokus. Ta den tid du behöver — det finns ingen timer.",
+    examNote:"Det här övningsprovet använder appens frågepool och offentligt tillgängliga ämnen från <i>Sverige i fokus</i>. Det är ett inofficiellt studieverktyg och är inte kopplat till UHR eller någon myndighetsdatabas. Ta den tid du behöver — det finns ingen timer.",
     examComplete:"Provet slutfört",
     tryAnother:"Gör ett till låtsasprov",
     passMock:"GODKÄND (låtsasprov)",
